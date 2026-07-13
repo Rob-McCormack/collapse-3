@@ -11,8 +11,8 @@ authors:
 version: "1.0.0"
 date-released: "2026-07-06"
 license: MIT
-url: "https://github.com/Rob-McCormack/collapse3"
-repository-code: "https://github.com/Rob-McCormack/collapse3"
+url: "https://github.com/Rob-McCormack/collapse-3"
+repository-code: "https://github.com/Rob-McCormack/collapse-3"
 keywords:
   - game-solving
   - evaluation

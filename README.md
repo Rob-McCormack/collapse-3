@@ -1,6 +1,6 @@
 # Collapse3
 
-<img src="docs/images/davinci-sketch.png" width="640" alt="Collapse3">
+<img src="docs/images/3x3-simple.png" width="640" alt="Collapse3 board: a 3×3 grid of pegs holding red and blue beads">
 
 
 **Is competence a property of the agent — or of the agent plus the opponents it
@@ -200,6 +200,6 @@ If you use Collapse3, please cite it:
   author       = {McCormack, Rob},
   title        = {Collapse3: measuring competence vs. performance with an exact game oracle},
   year         = {2026},
-  howpublished = {\url{https://github.com/Rob-McCormack/collapse3}}
+  howpublished = {\url{https://github.com/Rob-McCormack/collapse-3}}
 }
 ```

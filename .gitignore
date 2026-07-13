@@ -9,3 +9,5 @@ venv/
 
 # Timestamped experiment outputs are reproducible; keep only the _latest alias.
 results/*__*.json
+
+.DS_Store
