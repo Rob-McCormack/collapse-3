@@ -1,0 +1,56 @@
+{
+  "experiment": "objective_failure",
+  "provenance": {
+    "timestamp_utc": "2026-07-06T15:34:26.788685+00:00",
+    "git_commit": "08eb47e308bfe0af546b36ff31c049bb8abaa0b4",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "train_episodes": 150000
+    }
+  },
+  "results": {
+    "rows": {
+      "trained_vs_random": {
+        "q_entries": 38799,
+        "win_rate_vs_random": 0.984,
+        "wdl_vs_random": [
+          1968,
+          32,
+          0
+        ],
+        "mean_regret_vs_optimal": 0.0581,
+        "optimal_rate_vs_optimal": 0.9423,
+        "wdl_vs_optimal": [
+          792,
+          1177,
+          31
+        ],
+        "mean_regret_offdist_random": 0.2505
+      },
+      "trained_vs_optimal": {
+        "q_entries": 22182,
+        "win_rate_vs_random": 0.895,
+        "wdl_vs_random": [
+          1790,
+          205,
+          5
+        ],
+        "mean_regret_vs_optimal": 0.0019,
+        "optimal_rate_vs_optimal": 0.9981,
+        "wdl_vs_optimal": [
+          1357,
+          643,
+          0
+        ],
+        "mean_regret_offdist_random": 0.0508
+      }
+    }
+  }
+}

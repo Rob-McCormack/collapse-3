@@ -1,0 +1,77 @@
+{
+  "experiment": "win_rate_vs_regret",
+  "provenance": {
+    "timestamp_utc": "2026-07-06T12:10:59.443411+00:00",
+    "git_commit": "2409efe5836add1f7d13167ef8f76cc4f5c8793c",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "n_games": 200,
+      "base_seed": 999,
+      "test_agent": "2-ply",
+      "opponents": [
+        "random",
+        "myopic",
+        "one_ply"
+      ]
+    }
+  },
+  "results": {
+    "rows": [
+      {
+        "opponent": "random",
+        "win_rate": 0.785,
+        "draw_rate": 0.21,
+        "loss_rate": 0.005,
+        "optimal_rate_overall": 0.7879616963064295,
+        "optimal_rate_critical": 0.6600877192982456,
+        "mean_regret_overall": 23.351573187414502,
+        "mean_regret_critical": 37.43421052631579,
+        "outcomes": {
+          "true win": 152,
+          "draw": 42,
+          "attrition win": 5,
+          "true loss": 1
+        }
+      },
+      {
+        "opponent": "myopic",
+        "win_rate": 0.87,
+        "draw_rate": 0.09,
+        "loss_rate": 0.04,
+        "optimal_rate_overall": 0.8888888888888888,
+        "optimal_rate_critical": 0.7838541666666666,
+        "mean_regret_overall": 11.981258366800535,
+        "mean_regret_critical": 23.307291666666668,
+        "outcomes": {
+          "attrition win": 50,
+          "true win": 124,
+          "draw": 18,
+          "true loss": 8
+        }
+      },
+      {
+        "opponent": "one_ply",
+        "win_rate": 0.785,
+        "draw_rate": 0.19,
+        "loss_rate": 0.025,
+        "optimal_rate_overall": 0.7879616963064295,
+        "optimal_rate_critical": 0.6600877192982456,
+        "mean_regret_overall": 23.351573187414502,
+        "mean_regret_critical": 37.43421052631579,
+        "outcomes": {
+          "true win": 152,
+          "draw": 38,
+          "true loss": 5,
+          "attrition win": 5
+        }
+      }
+    ]
+  }
+}

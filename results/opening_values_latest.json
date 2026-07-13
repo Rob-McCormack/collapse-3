@@ -1,0 +1,279 @@
+{
+  "experiment": "opening_values",
+  "provenance": {
+    "timestamp_utc": "2026-07-09T12:45:21.664807+00:00",
+    "git_commit": "a39d852492627f731172de1ca69baa8417036723",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "grid_size": 6,
+      "census_sizes": [
+        2,
+        3
+      ]
+    }
+  },
+  "results": {
+    "grid": {
+      "(1,1)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(1,2)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(1,3)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(1,4)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(1,5)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(1,6)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(2,1)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(2,2)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(2,3)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(2,4)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(2,5)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(2,6)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(3,1)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(3,2)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(3,3)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(3,4)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(3,5)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(3,6)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(4,1)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(4,2)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(4,3)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(4,4)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(4,5)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(4,6)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(5,1)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(5,2)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(5,3)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(5,4)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(5,5)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(5,6)": {
+        "value": 0,
+        "label": "draw"
+      },
+      "(6,1)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(6,2)": {
+        "value": 10,
+        "label": "P0 attrition win"
+      },
+      "(6,3)": {
+        "value": 100,
+        "label": "P0 line win"
+      },
+      "(6,4)": {
+        "value": 100,
+        "label": "P0 line win"
+      },
+      "(6,5)": {
+        "value": 100,
+        "label": "P0 line win"
+      },
+      "(6,6)": {
+        "value": 100,
+        "label": "P0 line win"
+      }
+    },
+    "first_player_never_loses": true,
+    "second_player_never_wins": true,
+    "diagonal": {
+      "(1,1)": 0,
+      "(2,2)": 0,
+      "(3,3)": 0,
+      "(4,4)": 0,
+      "(5,5)": 0,
+      "(6,6)": 100
+    },
+    "crosscheck": {
+      "(2,1)": {
+        "folded": 10,
+        "enum": 10
+      },
+      "(1,2)": {
+        "folded": 0,
+        "enum": 0
+      },
+      "(3,2)": {
+        "folded": 10,
+        "enum": 10
+      },
+      "(4,3)": {
+        "folded": 10,
+        "enum": 10
+      },
+      "(3,4)": {
+        "folded": 0,
+        "enum": 0
+      },
+      "(4,4)": {
+        "folded": 0,
+        "enum": 0
+      }
+    },
+    "ordering_robustness": {
+      "(6,6)": {
+        "base": 100,
+        "shuffled": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "invariant": true
+      },
+      "(6,3)": {
+        "base": 100,
+        "shuffled": [
+          100,
+          100,
+          100,
+          100,
+          100
+        ],
+        "invariant": true
+      },
+      "(3,6)": {
+        "base": 0,
+        "shuffled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "invariant": true
+      },
+      "(5,5)": {
+        "base": 0,
+        "shuffled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "invariant": true
+      },
+      "(4,4)": {
+        "base": 0,
+        "shuffled": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "invariant": true
+      }
+    },
+    "pv_verification": {
+      "pv_len": 9,
+      "root_value": 100,
+      "all_positions_match": true
+    },
+    "draw_trend": {
+      "(2,2)": {
+        "states": 4051,
+        "draw_frac": 0.8578,
+        "decisive_frac": 0.1422,
+        "seconds": 0.1
+      },
+      "(3,3)": {
+        "states": 97093,
+        "draw_frac": 0.7147,
+        "decisive_frac": 0.2853,
+        "seconds": 2.1
+      }
+    },
+    "draw_fraction_monotonic": true
+  }
+}

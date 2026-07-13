@@ -1,0 +1,595 @@
+{
+  "experiment": "depth_sweep",
+  "provenance": {
+    "timestamp_utc": "2026-07-09T13:41:03.235671+00:00",
+    "git_commit": "70f02c8326e3fa87b59ffa56b3c5d9d4fe5b9aa9",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "n_games": 200,
+      "base_seed": 12345,
+      "test_seat": 0,
+      "depths": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "heur_depths": [
+        1,
+        2,
+        3
+      ],
+      "opponents": [
+        "optimal",
+        "random"
+      ],
+      "policies": "rand, myopic; bead-count NPlyAgent(depth); positional HeuristicNPlyAgent(depth)",
+      "regret": "wdl units (0-2, comparable to aliasing floors) + raw solver-unit drop"
+    }
+  },
+  "results": {
+    "rows": [
+      {
+        "opponent": "optimal",
+        "policy": "rand",
+        "win_rate": 0.0,
+        "draw_rate": 0.16,
+        "loss_rate": 0.84,
+        "decisions": 773,
+        "critical_decisions": 262,
+        "optimal_rate_overall": 0.7826649417852523,
+        "optimal_rate_critical": 0.35877862595419846,
+        "mean_regret_overall": 21.733505821474772,
+        "mean_regret_critical": 64.12213740458016,
+        "mean_wdl_regret_overall": 0.21733505821474774,
+        "mean_wdl_regret_critical": 0.6412213740458015,
+        "class_regret_hist": {
+          "0": 605,
+          "2": 168
+        },
+        "outcomes": {
+          "true loss": 168,
+          "draw": 32
+        },
+        "seconds": 2.5
+      },
+      {
+        "opponent": "optimal",
+        "policy": "myopic",
+        "win_rate": 0.0,
+        "draw_rate": 0.01,
+        "loss_rate": 0.99,
+        "decisions": 927,
+        "critical_decisions": 198,
+        "optimal_rate_overall": 0.7864077669902912,
+        "optimal_rate_critical": 0.0,
+        "mean_regret_overall": 21.359223300970875,
+        "mean_regret_critical": 100.0,
+        "mean_wdl_regret_overall": 0.21359223300970873,
+        "mean_wdl_regret_critical": 1.0,
+        "class_regret_hist": {
+          "0": 729,
+          "2": 198
+        },
+        "outcomes": {
+          "true loss": 198,
+          "draw": 2
+        },
+        "seconds": 0.2
+      },
+      {
+        "opponent": "optimal",
+        "policy": "bead-1ply",
+        "win_rate": 0.0,
+        "draw_rate": 0.16,
+        "loss_rate": 0.84,
+        "decisions": 773,
+        "critical_decisions": 262,
+        "optimal_rate_overall": 0.7826649417852523,
+        "optimal_rate_critical": 0.35877862595419846,
+        "mean_regret_overall": 21.733505821474772,
+        "mean_regret_critical": 64.12213740458016,
+        "mean_wdl_regret_overall": 0.21733505821474774,
+        "mean_wdl_regret_critical": 0.6412213740458015,
+        "class_regret_hist": {
+          "0": 605,
+          "2": 168
+        },
+        "outcomes": {
+          "true loss": 168,
+          "draw": 32
+        },
+        "seconds": 0.1
+      },
+      {
+        "opponent": "optimal",
+        "policy": "bead-2ply",
+        "win_rate": 0.0,
+        "draw_rate": 0.76,
+        "loss_rate": 0.24,
+        "decisions": 821,
+        "critical_decisions": 322,
+        "optimal_rate_overall": 0.9415347137637028,
+        "optimal_rate_critical": 0.8509316770186336,
+        "mean_regret_overall": 5.84652862362972,
+        "mean_regret_critical": 14.906832298136646,
+        "mean_wdl_regret_overall": 0.058465286236297195,
+        "mean_wdl_regret_critical": 0.14906832298136646,
+        "class_regret_hist": {
+          "0": 773,
+          "2": 48
+        },
+        "outcomes": {
+          "draw": 152,
+          "true loss": 48
+        },
+        "seconds": 0.6
+      },
+      {
+        "opponent": "optimal",
+        "policy": "bead-3ply",
+        "win_rate": 0.0,
+        "draw_rate": 0.755,
+        "loss_rate": 0.245,
+        "decisions": 826,
+        "critical_decisions": 322,
+        "optimal_rate_overall": 0.940677966101695,
+        "optimal_rate_critical": 0.8478260869565217,
+        "mean_regret_overall": 5.932203389830509,
+        "mean_regret_critical": 15.217391304347826,
+        "mean_wdl_regret_overall": 0.059322033898305086,
+        "mean_wdl_regret_critical": 0.15217391304347827,
+        "class_regret_hist": {
+          "0": 777,
+          "2": 49
+        },
+        "outcomes": {
+          "draw": 151,
+          "true loss": 49
+        },
+        "seconds": 1.5
+      },
+      {
+        "opponent": "optimal",
+        "policy": "bead-4ply",
+        "win_rate": 0.0,
+        "draw_rate": 0.865,
+        "loss_rate": 0.135,
+        "decisions": 813,
+        "critical_decisions": 326,
+        "optimal_rate_overall": 0.966789667896679,
+        "optimal_rate_critical": 0.9171779141104295,
+        "mean_regret_overall": 3.321033210332103,
+        "mean_regret_critical": 8.282208588957054,
+        "mean_wdl_regret_overall": 0.033210332103321034,
+        "mean_wdl_regret_critical": 0.08282208588957055,
+        "class_regret_hist": {
+          "0": 786,
+          "2": 27
+        },
+        "outcomes": {
+          "draw": 173,
+          "true loss": 27
+        },
+        "seconds": 7.6
+      },
+      {
+        "opponent": "optimal",
+        "policy": "bead-5ply",
+        "win_rate": 0.0,
+        "draw_rate": 0.875,
+        "loss_rate": 0.125,
+        "decisions": 832,
+        "critical_decisions": 328,
+        "optimal_rate_overall": 0.9699519230769231,
+        "optimal_rate_critical": 0.9237804878048781,
+        "mean_regret_overall": 3.0048076923076925,
+        "mean_regret_critical": 7.621951219512195,
+        "mean_wdl_regret_overall": 0.030048076923076924,
+        "mean_wdl_regret_critical": 0.07621951219512195,
+        "class_regret_hist": {
+          "0": 807,
+          "2": 25
+        },
+        "outcomes": {
+          "draw": 175,
+          "true loss": 25
+        },
+        "seconds": 21.4
+      },
+      {
+        "opponent": "optimal",
+        "policy": "bead-6ply",
+        "win_rate": 0.0,
+        "draw_rate": 1.0,
+        "loss_rate": 0.0,
+        "decisions": 824,
+        "critical_decisions": 360,
+        "optimal_rate_overall": 1.0,
+        "optimal_rate_critical": 1.0,
+        "mean_regret_overall": 0.0,
+        "mean_regret_critical": 0.0,
+        "mean_wdl_regret_overall": 0.0,
+        "mean_wdl_regret_critical": 0.0,
+        "class_regret_hist": {
+          "0": 824
+        },
+        "outcomes": {
+          "draw": 200
+        },
+        "seconds": 92.7
+      },
+      {
+        "opponent": "optimal",
+        "policy": "pos-1ply",
+        "win_rate": 0.0,
+        "draw_rate": 0.36,
+        "loss_rate": 0.64,
+        "decisions": 803,
+        "critical_decisions": 334,
+        "optimal_rate_overall": 0.8405977584059776,
+        "optimal_rate_critical": 0.6167664670658682,
+        "mean_regret_overall": 15.940224159402241,
+        "mean_regret_critical": 38.32335329341317,
+        "mean_wdl_regret_overall": 0.15940224159402241,
+        "mean_wdl_regret_critical": 0.38323353293413176,
+        "class_regret_hist": {
+          "0": 675,
+          "2": 128
+        },
+        "outcomes": {
+          "true loss": 128,
+          "draw": 72
+        },
+        "seconds": 0.3
+      },
+      {
+        "opponent": "optimal",
+        "policy": "pos-2ply",
+        "win_rate": 0.0,
+        "draw_rate": 0.995,
+        "loss_rate": 0.005,
+        "decisions": 820,
+        "critical_decisions": 362,
+        "optimal_rate_overall": 0.998780487804878,
+        "optimal_rate_critical": 0.9972375690607734,
+        "mean_regret_overall": 0.12195121951219512,
+        "mean_regret_critical": 0.27624309392265195,
+        "mean_wdl_regret_overall": 0.0012195121951219512,
+        "mean_wdl_regret_critical": 0.0027624309392265192,
+        "class_regret_hist": {
+          "0": 819,
+          "2": 1
+        },
+        "outcomes": {
+          "draw": 199,
+          "true loss": 1
+        },
+        "seconds": 1.3
+      },
+      {
+        "opponent": "optimal",
+        "policy": "pos-3ply",
+        "win_rate": 0.0,
+        "draw_rate": 1.0,
+        "loss_rate": 0.0,
+        "decisions": 800,
+        "critical_decisions": 302,
+        "optimal_rate_overall": 1.0,
+        "optimal_rate_critical": 1.0,
+        "mean_regret_overall": 0.0,
+        "mean_regret_critical": 0.0,
+        "mean_wdl_regret_overall": 0.0,
+        "mean_wdl_regret_critical": 0.0,
+        "class_regret_hist": {
+          "0": 800
+        },
+        "outcomes": {
+          "draw": 200
+        },
+        "seconds": 4.1
+      },
+      {
+        "opponent": "random",
+        "policy": "rand",
+        "win_rate": 0.245,
+        "draw_rate": 0.65,
+        "loss_rate": 0.105,
+        "decisions": 835,
+        "critical_decisions": 534,
+        "optimal_rate_overall": 0.5449101796407185,
+        "optimal_rate_critical": 0.2883895131086142,
+        "mean_regret_overall": 59.02994011976048,
+        "mean_regret_critical": 92.30337078651685,
+        "mean_wdl_regret_overall": 0.5568862275449101,
+        "mean_wdl_regret_critical": 0.8707865168539326,
+        "class_regret_hist": {
+          "0": 455,
+          "2": 207,
+          "4": 120,
+          "1": 46,
+          "3": 7
+        },
+        "outcomes": {
+          "true loss": 21,
+          "draw": 130,
+          "true win": 29,
+          "attrition win": 20
+        },
+        "seconds": 1.6
+      },
+      {
+        "opponent": "random",
+        "policy": "myopic",
+        "win_rate": 0.955,
+        "draw_rate": 0.045,
+        "loss_rate": 0.0,
+        "decisions": 657,
+        "critical_decisions": 319,
+        "optimal_rate_overall": 0.8462709284627092,
+        "optimal_rate_critical": 0.6833855799373041,
+        "mean_regret_overall": 15.372907153729072,
+        "mean_regret_critical": 31.661442006269592,
+        "mean_wdl_regret_overall": 0.1537290715372907,
+        "mean_wdl_regret_critical": 0.3166144200626959,
+        "class_regret_hist": {
+          "0": 556,
+          "2": 101
+        },
+        "outcomes": {
+          "true win": 191,
+          "draw": 9
+        },
+        "seconds": 0.2
+      },
+      {
+        "opponent": "random",
+        "policy": "bead-1ply",
+        "win_rate": 0.75,
+        "draw_rate": 0.205,
+        "loss_rate": 0.045,
+        "decisions": 738,
+        "critical_decisions": 454,
+        "optimal_rate_overall": 0.7113821138211383,
+        "optimal_rate_critical": 0.5308370044052864,
+        "mean_regret_overall": 33.18428184281843,
+        "mean_regret_critical": 53.94273127753304,
+        "mean_wdl_regret_overall": 0.31842818428184283,
+        "mean_wdl_regret_critical": 0.5176211453744494,
+        "class_regret_hist": {
+          "0": 525,
+          "2": 143,
+          "1": 26,
+          "4": 37,
+          "3": 7
+        },
+        "outcomes": {
+          "true win": 146,
+          "draw": 41,
+          "true loss": 9,
+          "attrition win": 4
+        },
+        "seconds": 0.1
+      },
+      {
+        "opponent": "random",
+        "policy": "bead-2ply",
+        "win_rate": 0.835,
+        "draw_rate": 0.165,
+        "loss_rate": 0.0,
+        "decisions": 741,
+        "critical_decisions": 462,
+        "optimal_rate_overall": 0.7786774628879892,
+        "optimal_rate_critical": 0.645021645021645,
+        "mean_regret_overall": 25.168690958164643,
+        "mean_regret_critical": 40.36796536796537,
+        "mean_wdl_regret_overall": 0.23346828609986506,
+        "mean_wdl_regret_critical": 0.37445887445887444,
+        "class_regret_hist": {
+          "0": 577,
+          "2": 105,
+          "1": 28,
+          "4": 30,
+          "3": 1
+        },
+        "outcomes": {
+          "true win": 162,
+          "draw": 33,
+          "attrition win": 5
+        },
+        "seconds": 0.5
+      },
+      {
+        "opponent": "random",
+        "policy": "bead-3ply",
+        "win_rate": 0.9,
+        "draw_rate": 0.1,
+        "loss_rate": 0.0,
+        "decisions": 807,
+        "critical_decisions": 538,
+        "optimal_rate_overall": 0.8413878562577447,
+        "optimal_rate_critical": 0.7620817843866171,
+        "mean_regret_overall": 18.574969021065677,
+        "mean_regret_critical": 27.86245353159851,
+        "mean_wdl_regret_overall": 0.1734820322180917,
+        "mean_wdl_regret_critical": 0.26022304832713755,
+        "class_regret_hist": {
+          "0": 679,
+          "2": 83,
+          "4": 26,
+          "1": 18,
+          "3": 1
+        },
+        "outcomes": {
+          "true win": 175,
+          "draw": 20,
+          "attrition win": 5
+        },
+        "seconds": 1.7
+      },
+      {
+        "opponent": "random",
+        "policy": "bead-4ply",
+        "win_rate": 0.885,
+        "draw_rate": 0.105,
+        "loss_rate": 0.01,
+        "decisions": 803,
+        "critical_decisions": 539,
+        "optimal_rate_overall": 0.8480697384806973,
+        "optimal_rate_critical": 0.7736549165120594,
+        "mean_regret_overall": 17.79576587795766,
+        "mean_regret_critical": 26.512059369202227,
+        "mean_wdl_regret_overall": 0.1656288916562889,
+        "mean_wdl_regret_critical": 0.24675324675324675,
+        "class_regret_hist": {
+          "0": 681,
+          "2": 77,
+          "4": 26,
+          "1": 19
+        },
+        "outcomes": {
+          "true win": 176,
+          "draw": 21,
+          "attrition win": 1,
+          "true loss": 2
+        },
+        "seconds": 7.3
+      },
+      {
+        "opponent": "random",
+        "policy": "bead-5ply",
+        "win_rate": 0.955,
+        "draw_rate": 0.035,
+        "loss_rate": 0.01,
+        "decisions": 787,
+        "critical_decisions": 545,
+        "optimal_rate_overall": 0.9860228716645489,
+        "optimal_rate_critical": 0.9798165137614679,
+        "mean_regret_overall": 1.3977128335451081,
+        "mean_regret_critical": 2.018348623853211,
+        "mean_wdl_regret_overall": 0.01397712833545108,
+        "mean_wdl_regret_critical": 0.02018348623853211,
+        "class_regret_hist": {
+          "0": 776,
+          "2": 11
+        },
+        "outcomes": {
+          "true win": 191,
+          "draw": 7,
+          "true loss": 2
+        },
+        "seconds": 21.2
+      },
+      {
+        "opponent": "random",
+        "policy": "bead-6ply",
+        "win_rate": 0.96,
+        "draw_rate": 0.04,
+        "loss_rate": 0.0,
+        "decisions": 789,
+        "critical_decisions": 554,
+        "optimal_rate_overall": 0.9974651457541192,
+        "optimal_rate_critical": 0.9963898916967509,
+        "mean_regret_overall": 0.025348542458808618,
+        "mean_regret_critical": 0.036101083032490974,
+        "mean_wdl_regret_overall": 0.0025348542458808617,
+        "mean_wdl_regret_critical": 0.0036101083032490976,
+        "class_regret_hist": {
+          "0": 787,
+          "1": 2
+        },
+        "outcomes": {
+          "true win": 192,
+          "draw": 8
+        },
+        "seconds": 82.7
+      },
+      {
+        "opponent": "random",
+        "policy": "pos-1ply",
+        "win_rate": 0.955,
+        "draw_rate": 0.035,
+        "loss_rate": 0.01,
+        "decisions": 646,
+        "critical_decisions": 421,
+        "optimal_rate_overall": 0.9086687306501547,
+        "optimal_rate_critical": 0.8598574821852731,
+        "mean_regret_overall": 9.287925696594428,
+        "mean_regret_critical": 14.251781472684085,
+        "mean_wdl_regret_overall": 0.09287925696594428,
+        "mean_wdl_regret_critical": 0.14251781472684086,
+        "class_regret_hist": {
+          "0": 587,
+          "2": 58,
+          "4": 1
+        },
+        "outcomes": {
+          "true win": 191,
+          "draw": 7,
+          "true loss": 2
+        },
+        "seconds": 0.2
+      },
+      {
+        "opponent": "random",
+        "policy": "pos-2ply",
+        "win_rate": 0.965,
+        "draw_rate": 0.035,
+        "loss_rate": 0.0,
+        "decisions": 648,
+        "critical_decisions": 420,
+        "optimal_rate_overall": 0.9799382716049383,
+        "optimal_rate_critical": 0.969047619047619,
+        "mean_regret_overall": 3.2253086419753085,
+        "mean_regret_critical": 4.976190476190476,
+        "mean_wdl_regret_overall": 0.030864197530864196,
+        "mean_wdl_regret_critical": 0.047619047619047616,
+        "class_regret_hist": {
+          "0": 635,
+          "4": 9,
+          "1": 3,
+          "2": 1
+        },
+        "outcomes": {
+          "true win": 189,
+          "draw": 7,
+          "attrition win": 4
+        },
+        "seconds": 1.0
+      },
+      {
+        "opponent": "random",
+        "policy": "pos-3ply",
+        "win_rate": 1.0,
+        "draw_rate": 0.0,
+        "loss_rate": 0.0,
+        "decisions": 790,
+        "critical_decisions": 567,
+        "optimal_rate_overall": 0.9607594936708861,
+        "optimal_rate_critical": 0.9453262786596119,
+        "mean_regret_overall": 3.5316455696202533,
+        "mean_regret_critical": 4.920634920634921,
+        "mean_wdl_regret_overall": 0.0,
+        "mean_wdl_regret_critical": 0.0,
+        "class_regret_hist": {
+          "0": 759,
+          "1": 31
+        },
+        "outcomes": {
+          "attrition win": 31,
+          "true win": 169
+        },
+        "seconds": 4.2
+      }
+    ]
+  }
+}

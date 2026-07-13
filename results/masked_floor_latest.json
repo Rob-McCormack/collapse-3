@@ -1,0 +1,91 @@
+{
+  "experiment": "masked_floor",
+  "provenance": {
+    "timestamp_utc": "2026-07-10T19:53:02.059319+00:00",
+    "git_commit": "aac09c045e1d80008625fb53c3acb64f131b7241",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "results": {
+    "by_size": {
+      "3_3": {
+        "states": 97093,
+        "rows": {
+          "hide_cooldown": {
+            "floor_mask_blind": 0.00034469551895825355,
+            "floor_mask_aware": 0.0,
+            "masked_conflict_groups": 0,
+            "masked_no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor_mask_blind": 0.0027575641516660284,
+            "floor_mask_aware": 0.0,
+            "masked_conflict_groups": 0,
+            "masked_no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor_mask_blind": 0.00034469551895825355,
+            "floor_mask_aware": 0.0,
+            "masked_conflict_groups": 0,
+            "masked_no_common_legal_action": 0
+          }
+        }
+      },
+      "4_4": {
+        "states": 1357963,
+        "rows": {
+          "hide_cooldown": {
+            "floor_mask_blind": 0.0023788601556615618,
+            "floor_mask_aware": 0.0,
+            "masked_conflict_groups": 0,
+            "masked_no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor_mask_blind": 0.0804920913884007,
+            "floor_mask_aware": 0.0026278349652690603,
+            "masked_conflict_groups": 1256,
+            "masked_no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor_mask_blind": 0.00025315926018913714,
+            "floor_mask_aware": 0.0030462800234329233,
+            "masked_conflict_groups": 1456,
+            "masked_no_common_legal_action": 0
+          }
+        }
+      },
+      "5_5": {
+        "states": 12714999,
+        "rows": {
+          "hide_cooldown": {
+            "floor_mask_blind": 0.003435114503816794,
+            "floor_mask_aware": 1.2355832532134817e-05,
+            "masked_conflict_groups": 32,
+            "masked_no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor_mask_blind": 0.16772830296501368,
+            "floor_mask_aware": 0.002440469984979941,
+            "masked_conflict_groups": 12041,
+            "masked_no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor_mask_blind": 0.00043264719850803323,
+            "floor_mask_aware": 0.002998799167525783,
+            "masked_conflict_groups": 12439,
+            "masked_no_common_legal_action": 0
+          }
+        }
+      }
+    }
+  }
+}

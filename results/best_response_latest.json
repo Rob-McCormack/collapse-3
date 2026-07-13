@@ -1,0 +1,503 @@
+{
+  "experiment": "best_response",
+  "provenance": {
+    "timestamp_utc": "2026-07-11T12:44:52.463377+00:00",
+    "git_commit": "2a84f5dfe8277440f3c40b2bfcfc9ee6ae6ee8e3",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        3,
+        4,
+        5
+      ],
+      "policies": [
+        "kimi-v1",
+        "kimi-v2"
+      ]
+    }
+  },
+  "results": {
+    "rows": [
+      {
+        "policy": "kimi-v1",
+        "reserves": [
+          3,
+          3
+        ],
+        "policy_seat": 0,
+        "worst_case": "forced loss",
+        "one_sided_states": 201,
+        "seconds": 0.01,
+        "shortest_exploit_plies": 6,
+        "exploit_line": [
+          "P:('place', 4)",
+          "O:('place', 8)",
+          "P:('place', 0)",
+          "O:('place', 8)",
+          "P:('place', 2)",
+          "O:('place', 8)"
+        ],
+        "exploit_grading": {
+          "moves": [
+            {
+              "ply": 1,
+              "mover": "policy",
+              "move": "('place', 4)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 2,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 3,
+              "mover": "policy",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 4,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "blunder(wdl-1)"
+            },
+            {
+              "ply": 5,
+              "mover": "policy",
+              "move": "('place', 2)",
+              "true_game": "blunder(wdl-2)"
+            },
+            {
+              "ply": 6,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "optimal"
+            }
+          ],
+          "first_policy_positive_regret_ply": 5
+        }
+      },
+      {
+        "policy": "kimi-v1",
+        "reserves": [
+          3,
+          3
+        ],
+        "policy_seat": 1,
+        "worst_case": "forced loss",
+        "one_sided_states": 766,
+        "seconds": 0.03,
+        "shortest_exploit_plies": 5,
+        "exploit_line": [
+          "O:('place', 0)",
+          "P:('place', 4)",
+          "O:('place', 0)",
+          "P:('place', 2)",
+          "O:('place', 0)"
+        ],
+        "exploit_grading": {
+          "moves": [
+            {
+              "ply": 1,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 2,
+              "mover": "policy",
+              "move": "('place', 4)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 3,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 4,
+              "mover": "policy",
+              "move": "('place', 2)",
+              "true_game": "blunder(wdl-1)"
+            },
+            {
+              "ply": 5,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            }
+          ],
+          "first_policy_positive_regret_ply": 4
+        }
+      },
+      {
+        "policy": "kimi-v2",
+        "reserves": [
+          3,
+          3
+        ],
+        "policy_seat": 0,
+        "worst_case": "draw",
+        "one_sided_states": 216,
+        "seconds": 0.01
+      },
+      {
+        "policy": "kimi-v2",
+        "reserves": [
+          3,
+          3
+        ],
+        "policy_seat": 1,
+        "worst_case": "draw",
+        "one_sided_states": 977,
+        "seconds": 0.04
+      },
+      {
+        "policy": "kimi-v1",
+        "reserves": [
+          4,
+          4
+        ],
+        "policy_seat": 0,
+        "worst_case": "forced loss",
+        "one_sided_states": 300,
+        "seconds": 0.01,
+        "shortest_exploit_plies": 6,
+        "exploit_line": [
+          "P:('place', 4)",
+          "O:('place', 8)",
+          "P:('place', 0)",
+          "O:('place', 8)",
+          "P:('place', 2)",
+          "O:('place', 8)"
+        ],
+        "exploit_grading": {
+          "moves": [
+            {
+              "ply": 1,
+              "mover": "policy",
+              "move": "('place', 4)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 2,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 3,
+              "mover": "policy",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 4,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "blunder(wdl-1)"
+            },
+            {
+              "ply": 5,
+              "mover": "policy",
+              "move": "('place', 2)",
+              "true_game": "blunder(wdl-2)"
+            },
+            {
+              "ply": 6,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "optimal"
+            }
+          ],
+          "first_policy_positive_regret_ply": 5
+        }
+      },
+      {
+        "policy": "kimi-v1",
+        "reserves": [
+          4,
+          4
+        ],
+        "policy_seat": 1,
+        "worst_case": "forced loss",
+        "one_sided_states": 1682,
+        "seconds": 0.07,
+        "shortest_exploit_plies": 5,
+        "exploit_line": [
+          "O:('place', 0)",
+          "P:('place', 4)",
+          "O:('place', 0)",
+          "P:('place', 2)",
+          "O:('place', 0)"
+        ],
+        "exploit_grading": {
+          "moves": [
+            {
+              "ply": 1,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 2,
+              "mover": "policy",
+              "move": "('place', 4)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 3,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 4,
+              "mover": "policy",
+              "move": "('place', 2)",
+              "true_game": "blunder(wdl-1)"
+            },
+            {
+              "ply": 5,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            }
+          ],
+          "first_policy_positive_regret_ply": 4
+        }
+      },
+      {
+        "policy": "kimi-v2",
+        "reserves": [
+          4,
+          4
+        ],
+        "policy_seat": 0,
+        "worst_case": "forced loss",
+        "one_sided_states": 338,
+        "seconds": 0.01,
+        "shortest_exploit_plies": 8,
+        "exploit_line": [
+          "P:('place', 4)",
+          "O:('place', 8)",
+          "P:('place', 0)",
+          "O:('place', 8)",
+          "P:('place', 8)",
+          "O:('place', 4)",
+          "P:('place', 2)",
+          "O:('place', 0)"
+        ],
+        "exploit_grading": {
+          "moves": [
+            {
+              "ply": 1,
+              "mover": "policy",
+              "move": "('place', 4)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 2,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 3,
+              "mover": "policy",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 4,
+              "mover": "opponent",
+              "move": "('place', 8)",
+              "true_game": "blunder(wdl-1)"
+            },
+            {
+              "ply": 5,
+              "mover": "policy",
+              "move": "('place', 8)",
+              "true_game": "blunder(wdl-2)"
+            },
+            {
+              "ply": 6,
+              "mover": "opponent",
+              "move": "('place', 4)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 7,
+              "mover": "policy",
+              "move": "('place', 2)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 8,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            }
+          ],
+          "first_policy_positive_regret_ply": 5
+        }
+      },
+      {
+        "policy": "kimi-v2",
+        "reserves": [
+          4,
+          4
+        ],
+        "policy_seat": 1,
+        "worst_case": "forced loss",
+        "one_sided_states": 3667,
+        "seconds": 0.14,
+        "shortest_exploit_plies": 7,
+        "exploit_line": [
+          "O:('place', 0)",
+          "P:('place', 4)",
+          "O:('place', 7)",
+          "P:('place', 2)",
+          "O:('place', 6)",
+          "P:('place', 8)",
+          "O:('place', 3)"
+        ],
+        "exploit_grading": {
+          "moves": [
+            {
+              "ply": 1,
+              "mover": "opponent",
+              "move": "('place', 0)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 2,
+              "mover": "policy",
+              "move": "('place', 4)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 3,
+              "mover": "opponent",
+              "move": "('place', 7)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 4,
+              "mover": "policy",
+              "move": "('place', 2)",
+              "true_game": "blunder(wdl-1)"
+            },
+            {
+              "ply": 5,
+              "mover": "opponent",
+              "move": "('place', 6)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 6,
+              "mover": "policy",
+              "move": "('place', 8)",
+              "true_game": "optimal"
+            },
+            {
+              "ply": 7,
+              "mover": "opponent",
+              "move": "('place', 3)",
+              "true_game": "optimal"
+            }
+          ],
+          "first_policy_positive_regret_ply": 4
+        }
+      },
+      {
+        "policy": "kimi-v1",
+        "reserves": [
+          5,
+          5
+        ],
+        "policy_seat": 0,
+        "worst_case": "forced loss",
+        "one_sided_states": 486,
+        "seconds": 0.02,
+        "shortest_exploit_plies": 6,
+        "exploit_line": [
+          "P:('place', 4)",
+          "O:('place', 8)",
+          "P:('place', 0)",
+          "O:('place', 8)",
+          "P:('place', 2)",
+          "O:('place', 8)"
+        ]
+      },
+      {
+        "policy": "kimi-v1",
+        "reserves": [
+          5,
+          5
+        ],
+        "policy_seat": 1,
+        "worst_case": "forced loss",
+        "one_sided_states": 2708,
+        "seconds": 0.12,
+        "shortest_exploit_plies": 5,
+        "exploit_line": [
+          "O:('place', 0)",
+          "P:('place', 4)",
+          "O:('place', 0)",
+          "P:('place', 2)",
+          "O:('place', 0)"
+        ]
+      },
+      {
+        "policy": "kimi-v2",
+        "reserves": [
+          5,
+          5
+        ],
+        "policy_seat": 0,
+        "worst_case": "forced loss",
+        "one_sided_states": 643,
+        "seconds": 0.02,
+        "shortest_exploit_plies": 8,
+        "exploit_line": [
+          "P:('place', 4)",
+          "O:('place', 8)",
+          "P:('place', 0)",
+          "O:('place', 8)",
+          "P:('place', 8)",
+          "O:('place', 4)",
+          "P:('place', 2)",
+          "O:('place', 0)"
+        ]
+      },
+      {
+        "policy": "kimi-v2",
+        "reserves": [
+          5,
+          5
+        ],
+        "policy_seat": 1,
+        "worst_case": "forced loss",
+        "one_sided_states": 7645,
+        "seconds": 0.3,
+        "shortest_exploit_plies": 7,
+        "exploit_line": [
+          "O:('place', 0)",
+          "P:('place', 4)",
+          "O:('place', 7)",
+          "P:('place', 2)",
+          "O:('place', 6)",
+          "P:('place', 8)",
+          "O:('place', 3)"
+        ]
+      }
+    ]
+  }
+}

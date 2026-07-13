@@ -1,0 +1,126 @@
+{
+  "experiment": "optimal_move_rate",
+  "provenance": {
+    "timestamp_utc": "2026-07-06T12:10:47.460795+00:00",
+    "git_commit": "2409efe5836add1f7d13167ef8f76cc4f5c8793c",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "n_games": 200,
+      "base_seed": 12345,
+      "test_agent": "1-ply",
+      "opponents": [
+        "random",
+        "myopic",
+        "one_ply",
+        "optimal"
+      ],
+      "regret": "value-based (oriented solver-unit drop; class_regret = ordinal ladder steps)"
+    }
+  },
+  "results": {
+    "rows": [
+      {
+        "opponent": "random",
+        "win_rate": 0.75,
+        "draw_rate": 0.205,
+        "loss_rate": 0.045,
+        "decisions": 738,
+        "critical_decisions": 454,
+        "optimal_rate_overall": 0.7113821138211383,
+        "optimal_rate_critical": 0.5308370044052864,
+        "mean_regret_overall": 33.18428184281843,
+        "mean_regret_critical": 53.94273127753304,
+        "class_regret_hist": {
+          "0": 525,
+          "2": 143,
+          "1": 26,
+          "4": 37,
+          "3": 7
+        },
+        "outcomes": {
+          "true win": 146,
+          "draw": 41,
+          "true loss": 9,
+          "attrition win": 4
+        }
+      },
+      {
+        "opponent": "myopic",
+        "win_rate": 0.5,
+        "draw_rate": 0.005,
+        "loss_rate": 0.495,
+        "decisions": 627,
+        "critical_decisions": 308,
+        "optimal_rate_overall": 0.74481658692185,
+        "optimal_rate_critical": 0.4805194805194805,
+        "mean_regret_overall": 29.71291866028708,
+        "mean_regret_critical": 60.48701298701299,
+        "class_regret_hist": {
+          "0": 467,
+          "2": 59,
+          "4": 30,
+          "3": 57,
+          "1": 14
+        },
+        "outcomes": {
+          "true win": 98,
+          "true loss": 99,
+          "attrition win": 2,
+          "draw": 1
+        }
+      },
+      {
+        "opponent": "one_ply",
+        "win_rate": 0.665,
+        "draw_rate": 0.09,
+        "loss_rate": 0.245,
+        "decisions": 691,
+        "critical_decisions": 424,
+        "optimal_rate_overall": 0.7134587554269175,
+        "optimal_rate_critical": 0.5330188679245284,
+        "mean_regret_overall": 33.12590448625181,
+        "mean_regret_critical": 53.985849056603776,
+        "class_regret_hist": {
+          "0": 493,
+          "2": 129,
+          "1": 26,
+          "4": 36,
+          "3": 7
+        },
+        "outcomes": {
+          "true win": 132,
+          "draw": 18,
+          "true loss": 49,
+          "attrition win": 1
+        }
+      },
+      {
+        "opponent": "optimal",
+        "win_rate": 0.0,
+        "draw_rate": 0.16,
+        "loss_rate": 0.84,
+        "decisions": 773,
+        "critical_decisions": 262,
+        "optimal_rate_overall": 0.7826649417852523,
+        "optimal_rate_critical": 0.35877862595419846,
+        "mean_regret_overall": 21.733505821474772,
+        "mean_regret_critical": 64.12213740458016,
+        "class_regret_hist": {
+          "0": 605,
+          "2": 168
+        },
+        "outcomes": {
+          "true loss": 168,
+          "draw": 32
+        }
+      }
+    ]
+  }
+}

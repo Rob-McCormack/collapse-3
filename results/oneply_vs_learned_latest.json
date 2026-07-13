@@ -1,0 +1,67 @@
+{
+  "experiment": "oneply_vs_learned",
+  "provenance": {
+    "timestamp_utc": "2026-07-10T19:09:38.370654+00:00",
+    "git_commit": "aac09c045e1d80008625fb53c3acb64f131b7241",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "train_episodes": 150000
+    }
+  },
+  "results": {
+    "reserves": [
+      4,
+      4
+    ],
+    "q_entries_seat0": 22182,
+    "q_entries_seat1": 27787,
+    "audit": {
+      "one_ply_heuristic": {
+        "optimal_rate": 0.8276,
+        "mean_regret": 0.1726,
+        "win_draw_loss_vs_eps_optimal": [
+          733,
+          331,
+          936
+        ]
+      },
+      "learned_tabular_q": {
+        "optimal_rate": 0.9981,
+        "mean_regret": 0.0019,
+        "win_draw_loss_vs_eps_optimal": [
+          1357,
+          643,
+          0
+        ]
+      },
+      "learned_tabular_q_seat1": {
+        "optimal_rate": 0.9814,
+        "mean_regret": 0.0191,
+        "win_draw_loss_vs_eps_optimal": [
+          580,
+          1410,
+          10
+        ]
+      }
+    },
+    "head_to_head": {
+      "oneply_P0_vs_learned_P1": {
+        "P0_wins": 58,
+        "draws": 123,
+        "P0_losses": 19
+      },
+      "learned_P0_vs_oneply_P1": {
+        "P0_wins": 200,
+        "draws": 0,
+        "P0_losses": 0
+      }
+    }
+  }
+}

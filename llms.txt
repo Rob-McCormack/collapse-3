@@ -1,0 +1,41 @@
+# Collapse3
+
+> Exact-solver-graded study of competence vs. performance in game AI: using a fully solved 3x3x3 game as an oracle to measure value-based regret independent of any opponent.
+
+## Start here
+- [README.md](README.md): Project front page: thesis, headline result, quickstart.
+- [rules.md](rules.md): Complete Collapse3 game rules.
+- [docs/FINDINGS.md](docs/FINDINGS.md): Full research findings and their significance.
+
+## Engine & tools
+- [collapse3/game.py](collapse3/game.py): Collapse3 rules engine.
+- [collapse3/solver.py](collapse3/solver.py): Collapse3 exact solver.
+- [collapse3/enumeration.py](collapse3/enumeration.py): Exhaustive reachable-state solving over the *un-folded* state space.
+- [collapse3/oracle.py](collapse3/oracle.py): Ground-truth oracle: exact value labels and value-based regret.
+- [collapse3/agents.py](collapse3/agents.py): Reference policies for Collapse3.
+- [collapse3/learning.py](collapse3/learning.py): Tabular reinforcement learning with pluggable (possibly lossy) observations.
+- [collapse3/aliasing.py](collapse3/aliasing.py): Representation / aliasing regret floors.
+- [collapse3/metrics.py](collapse3/metrics.py): Competence measurement for Collapse3.
+
+## Experiments
+- [experiments/aliasing_floor.py](experiments/aliasing_floor.py): Representation / aliasing regret floors at reserves (r, r).
+- [experiments/best_response.py](experiments/best_response.py): Exact best-response certification for deterministic policies (Gate C tool).
+- [experiments/depth_sweep.py](experiments/depth_sweep.py): Competence-per-ply: how much lookahead does a strategy need?
+- [experiments/elo_tournament.py](experiments/elo_tournament.py): The Elo mirage, measured exactly: ratings vs regret vs exploitability.
+- [experiments/frozen_plan_vs_blunder.py](experiments/frozen_plan_vs_blunder.py): Frozen plan vs. re-solving, under enumerated opponent blunders.
+- [experiments/kimi_census.py](experiments/kimi_census.py): Distribution-free census of KimiAgent v1/v2 over ALL reachable decision
+- [experiments/kimi_gates.py](experiments/kimi_gates.py): Gates A and B for the KimiAgent arc: distributional evaluation of v1/v2.
+- [experiments/masked_floor.py](experiments/masked_floor.py): Aliasing floors when the legal-action mask is part of the observation.
+- [experiments/memory_floor.py](experiments/memory_floor.py): Memory vs. memoryless floor under hide_reserves.
+- [experiments/objective_failure.py](experiments/objective_failure.py): Objective failure vs. representation failure.
+- [experiments/oneply_vs_learned.py](experiments/oneply_vs_learned.py): One-ply heuristic vs. machine-learned agent, both graded by the oracle.
+- [experiments/opening_values.py](experiments/opening_values.py): Opening values: first-mover advantage, phase transition, and scaling sharpness.
+- [experiments/optimal_move_rate.py](experiments/optimal_move_rate.py): Optimal-move rate: aggregate vs critical-only.
+- [experiments/representation_amplification.py](experiments/representation_amplification.py): Does optimizing around a lossy representation *amplify* regret?
+- [experiments/sandbagging.py](experiments/sandbagging.py): Sandbagging / misere solves: is throwing the game forceable?
+- [experiments/solve_reserves.py](experiments/solve_reserves.py): Exact game value for symmetric reserves, with provenance.
+- [experiments/structural_census.py](experiments/structural_census.py): Exhaustive structural census of Collapse3 at reserves (r, r).
+- [experiments/win_rate_vs_regret.py](experiments/win_rate_vs_regret.py): Win rate vs. competence: performance is not competence.
+
+## Full context
+- [llms-full.txt](llms-full.txt): entire repository in one file (paste into an LLM to ask about the research).

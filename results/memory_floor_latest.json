@@ -1,0 +1,668 @@
+{
+  "experiment": "memory_floor",
+  "provenance": {
+    "timestamp_utc": "2026-07-08T13:43:33.173230+00:00",
+    "git_commit": "78fad012e3eec73732f698fafa01b88d52e7fc60",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        5,
+        5
+      ],
+      "sweep": true,
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "budgets_eps_optimal": [
+        300000,
+        600000
+      ],
+      "audit_episodes": 2000,
+      "opponent_epsilon": 0.25
+    }
+  },
+  "results": {
+    "n_states": 12714999,
+    "solve_seconds": 674.5,
+    "floor_hide_reserves_all": 0.16772830296501368,
+    "floor_hide_reserves_p0": 0.14951864781444574,
+    "floor_memory_reserves_p0": 0.0,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "budgets_eps_optimal": [
+      300000,
+      600000
+    ],
+    "conditions": [
+      {
+        "opponent": "eps_optimal",
+        "episodes": 300000,
+        "agents": {
+          "full": {
+            "runs": [
+              {
+                "decisions": 10256,
+                "optimal_rate": 0.9998,
+                "mean_regret": 0.0002,
+                "matched_floor": 0.0173,
+                "excess_over_floor": -0.0171,
+                "win_draw_loss": [
+                  1585,
+                  414,
+                  1
+                ],
+                "q_entries": 65794,
+                "train_seconds": 46.6,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 10316,
+                "optimal_rate": 0.9996,
+                "mean_regret": 0.0004,
+                "matched_floor": 0.0174,
+                "excess_over_floor": -0.0171,
+                "win_draw_loss": [
+                  1610,
+                  390,
+                  0
+                ],
+                "q_entries": 65948,
+                "train_seconds": 46.3,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 10437,
+                "optimal_rate": 0.9995,
+                "mean_regret": 0.0005,
+                "matched_floor": 0.0152,
+                "excess_over_floor": -0.0148,
+                "win_draw_loss": [
+                  1588,
+                  412,
+                  0
+                ],
+                "q_entries": 66371,
+                "train_seconds": 46.3,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.0004,
+              "min": 0.0002,
+              "max": 0.0005
+            },
+            "optimal_rate": {
+              "mean": 0.9996,
+              "min": 0.9995,
+              "max": 0.9998
+            },
+            "matched_floor": {
+              "mean": 0.0166,
+              "min": 0.0152,
+              "max": 0.0174
+            }
+          },
+          "hide_reserves": {
+            "runs": [
+              {
+                "decisions": 10386,
+                "optimal_rate": 0.9989,
+                "mean_regret": 0.0011,
+                "matched_floor": 0.0201,
+                "excess_over_floor": -0.0191,
+                "win_draw_loss": [
+                  1581,
+                  417,
+                  2
+                ],
+                "q_entries": 60367,
+                "train_seconds": 46.0,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 10404,
+                "optimal_rate": 0.9997,
+                "mean_regret": 0.0003,
+                "matched_floor": 0.0267,
+                "excess_over_floor": -0.0264,
+                "win_draw_loss": [
+                  1612,
+                  388,
+                  0
+                ],
+                "q_entries": 57928,
+                "train_seconds": 46.2,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 10458,
+                "optimal_rate": 0.9994,
+                "mean_regret": 0.0006,
+                "matched_floor": 0.0155,
+                "excess_over_floor": -0.0149,
+                "win_draw_loss": [
+                  1589,
+                  411,
+                  0
+                ],
+                "q_entries": 56583,
+                "train_seconds": 46.0,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.0007,
+              "min": 0.0003,
+              "max": 0.0011
+            },
+            "optimal_rate": {
+              "mean": 0.9993,
+              "min": 0.9989,
+              "max": 0.9997
+            },
+            "matched_floor": {
+              "mean": 0.0208,
+              "min": 0.0155,
+              "max": 0.0267
+            }
+          },
+          "hide_reserves_memory": {
+            "runs": [
+              {
+                "decisions": 10256,
+                "optimal_rate": 0.9998,
+                "mean_regret": 0.0002,
+                "matched_floor": 0.0173,
+                "excess_over_floor": -0.0171,
+                "win_draw_loss": [
+                  1585,
+                  414,
+                  1
+                ],
+                "q_entries": 65794,
+                "train_seconds": 46.1,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 10316,
+                "optimal_rate": 0.9996,
+                "mean_regret": 0.0004,
+                "matched_floor": 0.0174,
+                "excess_over_floor": -0.0171,
+                "win_draw_loss": [
+                  1610,
+                  390,
+                  0
+                ],
+                "q_entries": 65948,
+                "train_seconds": 46.1,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 10437,
+                "optimal_rate": 0.9995,
+                "mean_regret": 0.0005,
+                "matched_floor": 0.0152,
+                "excess_over_floor": -0.0148,
+                "win_draw_loss": [
+                  1588,
+                  412,
+                  0
+                ],
+                "q_entries": 66371,
+                "train_seconds": 46.3,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.0004,
+              "min": 0.0002,
+              "max": 0.0005
+            },
+            "optimal_rate": {
+              "mean": 0.9996,
+              "min": 0.9995,
+              "max": 0.9998
+            },
+            "matched_floor": {
+              "mean": 0.0166,
+              "min": 0.0152,
+              "max": 0.0174
+            }
+          }
+        }
+      },
+      {
+        "opponent": "eps_optimal",
+        "episodes": 600000,
+        "agents": {
+          "full": {
+            "runs": [
+              {
+                "decisions": 10223,
+                "optimal_rate": 0.9999,
+                "mean_regret": 0.0002,
+                "matched_floor": 0.0174,
+                "excess_over_floor": -0.0172,
+                "win_draw_loss": [
+                  1581,
+                  419,
+                  0
+                ],
+                "q_entries": 100516,
+                "train_seconds": 91.6,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 10288,
+                "optimal_rate": 1.0,
+                "mean_regret": 0.0,
+                "matched_floor": 0.0182,
+                "excess_over_floor": -0.0182,
+                "win_draw_loss": [
+                  1616,
+                  384,
+                  0
+                ],
+                "q_entries": 99671,
+                "train_seconds": 91.6,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 10423,
+                "optimal_rate": 1.0,
+                "mean_regret": 0.0,
+                "matched_floor": 0.0164,
+                "excess_over_floor": -0.0164,
+                "win_draw_loss": [
+                  1590,
+                  410,
+                  0
+                ],
+                "q_entries": 100992,
+                "train_seconds": 91.6,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.0001,
+              "min": 0.0,
+              "max": 0.0002
+            },
+            "optimal_rate": {
+              "mean": 1.0,
+              "min": 0.9999,
+              "max": 1.0
+            },
+            "matched_floor": {
+              "mean": 0.0173,
+              "min": 0.0164,
+              "max": 0.0182
+            }
+          },
+          "hide_reserves": {
+            "runs": [
+              {
+                "decisions": 10250,
+                "optimal_rate": 0.9996,
+                "mean_regret": 0.0004,
+                "matched_floor": 0.0173,
+                "excess_over_floor": -0.0169,
+                "win_draw_loss": [
+                  1579,
+                  419,
+                  2
+                ],
+                "q_entries": 93152,
+                "train_seconds": 91.5,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 10315,
+                "optimal_rate": 0.9997,
+                "mean_regret": 0.0003,
+                "matched_floor": 0.0174,
+                "excess_over_floor": -0.0171,
+                "win_draw_loss": [
+                  1613,
+                  387,
+                  0
+                ],
+                "q_entries": 95193,
+                "train_seconds": 90.7,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 10483,
+                "optimal_rate": 0.9995,
+                "mean_regret": 0.0005,
+                "matched_floor": 0.0155,
+                "excess_over_floor": -0.0151,
+                "win_draw_loss": [
+                  1586,
+                  414,
+                  0
+                ],
+                "q_entries": 94728,
+                "train_seconds": 91.5,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.0004,
+              "min": 0.0003,
+              "max": 0.0005
+            },
+            "optimal_rate": {
+              "mean": 0.9996,
+              "min": 0.9995,
+              "max": 0.9997
+            },
+            "matched_floor": {
+              "mean": 0.0167,
+              "min": 0.0155,
+              "max": 0.0174
+            }
+          },
+          "hide_reserves_memory": {
+            "runs": [
+              {
+                "decisions": 10223,
+                "optimal_rate": 0.9999,
+                "mean_regret": 0.0002,
+                "matched_floor": 0.0174,
+                "excess_over_floor": -0.0172,
+                "win_draw_loss": [
+                  1581,
+                  419,
+                  0
+                ],
+                "q_entries": 100516,
+                "train_seconds": 91.6,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 10288,
+                "optimal_rate": 1.0,
+                "mean_regret": 0.0,
+                "matched_floor": 0.0182,
+                "excess_over_floor": -0.0182,
+                "win_draw_loss": [
+                  1616,
+                  384,
+                  0
+                ],
+                "q_entries": 99671,
+                "train_seconds": 93.4,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 10423,
+                "optimal_rate": 1.0,
+                "mean_regret": 0.0,
+                "matched_floor": 0.0164,
+                "excess_over_floor": -0.0164,
+                "win_draw_loss": [
+                  1590,
+                  410,
+                  0
+                ],
+                "q_entries": 100992,
+                "train_seconds": 91.7,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.0001,
+              "min": 0.0,
+              "max": 0.0002
+            },
+            "optimal_rate": {
+              "mean": 1.0,
+              "min": 0.9999,
+              "max": 1.0
+            },
+            "matched_floor": {
+              "mean": 0.0173,
+              "min": 0.0164,
+              "max": 0.0182
+            }
+          }
+        }
+      },
+      {
+        "opponent": "random",
+        "episodes": 600000,
+        "agents": {
+          "full": {
+            "runs": [
+              {
+                "decisions": 6333,
+                "optimal_rate": 0.9566,
+                "mean_regret": 0.0434,
+                "matched_floor": 0.0273,
+                "excess_over_floor": 0.0161,
+                "win_draw_loss": [
+                  1997,
+                  2,
+                  1
+                ],
+                "q_entries": 174863,
+                "train_seconds": 44.9,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 6375,
+                "optimal_rate": 0.966,
+                "mean_regret": 0.034,
+                "matched_floor": 0.0389,
+                "excess_over_floor": -0.0049,
+                "win_draw_loss": [
+                  1998,
+                  2,
+                  0
+                ],
+                "q_entries": 174287,
+                "train_seconds": 45.2,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 6470,
+                "optimal_rate": 0.9754,
+                "mean_regret": 0.0246,
+                "matched_floor": 0.0326,
+                "excess_over_floor": -0.008,
+                "win_draw_loss": [
+                  1995,
+                  5,
+                  0
+                ],
+                "q_entries": 174465,
+                "train_seconds": 46.0,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.034,
+              "min": 0.0246,
+              "max": 0.0434
+            },
+            "optimal_rate": {
+              "mean": 0.966,
+              "min": 0.9566,
+              "max": 0.9754
+            },
+            "matched_floor": {
+              "mean": 0.0329,
+              "min": 0.0273,
+              "max": 0.0389
+            }
+          },
+          "hide_reserves": {
+            "runs": [
+              {
+                "decisions": 6799,
+                "optimal_rate": 0.9576,
+                "mean_regret": 0.0449,
+                "matched_floor": 0.0132,
+                "excess_over_floor": 0.0316,
+                "win_draw_loss": [
+                  1998,
+                  1,
+                  1
+                ],
+                "q_entries": 147879,
+                "train_seconds": 46.5,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 6740,
+                "optimal_rate": 0.9733,
+                "mean_regret": 0.0269,
+                "matched_floor": 0.016,
+                "excess_over_floor": 0.0108,
+                "win_draw_loss": [
+                  1997,
+                  3,
+                  0
+                ],
+                "q_entries": 151815,
+                "train_seconds": 46.2,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 6611,
+                "optimal_rate": 0.9508,
+                "mean_regret": 0.0495,
+                "matched_floor": 0.0094,
+                "excess_over_floor": 0.0401,
+                "win_draw_loss": [
+                  1998,
+                  2,
+                  0
+                ],
+                "q_entries": 150896,
+                "train_seconds": 45.8,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.0404,
+              "min": 0.0269,
+              "max": 0.0495
+            },
+            "optimal_rate": {
+              "mean": 0.9606,
+              "min": 0.9508,
+              "max": 0.9733
+            },
+            "matched_floor": {
+              "mean": 0.0129,
+              "min": 0.0094,
+              "max": 0.016
+            }
+          },
+          "hide_reserves_memory": {
+            "runs": [
+              {
+                "decisions": 6333,
+                "optimal_rate": 0.9566,
+                "mean_regret": 0.0434,
+                "matched_floor": 0.0273,
+                "excess_over_floor": 0.0161,
+                "win_draw_loss": [
+                  1997,
+                  2,
+                  1
+                ],
+                "q_entries": 174863,
+                "train_seconds": 44.4,
+                "seed": 0,
+                "audit_opponent_seed": 200
+              },
+              {
+                "decisions": 6375,
+                "optimal_rate": 0.966,
+                "mean_regret": 0.034,
+                "matched_floor": 0.0389,
+                "excess_over_floor": -0.0049,
+                "win_draw_loss": [
+                  1998,
+                  2,
+                  0
+                ],
+                "q_entries": 174287,
+                "train_seconds": 44.8,
+                "seed": 1,
+                "audit_opponent_seed": 201
+              },
+              {
+                "decisions": 6470,
+                "optimal_rate": 0.9754,
+                "mean_regret": 0.0246,
+                "matched_floor": 0.0326,
+                "excess_over_floor": -0.008,
+                "win_draw_loss": [
+                  1995,
+                  5,
+                  0
+                ],
+                "q_entries": 174465,
+                "train_seconds": 47.5,
+                "seed": 2,
+                "audit_opponent_seed": 202
+              }
+            ],
+            "mean_regret": {
+              "mean": 0.034,
+              "min": 0.0246,
+              "max": 0.0434
+            },
+            "optimal_rate": {
+              "mean": 0.966,
+              "min": 0.9566,
+              "max": 0.9754
+            },
+            "matched_floor": {
+              "mean": 0.0329,
+              "min": 0.0273,
+              "max": 0.0389
+            }
+          }
+        }
+      }
+    ]
+  }
+}

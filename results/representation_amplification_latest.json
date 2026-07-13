@@ -1,0 +1,242 @@
+{
+  "experiment": "representation_amplification",
+  "provenance": {
+    "timestamp_utc": "2026-07-11T14:42:42.872285+00:00",
+    "git_commit": "5ab5df53fefb9178f3c14e73a604b6824fbc77f4",
+    "git_dirty": false,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "test": "all",
+      "episodes": 60000,
+      "audit_episodes": 2000
+    }
+  },
+  "results": {
+    "reserves": [
+      4,
+      4
+    ],
+    "opponent_epsilon": 0.25,
+    "floor_hide_cooldown_p0": 0.003780524731489233,
+    "amplified": {
+      "full": {
+        "q_entries": 13010,
+        "decisions": 9150,
+        "optimal_rate": 0.9964,
+        "mean_regret": 0.0042,
+        "matched_floor": 0.0,
+        "excess_over_floor": 0.0042,
+        "win_draw_loss": [
+          1346,
+          650,
+          4
+        ],
+        "buckets": {
+          "early/place": [
+            0.0,
+            5598
+          ],
+          "late/place": [
+            0.1207,
+            116
+          ],
+          "late/remove": [
+            0.0,
+            4
+          ],
+          "mid/place": [
+            0.0169,
+            1417
+          ],
+          "mid/remove": [
+            0.0,
+            2015
+          ]
+        }
+      },
+      "hide_cooldown": {
+        "q_entries": 12821,
+        "decisions": 9129,
+        "optimal_rate": 0.9972,
+        "mean_regret": 0.0033,
+        "matched_floor": 0.0,
+        "excess_over_floor": 0.0033,
+        "win_draw_loss": [
+          1351,
+          646,
+          3
+        ],
+        "buckets": {
+          "early/place": [
+            0.0,
+            5607
+          ],
+          "late/place": [
+            0.1379,
+            87
+          ],
+          "late/remove": [
+            0.0,
+            3
+          ],
+          "mid/place": [
+            0.0127,
+            1415
+          ],
+          "mid/remove": [
+            0.0,
+            2017
+          ]
+        }
+      }
+    },
+    "curve": [
+      {
+        "multiplier": 1,
+        "episodes": 60000,
+        "decisions": 9129,
+        "optimal_rate": 0.9972,
+        "mean_regret": 0.0033,
+        "matched_floor": 0.0,
+        "excess_over_floor": 0.0033,
+        "win_draw_loss": [
+          1351,
+          646,
+          3
+        ],
+        "buckets": {
+          "early/place": [
+            0.0,
+            5607
+          ],
+          "late/place": [
+            0.1379,
+            87
+          ],
+          "late/remove": [
+            0.0,
+            3
+          ],
+          "mid/place": [
+            0.0127,
+            1415
+          ],
+          "mid/remove": [
+            0.0,
+            2017
+          ]
+        }
+      },
+      {
+        "multiplier": 2,
+        "episodes": 120000,
+        "decisions": 9107,
+        "optimal_rate": 0.998,
+        "mean_regret": 0.002,
+        "matched_floor": 0.0,
+        "excess_over_floor": 0.002,
+        "win_draw_loss": [
+          1354,
+          646,
+          0
+        ],
+        "buckets": {
+          "early/place": [
+            0.0,
+            5599
+          ],
+          "late/place": [
+            0.0494,
+            81
+          ],
+          "late/remove": [
+            0.0,
+            7
+          ],
+          "mid/place": [
+            0.0099,
+            1412
+          ],
+          "mid/remove": [
+            0.0,
+            2008
+          ]
+        }
+      },
+      {
+        "multiplier": 4,
+        "episodes": 240000,
+        "decisions": 9090,
+        "optimal_rate": 0.9988,
+        "mean_regret": 0.0014,
+        "matched_floor": 0.0,
+        "excess_over_floor": 0.0014,
+        "win_draw_loss": [
+          1361,
+          637,
+          2
+        ],
+        "buckets": {
+          "early/place": [
+            0.0,
+            5602
+          ],
+          "late/place": [
+            0.0758,
+            66
+          ],
+          "late/remove": [
+            0.0,
+            4
+          ],
+          "mid/place": [
+            0.0057,
+            1409
+          ],
+          "mid/remove": [
+            0.0,
+            2009
+          ]
+        }
+      },
+      {
+        "multiplier": 8,
+        "episodes": 480000,
+        "decisions": 9083,
+        "optimal_rate": 0.9998,
+        "mean_regret": 0.0003,
+        "matched_floor": 0.0,
+        "excess_over_floor": 0.0003,
+        "win_draw_loss": [
+          1368,
+          631,
+          1
+        ],
+        "buckets": {
+          "early/place": [
+            0.0,
+            5601
+          ],
+          "late/place": [
+            0.0462,
+            65
+          ],
+          "late/remove": [
+            0.0,
+            1
+          ],
+          "mid/place": [
+            0.0,
+            1409
+          ],
+          "mid/remove": [
+            0.0,
+            2007
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "experiment": "kimi_gates",
+  "provenance": {
+    "timestamp_utc": "2026-07-11T12:57:56.909957+00:00",
+    "git_commit": "2a84f5dfe8277440f3c40b2bfcfc9ee6ae6ee8e3",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "seeds": [
+        0,
+        1,
+        2
+      ],
+      "games_per_seed": 400,
+      "epsilons": [
+        0.05,
+        0.25
+      ]
+    }
+  },
+  "results": {
+    "gate_a": {
+      "pass": true,
+      "lines": [
+        {
+          "opponent_seed": 0,
+          "outcome": {
+            "draw": 1
+          },
+          "kimi_total_regret": 0
+        },
+        {
+          "opponent_seed": 1,
+          "outcome": {
+            "draw": 1
+          },
+          "kimi_total_regret": 0
+        },
+        {
+          "opponent_seed": 2,
+          "outcome": {
+            "draw": 1
+          },
+          "kimi_total_regret": 0
+        }
+      ]
+    },
+    "gate_b": {
+      "kimi-v1@eps=0.05": {
+        "games": 1200,
+        "epsilon": 0.05,
+        "wins": 136,
+        "draws": 1063,
+        "losses": 1,
+        "loss_upper_95": 0.0033,
+        "crit_opt_rate": 0.9931,
+        "crit_wdl_regret": 0.0076,
+        "per_seed": [
+          {
+            "seed": 0,
+            "outcomes": {
+              "draw": 352,
+              "true win": 48
+            },
+            "crit_opt_rate": 0.9977,
+            "crit_wdl_regret": 0.0023
+          },
+          {
+            "seed": 1,
+            "outcomes": {
+              "true win": 43,
+              "draw": 357
+            },
+            "crit_opt_rate": 0.9932,
+            "crit_wdl_regret": 0.0068
+          },
+          {
+            "seed": 2,
+            "outcomes": {
+              "draw": 354,
+              "true win": 45,
+              "true loss": 1
+            },
+            "crit_opt_rate": 0.9885,
+            "crit_wdl_regret": 0.0138
+          }
+        ]
+      },
+      "kimi-v2@eps=0.05": {
+        "games": 1200,
+        "epsilon": 0.05,
+        "wins": 136,
+        "draws": 1063,
+        "losses": 1,
+        "loss_upper_95": 0.0033,
+        "crit_opt_rate": 0.9931,
+        "crit_wdl_regret": 0.0076,
+        "per_seed": [
+          {
+            "seed": 0,
+            "outcomes": {
+              "draw": 352,
+              "true win": 48
+            },
+            "crit_opt_rate": 0.9977,
+            "crit_wdl_regret": 0.0023
+          },
+          {
+            "seed": 1,
+            "outcomes": {
+              "true win": 43,
+              "draw": 357
+            },
+            "crit_opt_rate": 0.9932,
+            "crit_wdl_regret": 0.0068
+          },
+          {
+            "seed": 2,
+            "outcomes": {
+              "draw": 354,
+              "true win": 45,
+              "true loss": 1
+            },
+            "crit_opt_rate": 0.9885,
+            "crit_wdl_regret": 0.0138
+          }
+        ]
+      },
+      "kimi-v1@eps=0.25": {
+        "games": 1200,
+        "epsilon": 0.25,
+        "wins": 573,
+        "draws": 618,
+        "losses": 9,
+        "loss_upper_95": 0.01321,
+        "crit_opt_rate": 0.9834,
+        "crit_wdl_regret": 0.0227,
+        "per_seed": [
+          {
+            "seed": 0,
+            "outcomes": {
+              "draw": 214,
+              "true win": 185,
+              "true loss": 1
+            },
+            "crit_opt_rate": 0.987,
+            "crit_wdl_regret": 0.0167
+          },
+          {
+            "seed": 1,
+            "outcomes": {
+              "true win": 197,
+              "draw": 196,
+              "true loss": 7
+            },
+            "crit_opt_rate": 0.9745,
+            "crit_wdl_regret": 0.0382
+          },
+          {
+            "seed": 2,
+            "outcomes": {
+              "true win": 191,
+              "draw": 208,
+              "true loss": 1
+            },
+            "crit_opt_rate": 0.9889,
+            "crit_wdl_regret": 0.0129
+          }
+        ]
+      },
+      "kimi-v2@eps=0.25": {
+        "games": 1200,
+        "epsilon": 0.25,
+        "wins": 573,
+        "draws": 621,
+        "losses": 6,
+        "loss_upper_95": 0.00982,
+        "crit_opt_rate": 0.9835,
+        "crit_wdl_regret": 0.0227,
+        "per_seed": [
+          {
+            "seed": 0,
+            "outcomes": {
+              "draw": 214,
+              "true win": 185,
+              "true loss": 1
+            },
+            "crit_opt_rate": 0.987,
+            "crit_wdl_regret": 0.0167
+          },
+          {
+            "seed": 1,
+            "outcomes": {
+              "true win": 197,
+              "draw": 199,
+              "true loss": 4
+            },
+            "crit_opt_rate": 0.9746,
+            "crit_wdl_regret": 0.038
+          },
+          {
+            "seed": 2,
+            "outcomes": {
+              "true win": 191,
+              "draw": 208,
+              "true loss": 1
+            },
+            "crit_opt_rate": 0.9889,
+            "crit_wdl_regret": 0.0129
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "experiment": "aliasing_floor",
+  "provenance": {
+    "timestamp_utc": "2026-07-06T13:12:21.449383+00:00",
+    "git_commit": "e556953b4b109e825ef96f2af5a34bc2a0393977",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        5,
+        5
+      ]
+    }
+  },
+  "results": {
+    "states": 12714999,
+    "rows": {
+      "hide_cooldown": {
+        "floor_all_decisions": 0.003435114503816794,
+        "floor_p0_only": 0.003100057810115767,
+        "obs_groups": 3342168,
+        "aliased_groups": 1431996,
+        "conflict_groups": 13357,
+        "no_common_legal_action": 0,
+        "max_states_per_obs": 4
+      },
+      "hide_reserves": {
+        "floor_all_decisions": 0.16772830296501368,
+        "floor_p0_only": 0.14951864781444574,
+        "obs_groups": 2753263,
+        "aliased_groups": 1019927,
+        "conflict_groups": 328739,
+        "no_common_legal_action": 0,
+        "max_states_per_obs": 9
+      },
+      "hide_both": {
+        "floor_all_decisions": 0.00043264719850803323,
+        "floor_p0_only": 0.00012503656547709554,
+        "obs_groups": 1664804,
+        "aliased_groups": 640669,
+        "conflict_groups": 430552,
+        "no_common_legal_action": 428911,
+        "max_states_per_obs": 32
+      }
+    }
+  }
+}

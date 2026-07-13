@@ -1,0 +1,94 @@
+{
+  "experiment": "solve_reserves",
+  "provenance": {
+    "timestamp_utc": "2026-07-06T12:10:36.466573+00:00",
+    "git_commit": "2409efe5836add1f7d13167ef8f76cc4f5c8793c",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          5
+        ]
+      ]
+    }
+  },
+  "results": {
+    "rows": [
+      {
+        "reserves": [
+          1,
+          1
+        ],
+        "score_value": 0,
+        "optimal_outcome": "Draw",
+        "nodes_visited": 21,
+        "table_size": 12,
+        "time_seconds": 0.0004
+      },
+      {
+        "reserves": [
+          2,
+          2
+        ],
+        "score_value": 0,
+        "optimal_outcome": "Draw",
+        "nodes_visited": 187,
+        "table_size": 135,
+        "time_seconds": 0.0044
+      },
+      {
+        "reserves": [
+          3,
+          3
+        ],
+        "score_value": 0,
+        "optimal_outcome": "Draw",
+        "nodes_visited": 2146,
+        "table_size": 1584,
+        "time_seconds": 0.0588
+      },
+      {
+        "reserves": [
+          4,
+          4
+        ],
+        "score_value": 0,
+        "optimal_outcome": "Draw",
+        "nodes_visited": 17848,
+        "table_size": 13356,
+        "time_seconds": 0.5234
+      },
+      {
+        "reserves": [
+          5,
+          5
+        ],
+        "score_value": 0,
+        "optimal_outcome": "Draw",
+        "nodes_visited": 52833,
+        "table_size": 40706,
+        "time_seconds": 1.6406
+      }
+    ]
+  }
+}

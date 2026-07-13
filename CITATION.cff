@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use Collapse3, please cite it as below."
+title: "Collapse3: measuring competence vs. performance with an exact game oracle"
+abstract: >-
+  A perfect-information, deterministic 3x3x3 gravity-and-removal game small
+  enough to solve exactly, used as an oracle to measure agent competence as
+  value-based regret independent of any opponent distribution.
+authors:
+  - family-names: McCormack
+    given-names: Rob
+version: "1.0.0"
+date-released: "2026-07-06"
+license: MIT
+url: "https://github.com/Rob-McCormack/collapse3"
+repository-code: "https://github.com/Rob-McCormack/collapse3"
+keywords:
+  - game-solving
+  - evaluation
+  - regret
+  - state-representation
+  - reinforcement-learning

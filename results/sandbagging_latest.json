@@ -1,0 +1,79 @@
+{
+  "experiment": "sandbagging",
+  "provenance": {
+    "timestamp_utc": "2026-07-10T11:41:19.383292+00:00",
+    "git_commit": "0aaadd52e75e228b4059ab3d7b104173306b5d3f",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "results": {
+    "by_size": {
+      "3_3": {
+        "forced_throw": {
+          "grandson_first": false,
+          "grandson_second": false
+        },
+        "forced_throw_seconds": 0.01,
+        "random_grandson_win_prob": {
+          "grandson_first": 0.31333333333333335,
+          "grandson_second": 0.0648459907719167,
+          "grandson_first_exact": "47/150",
+          "grandson_second_exact": "520/8019"
+        },
+        "random_grandson_seconds": 0.52,
+        "weak_throw": {
+          "grandpa_first": true,
+          "grandpa_second": true
+        },
+        "weak_throw_seconds": 0.01
+      },
+      "4_4": {
+        "forced_throw": {
+          "grandson_first": false,
+          "grandson_second": false
+        },
+        "forced_throw_seconds": 0.07,
+        "random_grandson_win_prob": {
+          "grandson_first": 0.5510146604938272,
+          "grandson_second": 0.20205928722314806,
+          "grandson_first_exact": "142823/259200",
+          "grandson_second_exact": "53470343/264627000"
+        },
+        "random_grandson_seconds": 9.09,
+        "weak_throw": {
+          "grandpa_first": true,
+          "grandpa_second": true
+        },
+        "weak_throw_seconds": 0.07
+      },
+      "5_5": {
+        "forced_throw": {
+          "grandson_first": false,
+          "grandson_second": false
+        },
+        "forced_throw_seconds": 0.37,
+        "random_grandson_win_prob": {
+          "grandson_first": 0.8000904243047762,
+          "grandson_second": 0.40616432326682284,
+          "grandson_first_exact": "513274009/641520000",
+          "grandson_second_exact": "132796217934929/326951951040000"
+        },
+        "random_grandson_seconds": 101.24,
+        "weak_throw": {
+          "grandpa_first": true,
+          "grandpa_second": true
+        },
+        "weak_throw_seconds": 0.38
+      }
+    }
+  }
+}

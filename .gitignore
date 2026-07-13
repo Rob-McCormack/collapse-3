@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Timestamped experiment outputs are reproducible; keep only the _latest alias.
+results/*__*.json

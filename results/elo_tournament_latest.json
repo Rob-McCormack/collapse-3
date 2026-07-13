@@ -1,0 +1,517 @@
+{
+  "experiment": "elo_tournament",
+  "provenance": {
+    "timestamp_utc": "2026-07-11T13:37:46.417238+00:00",
+    "git_commit": "f0d1c8ac83e88dc5d189eb8ca3a24fdfff710e55",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "games_per_ordered_pair": 50,
+      "roster": [
+        "bead-1ply",
+        "kimi-v1",
+        "kimi-v2",
+        "myopic",
+        "one-ply-heur",
+        "optimal",
+        "pos-1ply",
+        "pos-2ply",
+        "random"
+      ],
+      "base_seed": 0,
+      "anchor": {
+        "rating": 1500.0,
+        "virtual_draws": 2.0
+      }
+    }
+  },
+  "results": {
+    "table": [
+      {
+        "agent": "kimi-v2",
+        "elo": 1825.3,
+        "games": 800,
+        "wins": 543,
+        "draws": 248,
+        "losses": 9,
+        "mean_wdl_regret": 0.009,
+        "mean_wdl_regret_critical": 0.0124,
+        "worst_case": "forced loss (7-8 plies)"
+      },
+      {
+        "agent": "optimal",
+        "elo": 1804.2,
+        "games": 800,
+        "wins": 505,
+        "draws": 295,
+        "losses": 0,
+        "mean_wdl_regret": 0.0,
+        "mean_wdl_regret_critical": 0.0,
+        "worst_case": ">= draw (theorem)"
+      },
+      {
+        "agent": "kimi-v1",
+        "elo": 1745.2,
+        "games": 800,
+        "wins": 489,
+        "draws": 240,
+        "losses": 71,
+        "mean_wdl_regret": 0.0338,
+        "mean_wdl_regret_critical": 0.0469,
+        "worst_case": "forced loss (5-6 plies)"
+      },
+      {
+        "agent": "pos-2ply",
+        "elo": 1511.2,
+        "games": 800,
+        "wins": 314,
+        "draws": 187,
+        "losses": 299,
+        "mean_wdl_regret": 0.1453,
+        "mean_wdl_regret_critical": 0.276,
+        "worst_case": "n/a (stochastic policy)"
+      },
+      {
+        "agent": "myopic",
+        "elo": 1459.0,
+        "games": 800,
+        "wins": 357,
+        "draws": 6,
+        "losses": 437,
+        "mean_wdl_regret": 0.2187,
+        "mean_wdl_regret_critical": 0.3428,
+        "worst_case": "n/a (stochastic policy)"
+      },
+      {
+        "agent": "pos-1ply",
+        "elo": 1439.0,
+        "games": 800,
+        "wins": 330,
+        "draws": 24,
+        "losses": 446,
+        "mean_wdl_regret": 0.2197,
+        "mean_wdl_regret_critical": 0.3978,
+        "worst_case": "n/a (stochastic policy)"
+      },
+      {
+        "agent": "one-ply-heur",
+        "elo": 1431.7,
+        "games": 800,
+        "wins": 328,
+        "draws": 15,
+        "losses": 457,
+        "mean_wdl_regret": 0.226,
+        "mean_wdl_regret_critical": 0.4061,
+        "worst_case": "n/a (stochastic policy)"
+      },
+      {
+        "agent": "bead-1ply",
+        "elo": 1217.0,
+        "games": 800,
+        "wins": 138,
+        "draws": 50,
+        "losses": 612,
+        "mean_wdl_regret": 0.4073,
+        "mean_wdl_regret_critical": 0.717,
+        "worst_case": "n/a (stochastic policy)"
+      },
+      {
+        "agent": "random",
+        "elo": 1042.5,
+        "games": 800,
+        "wins": 33,
+        "draws": 61,
+        "losses": 706,
+        "mean_wdl_regret": 0.483,
+        "mean_wdl_regret_critical": 0.8091,
+        "worst_case": "n/a (stochastic policy)"
+      }
+    ],
+    "head_to_head": {
+      "bead-1ply": {
+        "kimi-v1": {
+          "w": 5,
+          "d": 3,
+          "l": 92
+        },
+        "kimi-v2": {
+          "w": 1,
+          "d": 1,
+          "l": 98
+        },
+        "myopic": {
+          "w": 31,
+          "d": 1,
+          "l": 68
+        },
+        "one-ply-heur": {
+          "w": 14,
+          "d": 1,
+          "l": 85
+        },
+        "optimal": {
+          "w": 0,
+          "d": 11,
+          "l": 89
+        },
+        "pos-1ply": {
+          "w": 14,
+          "d": 1,
+          "l": 85
+        },
+        "pos-2ply": {
+          "w": 5,
+          "d": 10,
+          "l": 85
+        },
+        "random": {
+          "w": 68,
+          "d": 22,
+          "l": 10
+        }
+      },
+      "kimi-v1": {
+        "bead-1ply": {
+          "w": 92,
+          "d": 3,
+          "l": 5
+        },
+        "kimi-v2": {
+          "w": 0,
+          "d": 100,
+          "l": 0
+        },
+        "myopic": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "one-ply-heur": {
+          "w": 100,
+          "d": 0,
+          "l": 0
+        },
+        "optimal": {
+          "w": 0,
+          "d": 86,
+          "l": 14
+        },
+        "pos-1ply": {
+          "w": 100,
+          "d": 0,
+          "l": 0
+        },
+        "pos-2ply": {
+          "w": 50,
+          "d": 50,
+          "l": 0
+        },
+        "random": {
+          "w": 97,
+          "d": 1,
+          "l": 2
+        }
+      },
+      "kimi-v2": {
+        "bead-1ply": {
+          "w": 98,
+          "d": 1,
+          "l": 1
+        },
+        "kimi-v1": {
+          "w": 0,
+          "d": 100,
+          "l": 0
+        },
+        "myopic": {
+          "w": 100,
+          "d": 0,
+          "l": 0
+        },
+        "one-ply-heur": {
+          "w": 100,
+          "d": 0,
+          "l": 0
+        },
+        "optimal": {
+          "w": 0,
+          "d": 92,
+          "l": 8
+        },
+        "pos-1ply": {
+          "w": 100,
+          "d": 0,
+          "l": 0
+        },
+        "pos-2ply": {
+          "w": 50,
+          "d": 50,
+          "l": 0
+        },
+        "random": {
+          "w": 95,
+          "d": 5,
+          "l": 0
+        }
+      },
+      "myopic": {
+        "bead-1ply": {
+          "w": 68,
+          "d": 1,
+          "l": 31
+        },
+        "kimi-v1": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "kimi-v2": {
+          "w": 0,
+          "d": 0,
+          "l": 100
+        },
+        "one-ply-heur": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "optimal": {
+          "w": 0,
+          "d": 2,
+          "l": 98
+        },
+        "pos-1ply": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "pos-2ply": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "random": {
+          "w": 89,
+          "d": 3,
+          "l": 8
+        }
+      },
+      "one-ply-heur": {
+        "bead-1ply": {
+          "w": 85,
+          "d": 1,
+          "l": 14
+        },
+        "kimi-v1": {
+          "w": 0,
+          "d": 0,
+          "l": 100
+        },
+        "kimi-v2": {
+          "w": 0,
+          "d": 0,
+          "l": 100
+        },
+        "myopic": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "optimal": {
+          "w": 0,
+          "d": 11,
+          "l": 89
+        },
+        "pos-1ply": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "pos-2ply": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "random": {
+          "w": 93,
+          "d": 3,
+          "l": 4
+        }
+      },
+      "optimal": {
+        "bead-1ply": {
+          "w": 89,
+          "d": 11,
+          "l": 0
+        },
+        "kimi-v1": {
+          "w": 14,
+          "d": 86,
+          "l": 0
+        },
+        "kimi-v2": {
+          "w": 8,
+          "d": 92,
+          "l": 0
+        },
+        "myopic": {
+          "w": 98,
+          "d": 2,
+          "l": 0
+        },
+        "one-ply-heur": {
+          "w": 89,
+          "d": 11,
+          "l": 0
+        },
+        "pos-1ply": {
+          "w": 79,
+          "d": 21,
+          "l": 0
+        },
+        "pos-2ply": {
+          "w": 38,
+          "d": 62,
+          "l": 0
+        },
+        "random": {
+          "w": 90,
+          "d": 10,
+          "l": 0
+        }
+      },
+      "pos-1ply": {
+        "bead-1ply": {
+          "w": 85,
+          "d": 1,
+          "l": 14
+        },
+        "kimi-v1": {
+          "w": 0,
+          "d": 0,
+          "l": 100
+        },
+        "kimi-v2": {
+          "w": 0,
+          "d": 0,
+          "l": 100
+        },
+        "myopic": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "one-ply-heur": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "optimal": {
+          "w": 0,
+          "d": 21,
+          "l": 79
+        },
+        "pos-2ply": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "random": {
+          "w": 95,
+          "d": 2,
+          "l": 3
+        }
+      },
+      "pos-2ply": {
+        "bead-1ply": {
+          "w": 85,
+          "d": 10,
+          "l": 5
+        },
+        "kimi-v1": {
+          "w": 0,
+          "d": 50,
+          "l": 50
+        },
+        "kimi-v2": {
+          "w": 0,
+          "d": 50,
+          "l": 50
+        },
+        "myopic": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "one-ply-heur": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "optimal": {
+          "w": 0,
+          "d": 62,
+          "l": 38
+        },
+        "pos-1ply": {
+          "w": 50,
+          "d": 0,
+          "l": 50
+        },
+        "random": {
+          "w": 79,
+          "d": 15,
+          "l": 6
+        }
+      },
+      "random": {
+        "bead-1ply": {
+          "w": 10,
+          "d": 22,
+          "l": 68
+        },
+        "kimi-v1": {
+          "w": 2,
+          "d": 1,
+          "l": 97
+        },
+        "kimi-v2": {
+          "w": 0,
+          "d": 5,
+          "l": 95
+        },
+        "myopic": {
+          "w": 8,
+          "d": 3,
+          "l": 89
+        },
+        "one-ply-heur": {
+          "w": 4,
+          "d": 3,
+          "l": 93
+        },
+        "optimal": {
+          "w": 0,
+          "d": 10,
+          "l": 90
+        },
+        "pos-1ply": {
+          "w": 3,
+          "d": 2,
+          "l": 95
+        },
+        "pos-2ply": {
+          "w": 6,
+          "d": 15,
+          "l": 79
+        }
+      }
+    }
+  }
+}

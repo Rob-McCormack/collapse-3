@@ -1,0 +1,71 @@
+{
+  "experiment": "structural_census",
+  "provenance": {
+    "timestamp_utc": "2026-07-06T12:38:23.964210+00:00",
+    "git_commit": "b0ef40f3f2a1c329ec291ce0799263a7edf40041",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ]
+    }
+  },
+  "results": {
+    "reserves": [
+      4,
+      4
+    ],
+    "reachable_states": 1357963,
+    "decision_states": 477960,
+    "value_landscape": {
+      "P0 line-win": 177778,
+      "P0 attrition-win": 226373,
+      "draw": 733778,
+      "P1 attrition-win": 0,
+      "P1 line-win": 220034
+    },
+    "value_landscape_pct": {
+      "P0 line-win": 13.09,
+      "P0 attrition-win": 16.67,
+      "draw": 54.04,
+      "P1 attrition-win": 0.0,
+      "P1 line-win": 16.2
+    },
+    "openings": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0
+    },
+    "openings_all_equal": true,
+    "collapse": {
+      "with_removal_available": 271623,
+      "removal_strictly_best": 77707,
+      "removal_among_optimal": 179992,
+      "removal_only_optimal": 77707
+    },
+    "oops": {
+      "states_with_oops_removal": 16,
+      "states_all_removals_oops": 0
+    },
+    "opponent_cooldown_aliasing": {
+      "groups": 406200,
+      "aliased_groups": 1176
+    },
+    "tempo_pressure_sample": {
+      "sampled": 20000,
+      "would_benefit_from_pass": 0,
+      "pct": 0.0,
+      "note": "pass is a hypothetical diagnostic; not a legal action"
+    }
+  }
+}

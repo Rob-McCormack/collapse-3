@@ -1,0 +1,99 @@
+{
+  "experiment": "frozen_plan_vs_blunder",
+  "provenance": {
+    "timestamp_utc": "2026-07-06T12:38:54.255519+00:00",
+    "git_commit": "b0ef40f3f2a1c329ec291ce0799263a7edf40041",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        4,
+        4
+      ],
+      "max_b_turns": 12,
+      "max_alts": 16
+    }
+  },
+  "results": {
+    "reserves": [
+      4,
+      4
+    ],
+    "root_value": 0,
+    "deviations": 32,
+    "static_A": {
+      "A_wins": 0,
+      "draws": 17,
+      "B_wins": 15
+    },
+    "resolving_A": {
+      "A_wins": 23,
+      "draws": 9,
+      "B_wins": 0
+    },
+    "inversions": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        6
+      ]
+    ]
+  }
+}

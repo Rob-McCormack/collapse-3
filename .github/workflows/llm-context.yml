@@ -1,0 +1,41 @@
+name: Check LLM context
+
+# Verify that llms.txt / llms-full.txt are up to date with source, docs, and
+# results. This job never commits or pushes -- it only fails if the checked-in
+# bundle is stale, so regenerate locally (`python scripts/build_llm_context.py`)
+# and commit before pushing. Verifying instead of auto-committing avoids the bot
+# pushing to main behind you and creating a divergence you have to rebase away.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "collapse3/**"
+      - "experiments/**"
+      - "tests/**"
+      - "docs/**"
+      - "scripts/build_llm_context.py"
+      - "*.md"
+      - "rules.md"
+      - "pyproject.toml"
+      - "conftest.py"
+      - "results/*_latest.json"
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: llm-context-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify LLM context is up to date
+        run: python scripts/build_llm_context.py --check
