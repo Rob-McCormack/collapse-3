@@ -24,6 +24,8 @@
 - [experiments/depth_sweep.py](experiments/depth_sweep.py): Competence-per-ply: how much lookahead does a strategy need?
 - [experiments/elo_tournament.py](experiments/elo_tournament.py): The Elo mirage, measured exactly: ratings vs regret vs exploitability.
 - [experiments/frozen_plan_vs_blunder.py](experiments/frozen_plan_vs_blunder.py): Frozen plan vs. re-solving, under enumerated opponent blunders.
+- [experiments/full_game_value.py](experiments/full_game_value.py): The full 14-bead game is solved at the root: first player forces a true win.
+- [experiments/horizon.py](experiments/horizon.py): The solvability horizon: exact grading of real games at full size (14,14).
 - [experiments/kimi_census.py](experiments/kimi_census.py): Distribution-free census of KimiAgent v1/v2 over ALL reachable decision
 - [experiments/kimi_gates.py](experiments/kimi_gates.py): Gates A and B for the KimiAgent arc: distributional evaluation of v1/v2.
 - [experiments/masked_floor.py](experiments/masked_floor.py): Aliasing floors when the legal-action mask is part of the observation.

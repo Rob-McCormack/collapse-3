@@ -114,10 +114,11 @@ of a missing feature becomes a number you *enumerate*, not one you estimate.
 
 The game gets *sharper* as it grows, not drawish: the drawn fraction falls
 **86% → 72% → 54% → 38%** from (2,2) to (5,5), and equal reserves — a draw
-through (5,5) — become a **first-player line win at (6,6)**. Scale the reserves,
-not the rules, if you want a less drawish game. Move order and material decide
-the opening exactly, which is why win rate needs the oracle to deconvolve it.
-Details in [`docs/FINDINGS.md`](docs/FINDINGS.md).
+through (5,5) — become a **first-player line win at (6,6)**, extending through
+the full **14-bead game** (Finding 11). Scale the reserves, not the rules, if
+you want a less drawish game. Move order and material decide the opening
+exactly, which is why win rate needs the oracle to deconvolve it. Details in
+[`docs/FINDINGS.md`](docs/FINDINGS.md).
 
 ## Throwing the game is provably hard
 

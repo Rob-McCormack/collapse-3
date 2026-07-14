@@ -603,7 +603,8 @@ cannot *realize* one without logging regret, and (forced-throw) cannot guarantee
 one at all against an unwilling opponent.
 
 **Scope.** The forced-throw and weak-throw answers are theorems *at the
-enumerated sizes* ((3,3)–(5,5)); the 14-bead game is unsolved and open. The
+enumerated sizes* ((3,3)–(5,5)); misère at (14,14) remains to be run (the root
+is now solved — Finding 11 — but full enumeration still caps at (5,5)). The
 win-probability column is exact arithmetic but for one **opponent model** (a
 uniform-random grandson), not a claim about any particular agent or about
 children. Keep the two apart: "you cannot force a loss" is a theorem; "a random
@@ -679,6 +680,106 @@ Ratings answer "who beats whom, on average, in this pool"; they do not answer
 "who plays correctly" — and in a solved game the two visibly disagree.
 Accessible version in [FAQ #10](FAQ.md); numbers in
 [`results/elo_tournament_latest.json`](../results/elo_tournament_latest.json).
+
+### 11. The full game fell — (14,14) is a first-player forced win, found by accident
+`experiments/full_game_value.py`, `experiments/horizon.py` (reserves (14,14))
+
+This finding began as its own refutation. The plan was a "solvability horizon"
+experiment: the (14,14) root was believed intractable (exact *enumeration* tops
+out near (5,5), and an external session's ad-hoc solver could not solve even
+ply 3 of a real full-size game within 4M nodes), so we built a node-capped
+exact solver to walk finished games backward from the end and find the first
+ply where exact grading becomes possible. The reproduction gate then failed in
+the only direction gates never fail: the repo's solver — alpha-beta with a
+bound-flagged transposition table, D4 symmetry folding, and win-first move
+ordering — solved the **root** of the full game in **~96K nodes / 3.4
+seconds**. There is no horizon. **Every ply of every game we played at
+(14,14) is exactly graded.**
+
+**The result.** The full 14-bead game is a **first-player forced true win**
+(value +100), with a certified winning line 7 plies long. It is not close to
+the edge of tractability, and it is not specific to 14:
+
+| opening reserves | exact value |
+|---|---|
+| `(r, r)`, r = 1–5 | draw *(published table, unchanged)* |
+| `(r, r)`, r = 6–14 | **first-player true win** |
+| `(r0 ≥ 6, r1 ≥ 3)`, all 108 cells | first-player true win |
+| `(r0 ≥ 2, r1 ≤ 2)`, r1 < r0 | first-player attrition win |
+
+The full 14×14 grid is in
+[`results/full_game_value_latest.json`](../results/full_game_value_latest.json);
+it extends the published 6×6 table without changing a single cell, and the
+mover-never-loses pattern holds everywhere.
+
+**Why tractability was misjudged.** The state *count* explodes with reserves,
+but alpha-beta only visits what the proof of the root value needs, and that
+proof is small because **the forced win is shallow**. The mechanism is a rules
+fact: legal moves do not depend on the reserve counts until someone's reserve
+empties (placement legality tests `reserves > 0`, nothing else) — so the game
+trees of (6,6) and (14,14) are *identical* until a player has spent six beads,
+and the (6,6) win arrives well before that in every line the defense can
+force. Extra material adds nothing the defender can use. Tractability tracks
+the **depth of the forced win**, not the size of the state space — the mirror
+image of chess endgames, which go exact when material *leaves* the board.
+Collapse3 goes exact because wins arrive early.
+
+**Verification.** A standing "intractable" claim died here, so the result ran
+the full hardening battery before being written down:
+
+1. **Independent clean-room engine.** The (14,14) root re-solved over
+   `collapse3/reference_engine.py` (written from `rules.md` only) with a
+   separate plain-TT alpha-beta sharing zero code with the main solver:
+   **+100** (126K nodes).
+2. **No transposition table, no symmetry folding.** A raw alpha-beta on the
+   main rules engine — the two riskiest solver components removed entirely:
+   **+100** (42.2M nodes, 16 minutes; recorded in the results JSON).
+3. **Principal-variation replay.** Every position on a certified winning line
+   re-verified with a fresh capped solve.
+4. **Grid continuity.** All 36 previously published opening cells reproduced
+   exactly; the pattern is uniform across 196 cells.
+
+**The first exact full-game facts.** With the root solved, the horizon
+experiment became a full-game grading battery
+([`experiments/horizon.py`](../experiments/horizon.py); ten zoo pairings, five
+seeds where stochastic, node cap 4M): **100% of moves graded in every game**,
+across every pairing. First exact facts from real full-size games:
+
+- **kimi-v2 self-play (deterministic):** 14 plies, P1 wins by line — and the
+  grading shows P0 (playing the *winning* side of a solved game) **threw a
+  forced win on three consecutive decisions** (plies 6, 7, 8, each WDL regret
+  2). The externally proposed rulebook doesn't just lose at (4,4); at full
+  size it stands in a won game and hands it over, three moves running.
+- **pos-2ply and pos-1ply self-play:** first player wins in 7 (resp. 5) plies
+  with **zero** graded blunders on either side — weak agents ride the
+  first-player win without resistance the oracle can fault.
+- **random-vs-random:** 6–17 plies, 0–8 blunders per game; the only pairing
+  where the second player sometimes wins.
+
+Along every graded trajectory a **consistency invariant** is asserted: the
+exact value may change between consecutive plies only across a move graded
+with positive regret (the mover-oriented value can never improve across the
+mover's own move). This invariant is what exposed an earlier prototype that
+stored alpha-beta cutoffs without bound flags — the same bug this project's
+first review found in the original solver — and it now runs on every
+trajectory, forever (`tests/test_horizon.py`).
+
+**What this unlocks.** Optimal play at (14,14) costs a capped solve per move
+(~seconds). The Elo tournament (Finding 10), the sandbagging solves (Finding
+9), and the frozen-plan experiment (Finding 3) can all be rerun **at full
+size with exact ground truth** — no approximate oracle needed. That was the
+"future work" item; it is now just work.
+
+**Scope.** Solving the root is not enumeration. Value-certified: the root
+(and any position a capped solve reaches). Still capped at (5,5): everything
+that requires visiting *all* reachable states — the aliasing floors, the
+distribution-free census, the misère/sandbagging solves. And "the game is a
+first-player win" is a statement about perfect play, not about play: as the
+kimi trace shows, real agents stand in the won game and drop it. The session
+that motivated this experiment reported a solvability horizon at ply 4 under
+the same 4M-node cap; its trajectory, tail values, and grading all reproduce
+exactly here (the gate passed), and the horizon difference is search strength
+— symmetry folding and move ordering — not engine semantics.
 
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
@@ -821,27 +922,30 @@ stating explicitly in any write-up.
 ## Limitations & scaling
 
 - **Exact enumeration ceiling.** (5,5) is 12.7M states (~26 min, CPU-bound).
-  (6,6) would be ~100M+ states — beyond practical exact solving. The exact
-  scaling curve is therefore established through (5,5).
+  (6,6) would be ~100M+ states — beyond practical exact *enumeration*. The exact
+  scaling curve for aliasing floors is therefore established through (5,5).
 - **Rules correctness.** Every theorem rests on one engine's semantics. A
   clean-room reimplementation (`collapse3/reference_engine.py`, written from
   ``rules.md`` only) is differential-tested against the shipped engine:
   full agreement on all ~97K reachable states at (3,3), plus random deep
   playouts at (4,4) (and (5,5) under ``COLLAPSE3_SLOW=1``). Disagreement
   fails the default test suite.
-- **Toward the real game (14 beads).** Requires an **approximate oracle**
-  (e.g. strong MCTS) with bounded error, or a solver-generated curriculum of
-  critical states. The exact curve motivates the hypothesis; the approximate
-  study would test whether it persists at full scale.
+- **The full game root is solved; enumeration is not.** The (14,14) opening is
+  a first-player forced true win (+100), certified in ~96K nodes (Finding 11).
+  Solving the root is not enumerating the game — aliasing floors, census, and
+  misère still require visiting all reachable states and remain capped at (5,5).
+  But every real full-size game is exactly gradeable (`experiments/horizon.py`).
 - **First-move advantage** is exact, not incidental: the player to move is never
-  worse than a draw at any reserve split (Finding 6), so head-to-head results are
-  reported by seat. Learned-agent findings are at full training budget (150K
-  episodes) at (4,4); pushing them to (5,5) is straightforward but slower.
+  worse than a draw at any reserve split through (5,5) (Finding 6), and from
+  (6,6) through (14,14) the mover forces a true win (Finding 11), so
+  head-to-head results are reported by seat. Learned-agent findings are at full
+  training budget (150K episodes) at (4,4); pushing them to (5,5) is
+  straightforward but slower.
 - **The equal game is decisive at scale.** `(r, r)` is a draw for r = 1..5 but a
-  first-player line win at (6,6) (Finding 6), and the draw fraction falls
-  **monotonically** 85.8% → 71.5% → 54.0% → **37.7%** from (2,2) through (5,5).
-  The game gets *sharper*, not drawish, as material grows — scale reserves, not
-  rules, if you want fewer draws.
+  first-player line win from (6,6) through (14,14) (Findings 6 and 11), and the
+  draw fraction falls **monotonically** 85.8% → 71.5% → 54.0% → **37.7%** from
+  (2,2) through (5,5). The game gets *sharper*, not drawish, as material grows
+  — scale reserves, not rules, if you want fewer draws.
 
 ---
 
@@ -867,6 +971,8 @@ python -m experiments.memory_floor 4 --opponent random
 python -m experiments.memory_floor 5 --sweep          # (5,5) multi-seed/budget (heavy)
 python -m experiments.sandbagging 3 4 5             # throwing is provably hard (misere solves)
 python -m experiments.masked_floor 3 4 5            # floors when the legal-move mask is visible
+python -m experiments.full_game_value               # 14×14 opening grid + root solve
+python -m experiments.horizon                       # full-size game grading battery
 ```
 
 Cite the `results/*.json` file for any number, not prose. Exact state counts and

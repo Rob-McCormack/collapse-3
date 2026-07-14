@@ -120,6 +120,97 @@ def minimax(state: GameState, alpha: int = -1000, beta: int = 1000) -> int:
     return best
 
 
+class NodeCapExceeded(RuntimeError):
+    """Raised when :func:`capped_solve` exhausts its node budget."""
+
+
+def capped_solve(state: GameState, node_cap: int) -> Tuple[int, int]:
+    """Exact P0-perspective value of ``state`` under a node budget.
+
+    Same search as :func:`minimax` -- alpha-beta over the repo rules with a
+    transposition table carrying EXACT/LOWER/UPPER bound flags -- but with a
+    **fresh, private table per call** and a hard node cap. Returns
+    ``(value, nodes_used)``; raises :class:`NodeCapExceeded` if the budget
+    runs out before the value is exact.
+
+    The bound flags are not optional. An earlier prototype of this function
+    stored alpha-beta cutoff values unflagged and produced an impossible
+    trajectory (a state's exact value flipping across an optimal move) -- the
+    same bug the project's first review found in the original solver. The
+    consistency invariant in ``experiments/horizon.py`` exists to catch any
+    regression of this kind at runtime.
+    """
+    table: Dict[Tuple, Tuple[int, int]] = {}
+    nodes = 0
+
+    def search(s: GameState, alpha: int, beta: int) -> int:
+        nonlocal nodes
+        nodes += 1
+        if nodes > node_cap:
+            raise NodeCapExceeded(f"node cap {node_cap} exceeded")
+        orig_alpha, orig_beta = alpha, beta
+        key = tt_key(s)
+
+        entry = table.get(key)
+        if entry is not None:
+            val, flag = entry
+            if flag == EXACT:
+                return val
+            if flag == LOWER:
+                alpha = max(alpha, val)
+            elif flag == UPPER:
+                beta = min(beta, val)
+            if alpha >= beta:
+                return val
+
+        terminal = evaluate_terminal(s)
+        if terminal is not None:
+            table[key] = (terminal, EXACT)
+            return terminal
+
+        moves = get_legal_moves(s)
+        if not moves:
+            val = attrition_value(s.board)
+            table[key] = (val, EXACT)
+            return val
+
+        p = s.turn
+        ordered = []
+        for move in moves:
+            child = apply_move(s, move)
+            t = evaluate_terminal(child)
+            winning = t is not None and ((p == 0 and t == 100) or (p == 1 and t == -100))
+            ordered.append((1 if winning else 0, child))
+        ordered.sort(key=lambda x: x[0], reverse=True)
+
+        if p == 0:
+            best = -1000
+            for _, child in ordered:
+                best = max(best, search(child, alpha, beta))
+                alpha = max(alpha, best)
+                if alpha >= beta:
+                    break
+        else:
+            best = 1000
+            for _, child in ordered:
+                best = min(best, search(child, alpha, beta))
+                beta = min(beta, best)
+                if alpha >= beta:
+                    break
+
+        if best <= orig_alpha:
+            flag = UPPER
+        elif best >= orig_beta:
+            flag = LOWER
+        else:
+            flag = EXACT
+        table[key] = (best, flag)
+        return best
+
+    value = search(state, -1000, 1000)
+    return value, nodes
+
+
 def game_value(state: GameState, fresh: bool = False, order_seed: Optional[int] = None) -> int:
     """Exact P0-perspective value of ``state``.
 

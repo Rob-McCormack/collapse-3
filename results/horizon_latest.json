@@ -1,0 +1,6010 @@
+{
+  "experiment": "horizon",
+  "provenance": {
+    "timestamp_utc": "2026-07-14T17:31:03.417632+00:00",
+    "git_commit": "850df5360b47fd5e32a2a3ab2013e64c39de1bd7",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "reserves": [
+        14,
+        14
+      ],
+      "node_cap": 4000000,
+      "seeds_per_stochastic_pairing": 5,
+      "pairings": [
+        "kimi-v1/kimi-v1",
+        "kimi-v1/kimi-v2",
+        "kimi-v2-eps10/self",
+        "kimi-v2/kimi-v1",
+        "kimi-v2/kimi-v2",
+        "kimi-v2/random",
+        "pos-1ply/pos-1ply",
+        "pos-2ply/pos-2ply",
+        "random/kimi-v2",
+        "random/random"
+      ]
+    }
+  },
+  "results": {
+    "pairings": {
+      "kimi-v2/kimi-v2": {
+        "games": [
+          {
+            "plies": 14,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 14,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": -100,
+              "8": 100,
+              "9": -100,
+              "10": -100,
+              "11": -100,
+              "12": -100,
+              "13": -100,
+              "14": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 3,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.64
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.32
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8019,
+                "seconds": 0.32
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8772,
+                "seconds": 0.34
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11258,
+                "seconds": 0.42
+              },
+              "7": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4385,
+                "seconds": 0.13
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3028,
+                "seconds": 0.12
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 2782,
+                "seconds": 0.08
+              },
+              "10": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1806,
+                "seconds": 0.06
+              },
+              "11": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1879,
+                "seconds": 0.05
+              },
+              "12": {
+                "solved": true,
+                "value": -100,
+                "nodes": 279,
+                "seconds": 0.01
+              },
+              "13": {
+                "solved": true,
+                "value": -100,
+                "nodes": 264,
+                "seconds": 0.01
+              },
+              "14": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": null
+          }
+        ],
+        "lengths": [
+          14
+        ],
+        "horizons": [
+          0
+        ],
+        "graded_fractions": [
+          1.0
+        ],
+        "blunder_counts": [
+          3
+        ]
+      },
+      "kimi-v1/kimi-v1": {
+        "games": [
+          {
+            "plies": 14,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 14,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": -100,
+              "8": 100,
+              "9": -100,
+              "10": -100,
+              "11": -100,
+              "12": -100,
+              "13": -100,
+              "14": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 3,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.58
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.64
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.32
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8019,
+                "seconds": 0.32
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8772,
+                "seconds": 0.34
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11258,
+                "seconds": 0.43
+              },
+              "7": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4385,
+                "seconds": 0.13
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3028,
+                "seconds": 0.12
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 2782,
+                "seconds": 0.08
+              },
+              "10": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1806,
+                "seconds": 0.06
+              },
+              "11": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1879,
+                "seconds": 0.05
+              },
+              "12": {
+                "solved": true,
+                "value": -100,
+                "nodes": 279,
+                "seconds": 0.01
+              },
+              "13": {
+                "solved": true,
+                "value": -100,
+                "nodes": 264,
+                "seconds": 0.01
+              },
+              "14": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": null
+          }
+        ],
+        "lengths": [
+          14
+        ],
+        "horizons": [
+          0
+        ],
+        "graded_fractions": [
+          1.0
+        ],
+        "blunder_counts": [
+          3
+        ]
+      },
+      "kimi-v1/kimi-v2": {
+        "games": [
+          {
+            "plies": 14,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 14,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": -100,
+              "8": 100,
+              "9": -100,
+              "10": -100,
+              "11": -100,
+              "12": -100,
+              "13": -100,
+              "14": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 3,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.49
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.64
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.32
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8019,
+                "seconds": 0.32
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8772,
+                "seconds": 0.34
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11258,
+                "seconds": 0.42
+              },
+              "7": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4385,
+                "seconds": 0.13
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3028,
+                "seconds": 0.12
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 2782,
+                "seconds": 0.08
+              },
+              "10": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1806,
+                "seconds": 0.06
+              },
+              "11": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1879,
+                "seconds": 0.05
+              },
+              "12": {
+                "solved": true,
+                "value": -100,
+                "nodes": 279,
+                "seconds": 0.02
+              },
+              "13": {
+                "solved": true,
+                "value": -100,
+                "nodes": 264,
+                "seconds": 0.01
+              },
+              "14": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": null
+          }
+        ],
+        "lengths": [
+          14
+        ],
+        "horizons": [
+          0
+        ],
+        "graded_fractions": [
+          1.0
+        ],
+        "blunder_counts": [
+          3
+        ]
+      },
+      "kimi-v2/kimi-v1": {
+        "games": [
+          {
+            "plies": 14,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 14,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": -100,
+              "8": 100,
+              "9": -100,
+              "10": -100,
+              "11": -100,
+              "12": -100,
+              "13": -100,
+              "14": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 3,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.64
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.32
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8019,
+                "seconds": 0.32
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8772,
+                "seconds": 0.34
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11258,
+                "seconds": 0.42
+              },
+              "7": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4385,
+                "seconds": 0.13
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3028,
+                "seconds": 0.12
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 2782,
+                "seconds": 0.08
+              },
+              "10": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1806,
+                "seconds": 0.07
+              },
+              "11": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1879,
+                "seconds": 0.05
+              },
+              "12": {
+                "solved": true,
+                "value": -100,
+                "nodes": 279,
+                "seconds": 0.01
+              },
+              "13": {
+                "solved": true,
+                "value": -100,
+                "nodes": 264,
+                "seconds": 0.01
+              },
+              "14": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": null
+          }
+        ],
+        "lengths": [
+          14
+        ],
+        "horizons": [
+          0
+        ],
+        "graded_fractions": [
+          1.0
+        ],
+        "blunder_counts": [
+          3
+        ]
+      },
+      "pos-2ply/pos-2ply": {
+        "games": [
+          {
+            "plies": 7,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 7,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.41
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 185418,
+                "seconds": 7.56
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 53846,
+                "seconds": 2.05
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 29847,
+                "seconds": 1.22
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 39081,
+                "seconds": 1.49
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 191,
+                "seconds": 0.01
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1436,
+                "seconds": 0.04
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1000
+          },
+          {
+            "plies": 7,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 7,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.41
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 185418,
+                "seconds": 7.61
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11688,
+                "seconds": 0.36
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 117,
+                "seconds": 0.0
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 5290,
+                "seconds": 0.18
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1188,
+                "seconds": 0.03
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 17,
+                "seconds": 0.0
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1017
+          },
+          {
+            "plies": 7,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 7,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.74
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 39951,
+                "seconds": 1.19
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 15583,
+                "seconds": 0.44
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 29697,
+                "seconds": 0.91
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8016,
+                "seconds": 0.25
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 9625,
+                "seconds": 0.29
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1034
+          },
+          {
+            "plies": 7,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 7,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.45
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.74
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 38172,
+                "seconds": 1.31
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 5168,
+                "seconds": 0.14
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 17259,
+                "seconds": 0.47
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3246,
+                "seconds": 0.08
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 17,
+                "seconds": 0.0
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1051
+          },
+          {
+            "plies": 7,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 7,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.41
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 185418,
+                "seconds": 7.51
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11688,
+                "seconds": 0.36
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 117,
+                "seconds": 0.0
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 5290,
+                "seconds": 0.18
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1188,
+                "seconds": 0.03
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3930,
+                "seconds": 0.12
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1068
+          }
+        ],
+        "lengths": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "horizons": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graded_fractions": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blunder_counts": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "pos-1ply/pos-1ply": {
+        "games": [
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.43
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 185418,
+                "seconds": 7.53
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 53846,
+                "seconds": 2.04
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 29847,
+                "seconds": 1.22
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 222,
+                "seconds": 0.01
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1000
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 185418,
+                "seconds": 7.52
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11688,
+                "seconds": 0.36
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 117,
+                "seconds": 0.0
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 82,
+                "seconds": 0.0
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1017
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.76
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 39951,
+                "seconds": 1.19
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 15583,
+                "seconds": 0.45
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 9718,
+                "seconds": 0.3
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1034
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.75
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 38172,
+                "seconds": 1.32
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 5168,
+                "seconds": 0.14
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3943,
+                "seconds": 0.11
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1051
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 185418,
+                "seconds": 7.59
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11688,
+                "seconds": 0.36
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 117,
+                "seconds": 0.0
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 82,
+                "seconds": 0.0
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1068
+          }
+        ],
+        "lengths": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "horizons": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graded_fractions": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blunder_counts": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "random/random": {
+        "games": [
+          {
+            "plies": 17,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 17,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100,
+              "8": 100,
+              "9": -100,
+              "10": 100,
+              "11": -100,
+              "12": 100,
+              "13": -100,
+              "14": 100,
+              "15": -100,
+              "16": 100,
+              "17": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 14,
+                "mover": 0,
+                "move": [
+                  "remove",
+                  8,
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 15,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 16,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 8,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.41
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 162655,
+                "seconds": 6.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 119927,
+                "seconds": 4.79
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 115970,
+                "seconds": 4.65
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 15593,
+                "seconds": 0.52
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3281,
+                "seconds": 0.12
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 965,
+                "seconds": 0.04
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 4469,
+                "seconds": 0.17
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 206,
+                "seconds": 0.01
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 36,
+                "seconds": 0.0
+              },
+              "10": {
+                "solved": true,
+                "value": 100,
+                "nodes": 42,
+                "seconds": 0.0
+              },
+              "11": {
+                "solved": true,
+                "value": -100,
+                "nodes": 20,
+                "seconds": 0.0
+              },
+              "12": {
+                "solved": true,
+                "value": 100,
+                "nodes": 15,
+                "seconds": 0.0
+              },
+              "13": {
+                "solved": true,
+                "value": -100,
+                "nodes": 19,
+                "seconds": 0.0
+              },
+              "14": {
+                "solved": true,
+                "value": 100,
+                "nodes": 15,
+                "seconds": 0.0
+              },
+              "15": {
+                "solved": true,
+                "value": -100,
+                "nodes": 20,
+                "seconds": 0.0
+              },
+              "16": {
+                "solved": true,
+                "value": 100,
+                "nodes": 13,
+                "seconds": 0.0
+              },
+              "17": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1000
+          },
+          {
+            "plies": 11,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 11,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": -100,
+              "2": 100,
+              "3": -100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": -100,
+              "8": 100,
+              "9": -100,
+              "10": 100,
+              "11": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 8,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": -100,
+                "nodes": 125773,
+                "seconds": 4.92
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 22191,
+                "seconds": 0.7
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 18380,
+                "seconds": 0.62
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 16825,
+                "seconds": 0.5
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 309,
+                "seconds": 0.01
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 625,
+                "seconds": 0.02
+              },
+              "7": {
+                "solved": true,
+                "value": -100,
+                "nodes": 136,
+                "seconds": 0.01
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 89,
+                "seconds": 0.0
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 31,
+                "seconds": 0.0
+              },
+              "10": {
+                "solved": true,
+                "value": 100,
+                "nodes": 71,
+                "seconds": 0.0
+              },
+              "11": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1017
+          },
+          {
+            "plies": 7,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 7,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.5
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.74
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19953,
+                "seconds": 0.56
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 7379,
+                "seconds": 0.26
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 12683,
+                "seconds": 0.43
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 7201,
+                "seconds": 0.23
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1978,
+                "seconds": 0.06
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1034
+          },
+          {
+            "plies": 7,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 7,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": -100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 2,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.38
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.74
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 38172,
+                "seconds": 1.31
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 15493,
+                "seconds": 0.6
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 6038,
+                "seconds": 0.23
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 207,
+                "seconds": 0.01
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19,
+                "seconds": 0.0
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1051
+          },
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": -100,
+              "4": 100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 3,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 162655,
+                "seconds": 6.68
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 21637,
+                "seconds": 0.63
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4083,
+                "seconds": 0.12
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1068
+          }
+        ],
+        "lengths": [
+          17,
+          11,
+          7,
+          7,
+          6
+        ],
+        "horizons": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graded_fractions": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blunder_counts": [
+          8,
+          8,
+          0,
+          2,
+          3
+        ]
+      },
+      "kimi-v2/random": {
+        "games": [
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11890,
+                "seconds": 0.34
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 10875,
+                "seconds": 0.3
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11787,
+                "seconds": 0.35
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1000
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.38
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 16757,
+                "seconds": 0.49
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 9629,
+                "seconds": 0.26
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1017
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.38
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.64
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.33
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 2400,
+                "seconds": 0.08
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1034
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.72
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.64
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.33
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 2400,
+                "seconds": 0.08
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1051
+          },
+          {
+            "plies": 5,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 5,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.47
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11890,
+                "seconds": 0.35
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 10875,
+                "seconds": 0.3
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1068
+          }
+        ],
+        "lengths": [
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "horizons": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graded_fractions": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blunder_counts": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "random/kimi-v2": {
+        "games": [
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": -100,
+              "4": 100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 3,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 162655,
+                "seconds": 6.77
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 29579,
+                "seconds": 1.18
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 17943,
+                "seconds": 0.78
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 10563,
+                "seconds": 0.45
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 5196,
+                "seconds": 0.16
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1000
+          },
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": -100,
+              "2": -100,
+              "3": -100,
+              "4": -100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 1,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": -100,
+                "nodes": 125773,
+                "seconds": 4.94
+              },
+              "2": {
+                "solved": true,
+                "value": -100,
+                "nodes": 31268,
+                "seconds": 1.0
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 834,
+                "seconds": 0.04
+              },
+              "4": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4532,
+                "seconds": 0.15
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1017
+          },
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": -100,
+              "4": -100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 1,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.4
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.74
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 27506,
+                "seconds": 0.95
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 7731,
+                "seconds": 0.26
+              },
+              "4": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4025,
+                "seconds": 0.15
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 68,
+                "seconds": 0.0
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1034
+          },
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": -100,
+              "4": -100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 1,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75239,
+                "seconds": 2.74
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 27506,
+                "seconds": 0.93
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 7731,
+                "seconds": 0.27
+              },
+              "4": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4025,
+                "seconds": 0.15
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 480,
+                "seconds": 0.02
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1051
+          },
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": -100,
+              "4": -100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 1,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.38
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 162655,
+                "seconds": 6.63
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 29579,
+                "seconds": 1.15
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 834,
+                "seconds": 0.04
+              },
+              "4": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4532,
+                "seconds": 0.15
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1068
+          }
+        ],
+        "lengths": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "horizons": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graded_fractions": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blunder_counts": [
+          3,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "kimi-v2-eps10/self": {
+        "games": [
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 1,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.38
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.64
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.32
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 18,
+                "seconds": 0.0
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1000
+          },
+          {
+            "plies": 15,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 15,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": 100,
+              "8": 100,
+              "9": 100,
+              "10": 100,
+              "11": 100,
+              "12": 100,
+              "13": 100,
+              "14": 100,
+              "15": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 14,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 0,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.38
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.63
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.32
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8019,
+                "seconds": 0.32
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8772,
+                "seconds": 0.34
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11258,
+                "seconds": 0.43
+              },
+              "7": {
+                "solved": true,
+                "value": 100,
+                "nodes": 5828,
+                "seconds": 0.23
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1609,
+                "seconds": 0.05
+              },
+              "9": {
+                "solved": true,
+                "value": 100,
+                "nodes": 109,
+                "seconds": 0.0
+              },
+              "10": {
+                "solved": true,
+                "value": 100,
+                "nodes": 225,
+                "seconds": 0.01
+              },
+              "11": {
+                "solved": true,
+                "value": 100,
+                "nodes": 107,
+                "seconds": 0.0
+              },
+              "12": {
+                "solved": true,
+                "value": 100,
+                "nodes": 186,
+                "seconds": 0.01
+              },
+              "13": {
+                "solved": true,
+                "value": 100,
+                "nodes": 75,
+                "seconds": 0.0
+              },
+              "14": {
+                "solved": true,
+                "value": 100,
+                "nodes": 60,
+                "seconds": 0.0
+              },
+              "15": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1017
+          },
+          {
+            "plies": 6,
+            "final_value": -100,
+            "horizon_ply": 0,
+            "graded_moves": 6,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": -100,
+              "6": -100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 1,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.38
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.68
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.32
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8019,
+                "seconds": 0.32
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 6929,
+                "seconds": 0.22
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1034
+          },
+          {
+            "plies": 15,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 15,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": -100,
+              "2": -100,
+              "3": -100,
+              "4": -100,
+              "5": -100,
+              "6": -100,
+              "7": -100,
+              "8": 100,
+              "9": -100,
+              "10": 100,
+              "11": 100,
+              "12": 100,
+              "13": 100,
+              "14": 100,
+              "15": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 14,
+                "mover": 0,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 4,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": -100,
+                "nodes": 67147,
+                "seconds": 2.39
+              },
+              "2": {
+                "solved": true,
+                "value": -100,
+                "nodes": 22151,
+                "seconds": 0.85
+              },
+              "3": {
+                "solved": true,
+                "value": -100,
+                "nodes": 7731,
+                "seconds": 0.26
+              },
+              "4": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4025,
+                "seconds": 0.15
+              },
+              "5": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4018,
+                "seconds": 0.16
+              },
+              "6": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4369,
+                "seconds": 0.16
+              },
+              "7": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4839,
+                "seconds": 0.18
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3137,
+                "seconds": 0.09
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 2523,
+                "seconds": 0.1
+              },
+              "10": {
+                "solved": true,
+                "value": 100,
+                "nodes": 983,
+                "seconds": 0.03
+              },
+              "11": {
+                "solved": true,
+                "value": 100,
+                "nodes": 231,
+                "seconds": 0.01
+              },
+              "12": {
+                "solved": true,
+                "value": 100,
+                "nodes": 285,
+                "seconds": 0.01
+              },
+              "13": {
+                "solved": true,
+                "value": 100,
+                "nodes": 47,
+                "seconds": 0.0
+              },
+              "14": {
+                "solved": true,
+                "value": 100,
+                "nodes": 158,
+                "seconds": 0.0
+              },
+              "15": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1051
+          },
+          {
+            "plies": 15,
+            "final_value": 100,
+            "horizon_ply": 0,
+            "graded_moves": 15,
+            "graded_fraction": 1.0,
+            "tail_values": {
+              "0": 100,
+              "1": 100,
+              "2": 100,
+              "3": 100,
+              "4": 100,
+              "5": 100,
+              "6": 100,
+              "7": -100,
+              "8": 100,
+              "9": -100,
+              "10": -100,
+              "11": -100,
+              "12": 100,
+              "13": 100,
+              "14": 100,
+              "15": 100
+            },
+            "grading": [
+              {
+                "ply": 0,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 1,
+                "mover": 1,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 2,
+                "mover": 0,
+                "move": [
+                  "place",
+                  2
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 3,
+                "mover": 1,
+                "move": [
+                  "place",
+                  6
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 4,
+                "mover": 0,
+                "move": [
+                  "place",
+                  3
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 5,
+                "mover": 1,
+                "move": [
+                  "place",
+                  5
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 6,
+                "mover": 0,
+                "move": [
+                  "place",
+                  8
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 7,
+                "mover": 1,
+                "move": [
+                  "place",
+                  1
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 8,
+                "mover": 0,
+                "move": [
+                  "place",
+                  7
+                ],
+                "value": 100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 9,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 10,
+                "mover": 0,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": -100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 11,
+                "mover": 1,
+                "move": [
+                  "remove",
+                  4,
+                  0
+                ],
+                "value": -100,
+                "wdl_regret": 2,
+                "raw_regret": 200
+              },
+              {
+                "ply": 12,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 13,
+                "mover": 1,
+                "move": [
+                  "place",
+                  4
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              },
+              {
+                "ply": 14,
+                "mover": 0,
+                "move": [
+                  "place",
+                  0
+                ],
+                "value": 100,
+                "wdl_regret": 0,
+                "raw_regret": 0
+              }
+            ],
+            "blunders": 4,
+            "solve_stats": {
+              "0": {
+                "solved": true,
+                "value": 100,
+                "nodes": 95915,
+                "seconds": 3.39
+              },
+              "1": {
+                "solved": true,
+                "value": 100,
+                "nodes": 19147,
+                "seconds": 0.67
+              },
+              "2": {
+                "solved": true,
+                "value": 100,
+                "nodes": 18209,
+                "seconds": 0.66
+              },
+              "3": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8024,
+                "seconds": 0.33
+              },
+              "4": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8019,
+                "seconds": 0.32
+              },
+              "5": {
+                "solved": true,
+                "value": 100,
+                "nodes": 8772,
+                "seconds": 0.34
+              },
+              "6": {
+                "solved": true,
+                "value": 100,
+                "nodes": 11258,
+                "seconds": 0.42
+              },
+              "7": {
+                "solved": true,
+                "value": -100,
+                "nodes": 4385,
+                "seconds": 0.13
+              },
+              "8": {
+                "solved": true,
+                "value": 100,
+                "nodes": 3028,
+                "seconds": 0.12
+              },
+              "9": {
+                "solved": true,
+                "value": -100,
+                "nodes": 2782,
+                "seconds": 0.08
+              },
+              "10": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1806,
+                "seconds": 0.06
+              },
+              "11": {
+                "solved": true,
+                "value": -100,
+                "nodes": 1879,
+                "seconds": 0.07
+              },
+              "12": {
+                "solved": true,
+                "value": 100,
+                "nodes": 335,
+                "seconds": 0.01
+              },
+              "13": {
+                "solved": true,
+                "value": 100,
+                "nodes": 113,
+                "seconds": 0.0
+              },
+              "14": {
+                "solved": true,
+                "value": 100,
+                "nodes": 558,
+                "seconds": 0.02
+              },
+              "15": {
+                "solved": true,
+                "value": 100,
+                "nodes": 1,
+                "seconds": 0.0
+              }
+            },
+            "seed": 1068
+          }
+        ],
+        "lengths": [
+          6,
+          15,
+          6,
+          15,
+          15
+        ],
+        "horizons": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "graded_fractions": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blunder_counts": [
+          1,
+          0,
+          1,
+          4,
+          4
+        ]
+      }
+    },
+    "elapsed_seconds": 298.1
+  }
+}

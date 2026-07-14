@@ -107,11 +107,24 @@ correct-but-different moves.
 
 ## 7. Does any of this scale to the real game (14 beads)?
 
-Exact enumeration tops out around (5,5) (~12.7M states); the full game needs an
-**approximate oracle** (e.g. strong MCTS) with bounded error, or a
-solver-generated curriculum of critical states. The exact curve motivates the
-hypothesis that these effects are structural; testing it at full scale is future
-work. See "Limitations & scaling" in [`FINDINGS.md`](FINDINGS.md).
+Two-part answer — and the second half changed when we actually tried.
+
+**The root is solved.** The full (14,14) opening is a **first-player forced true win**
+(+100), certified by the repo's exact solver in ~96K nodes (~3 seconds). The
+14×14 opening grid extends the published 6×6 table without changing a cell;
+diagonal (6,6)–(14,14) are all first-player wins. Verified independently by the
+clean-room reference engine and by a raw alpha-beta with no transposition table
+and no symmetry folding (42M nodes). See Finding 11 in [`FINDINGS.md`](FINDINGS.md).
+
+**Enumeration still tops out near (5,5).** Solving the root is not visiting
+every reachable state. Aliasing floors, distribution-free census, and misère
+solves still require full enumeration and remain capped at the smaller sizes.
+
+**Every real game is exactly gradeable.** Once the root is cheap, a node-capped
+solver grades **100% of moves** in every full-size game we played across the
+agent zoo (`experiments/horizon.py`). The "approximate oracle" for play
+evaluation is no longer future work — optimal play at (14,14) costs seconds per
+move.
 
 ## 8. What's the "superposition" framing about — isn't that overreach?
 
