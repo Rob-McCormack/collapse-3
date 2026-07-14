@@ -43,6 +43,10 @@ this completely.
 
 ## A "basic strategy" exists at the smallest size — and is certifiably dead beyond it
 
+*A compact set of rules you can teach provably runs out here: it works at the
+smallest board and is exactly refuted beyond it, so competence becomes a
+calculation, not a rule.*
+
 Most games have a *strategy ladder* — a simple positional heuristic gets a
 beginner to coherent play. In Collapse3 the ladder has exactly one known rung.
 The *intuitive* rule ("build your own lines") is optimal on **0%** of the

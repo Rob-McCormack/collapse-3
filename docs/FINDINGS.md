@@ -357,6 +357,10 @@ states and **0.0805** at (4,4) to four decimals.
 `experiments/depth_sweep.py`, `experiments/best_response.py`,
 `experiments/kimi_gates.py`, `experiments/kimi_census.py`
 
+**Thesis.** In Collapse3 a "strategy" in the everyday sense — a compact set of
+rules you can teach — provably runs out: it works at the smallest board and is
+exactly refuted beyond it, so competence becomes a *calculation*, not a rule.
+
 This finding now has two halves: a **depth sweep** (how much lookahead shallow
 policies need) and a **strategy-complexity crossover** (an externally proposed,
 human-readable rulebook, certified exactly — the centerpiece). The crossover
