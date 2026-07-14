@@ -1,9 +1,11 @@
 # Rules
 
 # Collapse3
-> Version 1.0.0 July 6, 2026
+> Version 1.0.1 July 14, 2026
 
 **A 3D spatial strategy game of gravity, structural shielding, and shifting foundations.**
+
+Two players, ages 8 and up
 
 ## Objective
 
@@ -17,8 +19,7 @@ If no player achieves a 3-in-a-row before the game reaches a tiebreaker conditio
 
 ## Components
 
-* 1 base with a 3×3 grid of pegs.
-* Each peg holds up to 3 beads.
+* 1 base with a 3×3 grid of vertical pegs, each holding a maximum of three beads.
 * 28 beads total: 14 beads per player.
 
 ---
@@ -109,7 +110,7 @@ For example, if the tallest stacks are height 3, you may only remove from a heig
 
 ### 4. Capping Rule
 
-The top bead of the targeted peg must belong to your opponent.
+The top bead of the targeted peg **must** belong to your opponent.
 
 If your own bead is on top of a tallest stack, that stack is protected from your Removal action.
 
@@ -150,7 +151,7 @@ The three pegs must form a straight row, column, or diagonal on the base grid.
 
 ---
 
-## Accidental Wins: The Oops Rule
+## Accidental Wins: The "Oops" Rule
 
 If your Removal causes a gravity cascade that creates a 3-in-a-row for your opponent, your opponent wins immediately.
 
