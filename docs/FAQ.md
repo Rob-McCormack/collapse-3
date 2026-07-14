@@ -168,3 +168,27 @@ freely pick **among equally-optimal moves** the one his grandson is most likely
 to win from — and that choice is invisible to any value audit. The oracle sees
 thrown value, not thrown intent. Details in [`FINDINGS.md`](FINDINGS.md)
 (Finding 9).
+
+## 12. Why does the solver score wins 100 / 10 / 0 / −10 / −100?
+
+These encode an **ordering** — true win > attrition win > draw > attrition loss
+> true loss — and for **move selection they are purely ordinal**. The solver
+only ever compares values (`min`/`max`, never sums), so relabelling them
+2 / 1 / 0 / −1 / −2 would pick the same moves, label the same moves optimal,
+give the same optimal-move rates, and certify the same Gate C outcomes. The
+game-theoretic winner is untouched.
+
+The magnitudes matter in exactly **one** place: the *weighted* regret metric,
+which is the drop in raw score (`best_mover_value − mover_value`). There a
+move that turns a draw into a true loss logs **100** while a draw into an
+attrition loss logs **10** — a deliberate 10× weighting, not an economic claim
+that a regulation win is "worth" ten attrition wins. Because that scale is a
+modelling choice, the **headline competence numbers are reported in
+magnitude-free units**: **WDL regret** (0/1/2) and the ordinal **`class_regret`
+ladder** (steps between outcome classes). The weighted score is a secondary
+lens.
+
+This is also why regret figures differ by orders of magnitude between findings:
+a mean like **21–64** is weighted solver-units (Finding 1), while **0.002–0.25**
+is per-decision WDL units averaged over all decisions (Findings 5, 7). Same
+underlying labels, two scales — always check which one a table names.

@@ -3,6 +3,7 @@
 > Exact-solver-graded study of competence vs. performance in game AI: using a fully solved 3x3x3 game as an oracle to measure value-based regret independent of any opponent.
 
 ## Start here
+- [NUTSHELL.md](NUTSHELL.md): Brief plain-language overview of the game and why it matters.
 - [README.md](README.md): Project front page: thesis, headline result, quickstart.
 - [rules.md](rules.md): Complete Collapse3 game rules.
 - [docs/FINDINGS.md](docs/FINDINGS.md): Full research findings and their significance.

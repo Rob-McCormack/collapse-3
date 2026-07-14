@@ -26,6 +26,7 @@ REPO = Path(__file__).resolve().parents[1]
 # Files included in the full bundle, in reading order. Globs are sorted.
 INCLUDE_GLOBS = [
     "README.md",
+    "NUTSHELL.md",
     "rules.md",
     "docs/*.md",
     "pyproject.toml",
@@ -41,13 +42,14 @@ INCLUDE_GLOBS = [
 # Short descriptions for the curated index; falls back to a module's docstring.
 DESCRIPTIONS = {
     "README.md": "Project front page: thesis, headline result, quickstart.",
+    "NUTSHELL.md": "Brief plain-language overview of the game and why it matters.",
     "rules.md": "Complete Collapse3 game rules.",
     "docs/FINDINGS.md": "Full research findings and their significance.",
     "pyproject.toml": "Package metadata, dependencies, pytest config.",
 }
 
 INDEX_SECTIONS = [
-    ("Start here", ["README.md", "rules.md", "docs/FINDINGS.md"]),
+    ("Start here", ["NUTSHELL.md", "README.md", "rules.md", "docs/FINDINGS.md"]),
     ("Engine & tools", ["collapse3/game.py", "collapse3/solver.py",
                         "collapse3/enumeration.py", "collapse3/oracle.py",
                         "collapse3/agents.py", "collapse3/learning.py",
