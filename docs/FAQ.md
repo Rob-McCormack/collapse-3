@@ -29,8 +29,9 @@ The difference from a real POMDP is the point of the project:
   can reconstruct the dropped fields from observed removals — exactly the
   belief-state answer POMDP theory predicts. At (4,4) the memory-augmented floor
   is **0.0000** by enumeration (Finding 7); the memoryless floor is **0.0805**.
-  Trained agents may still pay almost none of that floor on-policy if they steer
-  around aliased states — the floor is uniform-over-states, play is not.
+  Trained agents may still pay almost none of that floor on-policy — their real
+  interface (the legal-move mask) already erases most of it, and their trajectories
+  steer around the rest; the floor is uniform-over-states, play is not.
 
 One-liner: **a solved perfect-information game, with aliasing induced on purpose
 to price it exactly — the opposite of an intractable POMDP.**

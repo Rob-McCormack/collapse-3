@@ -339,7 +339,7 @@ from seat assignment — which is why Finding 2 reports head-to-head *by seat*, 
 why the oracle's per-decision regret (seat- and opponent-independent) is the
 honest competence signal.
 
-### 7. The floor is real, but on-policy regret can steer around it
+### 7. The floor is real, but realized regret slips beneath it — interface first, then steering
 `experiments/memory_floor.py` (reserves (4,4) and (5,5); seeds 0–2 where noted)
 
 Memory vs. memorylessness, separated cleanly. **How to read the trained numbers:**
@@ -1018,7 +1018,9 @@ underlying MDP is fully solved:
 - **constructive memory recovery** to a **0.0000** floor from the observed
   destroyed-bead ledger (Finding 7);
 - and the **on-policy null**: the provable floor is *behaviorally invisible* in
-  actual play, because trained policies steer around the aliased states.
+  actual play — the agents' real interface (the legal-move mask) erases most of it
+  and their trajectories steer around the rest (Finding 7, and the interface
+  ladder in the preamble).
 
 Two observations about how our setting relates to Littman's (these are notes on
 *this project*, not claims drawn from the cited papers):
@@ -1096,8 +1098,10 @@ No — and it's worth being precise about why.
   wider interface has its own, smaller, exactly-priced floor.
 - **Memory would help — and enumeration proves it.** A history-conditioned agent
   can reconstruct dropped fields from observed removals; the memory-augmented
-  floor is **0.0000** at (4,4) (Finding 7). Trained agents may still pay almost
-  none of the memoryless floor on-policy if they steer around aliased states.
+  floor is **0.0000** at (4,4) (Finding 7). Trained agents may pay almost none of
+  the memoryless floor on-policy — partly because their real interface (the
+  legal-move mask) already erases most of it, partly because their trajectories
+  steer around the rest (Finding 7).
 
 ---
 
