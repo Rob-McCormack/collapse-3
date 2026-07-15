@@ -29,6 +29,41 @@ We deliberately use *value* regret, not policy distance `|π_agent − π_opt|`:
 optimal play here is highly non-unique (many moves hold a draw), so policy
 distance would wrongly penalize correct-but-different moves.
 
+### A representation floor is a property of an *interface*, not a game or an agent
+`experiments/interface_ladder.py` (reserves (4,4))
+
+Before the floor tables below, the single measurement lesson they add up to. A
+"representation cost" is meaningless until you say *from which interface*. For the
+**same** missing feature — the reserve count, hidden under `hide_reserves` — the
+exact cost is a ladder, and every rung is a different, exactly-enumerated number:
+
+| what the policy sees | (4,4) cost | kind |
+|---|---|---|
+| board, turn, cooldown (reserve fully aliased) | **0.0805** | exact interface floor |
+| + the legal-move list (what our trained agents actually saw) | **0.0026** | exact interface floor |
+| + destroyed-bead memory (reserves reconstructed) | **0.0000** | exact interface floor |
+| ⟶ *its own on-policy trajectory* (trained, ε-optimal opponent) | ~0.0013 | **not a floor** — see below |
+
+The first three rungs are exact, uniform-over-decision-state floors (the Finding 4
+machinery) and are **opponent-independent**. The mask rung is load-bearing and easy
+to miss: our `QAgent` keys its table on the lossy observation but argmaxes over
+`get_legal_moves`, so it *always* holds the legal-move list — and that mask leaks
+"zero vs. positive reserve," which is why the same feature costs **30×** less to
+the agent we actually trained (0.0805 → 0.0026) than to the mask-blind interface we
+first priced. Memory erases the rest.
+
+The fourth line is a **different quantity**: realized on-policy regret, which is
+trajectory- **and** opponent-dependent — ~0.0013 against an ε-optimal opponent but
+~**0.24** against a random one (Finding 7). It is listed here only to keep it from
+being confused with a floor; it belongs to a trajectory, not an interface.
+
+This is the sharpest measurement statement in the project, and it is the exact
+failure mode of real evaluation: **the bound you prove is for the system you
+modeled, not the system you shipped.** We computed the first rung, our agents lived
+on the second, their behavior realized the fourth, and only measuring all of them
+revealed which number was the honest one. (Findings 4 and 7 are the two halves;
+this is their synthesis.)
+
 ---
 
 ## What we demonstrate
@@ -222,6 +257,9 @@ grows with size the way the mask-blind one does. (iii) The headline numbers
 bounds on the repo's own trained agents**, whose interface is mask-aware. The
 honest one-line reading: *how much a missing feature costs depends on the
 interface it is missing from — and Collapse3 can price each interface exactly.*
+The full ladder for the reserve feature (mask-blind → mask-aware → +memory, plus
+the separate on-policy layer) is collected in the measurement-problem preamble and
+is the synthesis of this finding with Finding 7.
 
 ### 5. Objective failure vs. representation failure
 `experiments/objective_failure.py` (reserves (4,4), 150K episodes)
@@ -357,12 +395,32 @@ Random play raises regret for **every** agent (including full) into the 0.02–0
 range at (5,5) — again shared coverage, not a blind-specific penalty. Memory
 matches full exactly (same audit seeds).
 
-**Conclusion.** The aliasing floor is **provable yet behaviorally invisible** at
-every tested size and opponent distribution: uniform floor **0.0805 → 0.1677** as
-the game grows, but trained on-policy regret stays ≪ floor because policies steer
-which aliased states they visit. Realized regret is a property of **input and
-trajectory**, not the floor alone. Independent reimplementation matched **1,357,963**
-states and **0.0805** at (4,4) to four decimals.
+**Conclusion — and a correction to an earlier version of it.** The aliasing floor
+is **provable yet behaviorally invisible**: the mask-blind uniform floor grows
+**0.0805 → 0.1677**, yet the trained agents' realized on-policy regret sits far
+below it. An earlier version credited that whole gap to *steering* (policies
+avoiding aliased states). That over-simplified, and the repo's own numbers show
+why — the gap decomposes into **two** effects, in different proportions by size:
+
+- **Interface (the mask), not steering, does most of the work at (4,4).** Our
+  agents never had the mask-blind interface: `QAgent` argmaxes over
+  `get_legal_moves`, so its true floor is the **mask-aware** 0.0026, not 0.0805
+  (Finding 4's interface table; the ladder in the preamble). At (4,4) the
+  mask-blind floor *over the states the agent actually visits* is still **0.0766**
+  (≈ the 0.0805 uniform floor) — so steering barely helps; the 30× drop is the
+  mask. Tellingly, `excess_over_floor` (realized minus mask-blind floor on visited
+  states) is **negative** (e.g. −0.019 to −0.026 at (5,5)): a genuinely mask-blind
+  policy cannot pay *below* its own floor on its own trajectory — proof the mask,
+  not steering, is paying the bill.
+- **Steering dominates at (5,5).** There the mask-blind floor over visited states
+  collapses to ~**0.017** (from 0.1677) — a ~10× cut from steering alone — and the
+  mask takes it the rest of the way. So the decomposition is **size-dependent**;
+  neither "all interface" nor "all steering" is right everywhere.
+
+The honest one-liner: realized regret is a property of **interface *and*
+trajectory**, not the mask-blind floor alone — and how much each contributes
+depends on the size. Independent reimplementation matched **1,357,963** states and
+**0.0805** at (4,4) to four decimals.
 
 ### 8. Is there a teachable "basic strategy"? Certified **yes** at (3,3) — certified refutations from (4,4) up
 `experiments/depth_sweep.py`, `experiments/best_response.py`,
@@ -817,9 +875,22 @@ cost grows with the game — rests on the only two enumerable full-board points,
 hide_reserves **0.0805** at (4,4) and **0.1677** at (5,5); the full board stops
 being enumerable at (6,6). Two points show a *trend* but not a *shape*. Because
 Three-Peg Collapse lives on one row, it is fully enumerable at **every** reserve
-size — the real **(14,14)** has only **94,824** reachable states and enumerates
-in ~2s — turning two points into a complete 13-point curve (uniform-over-decision
-regret, WDL units, the same machinery as Finding 4).
+size — including **(14,14)**, the full game's reserve count, which has only
+**94,824** reachable states and enumerates in ~2s — turning two points into a
+complete 13-point curve (uniform-over-decision regret, WDL units, the same
+machinery as Finding 4).
+
+> **What "(14,14)" means here — reserve, not board capacity.** The single row
+> holds at most **9 beads at once** (3 pegs × 3 levels), while **(14,14)** is the
+> *reserve* each player starts with. These differ, and the mismatch is the
+> point: 14 reserves far exceed a 9-cell board. Reserves above 9 are still real
+> and consumable because the Collapse **destroys** a bead and frees its cell, so
+> a game cycles place → removal → place and spends far more than 9 placements
+> total; each distinct reserve count is a distinct state, so the reachable set
+> keeps growing ((13,13) 85,243 → (14,14) 94,824). "The full game's reserve
+> count" is chosen deliberately: we can enumerate the sibling at the same reserve
+> size the 27-cell board never reaches — it is **not** a claim that the sibling's
+> (14,14) is equivalent to Collapse3's (see the scope box).
 
 | reserves | states | decisions | hide cooldown | Δcd | hide reserves | Δres |
 |---|---|---|---|---|---|---|
@@ -852,7 +923,11 @@ about extrapolation, because the full board's only two enumerable points,
 curve. Two points on that section could suggest unbounded growth or a plateau
 equally well; nothing in them reveals which. In the sibling it saturates; on the
 full board the shape beyond (5,5) **remains unknown** (see the cross-reference
-now in Finding 4).
+now in Finding 4). The saturation is visible even in the raw state count: from
+**(8,8) onward each added reserve contributes a constant +9,581-state shell**
+(37,338 → 46,919 → 56,500 → … each exactly +9,581), i.e. once the reserve exceeds
+what a 9-cell board can be *about*, the marginal bead adds another identical layer
+of positions and no new structure — which is precisely why the floors flatten.
 
 **(ii) The cooldown floor is *non-monotonic* — it rises, peaks at (7,7), then
 falls.** hide_cooldown climbs to **0.0424** at (7,7) and then *declines* and
@@ -1092,6 +1167,7 @@ python -m experiments.masked_floor 3 4 5            # floors when the legal-move
 python -m experiments.full_game_value               # 14×14 opening grid + root solve
 python -m experiments.horizon                       # full-size game grading battery
 python -m experiments.threepeg_floor                # Three-Peg sibling: full floor curve (2,2)-(14,14)
+python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 ```
 
 Cite the `results/*.json` file for any number, not prose. Exact state counts and

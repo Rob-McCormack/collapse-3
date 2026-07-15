@@ -98,6 +98,18 @@ cooldown floor drops to (nearly) 0 and the reserves floor collapses ~30–70×
 (0.0805 → 0.0026 at (4,4); 0.1677 → 0.0024 at (5,5)). The floor is a property
 of the *interface*, priced exactly per interface (Finding 4).
 
+**The quiet twist: a floor is a property of an *interface*, not a game or an
+agent.** The **same** missing feature (the reserve count) costs a ladder of
+different exact amounts depending on what the policy sees: **0.0805** to a
+(board, cooldown) agent, **~0.0026** once it also holds the legal-move list (the
+interface our trained agents actually had — the mask leaks "zero vs. positive
+reserve"), and **0.0000** with destroyed-bead memory. On top of that, *realized*
+on-policy regret is a different, opponent-dependent quantity again (~0.0013 vs an
+ε-optimal opponent, ~0.24 vs a random one). We priced the first rung, our agents
+lived on the second, and only measuring all of them showed which number was
+honest — the exact failure mode of real evaluation: *the bound you prove is for
+the system you modeled, not the one you shipped* (Findings 4 and 7).
+
 Collapse3 is an exact, game-based demonstration of the memoryless-policy problem
 Littman (1994) formalized. That such policies pay a floor under aliased
 observations is classical (Whitehead & Ballard 1991; Littman 1994; Singh,

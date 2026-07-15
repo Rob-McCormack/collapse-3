@@ -1,0 +1,33 @@
+{
+  "experiment": "interface_ladder",
+  "provenance": {
+    "timestamp_utc": "2026-07-15T12:52:25.755694+00:00",
+    "git_commit": "4b531a8799f11d782dd2ab7b68dacc0967497aff",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        4
+      ],
+      "feature": "hide_reserves"
+    }
+  },
+  "results": {
+    "feature": "hide_reserves",
+    "sizes": [
+      4
+    ],
+    "by_size": {
+      "4_4": {
+        "states": 1357963,
+        "mask_blind": 0.0804920913884007,
+        "mask_aware": 0.0026278349652690603,
+        "mask_blind_plus_memory": 0.0,
+        "mask_aware_no_common_legal_action": 0
+      }
+    },
+    "on_policy_note": "Realized on-policy regret is trajectory/opponent-dependent and lives in memory_floor.py / Finding 7; it is not an interface floor and is not recomputed here."
+  }
+}
