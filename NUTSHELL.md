@@ -39,4 +39,9 @@ competence. Because the ground truth is exact, Collapse3 lets researchers
 measure distribution shift, brittle policies, representation failures, and
 adversarial exploitability without having to guess what the correct answer was.
 
+In short: Collapse3 shows that a game can be easy to solve with a computer,
+surprisingly hard to compress into rules a human can hold, and dangerously
+deceptive to a pattern-matching machine — all at once. And because the game is
+solved, none of it is opinion.
+
 Full write-up: [`README.md`](README.md) and [`docs/FINDINGS.md`](docs/FINDINGS.md).
