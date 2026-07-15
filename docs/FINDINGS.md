@@ -126,6 +126,17 @@ classical — see [Relation to prior work](#relation-to-prior-work)); it is that
 we can **enumerate it exactly**, watch it **grow with game size**, and — for the
 single-hide columns — show it is the *exact* optimum, below.
 
+> **Cross-reference — the growth's *shape* is only known for a sibling game.**
+> The two points above ((4,4), (5,5)) are the only enumerable full-board data,
+> and the growth claim stands exactly as stated *for them*. What they cannot
+> reveal is the shape of the curve, because the full board is not enumerable past
+> (6,6). [Finding 12](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)
+> enumerates a *sibling* game (Three-Peg Collapse) at every size and finds the
+> reserves floor **saturates** (bounded near ~0.25) and the cooldown floor is
+> **non-monotonic** — with (4,4)/(5,5) sitting on the steep early section where
+> no shape is yet visible. Those are facts about the sibling's geometry, **not**
+> Collapse3; the full game's floor shape beyond (5,5) remains unknown.
+
 **Exactness (single-hide columns).** The floor uses a *charity rule*: an
 observation group with no action legal in **every** member contributes 0,
 keeping the number a valid lower bound. For `hide_cooldown` and `hide_reserves`
@@ -781,6 +792,113 @@ the same 4M-node cap; its trajectory, tail values, and grading all reproduce
 exactly here (the gate passed), and the horizon difference is search strength
 — symmetry folding and move ordering — not engine semantics.
 
+### 12. A sibling game shows the floor's *shape* — bounded growth, and a hidden feature whose cost rises then falls
+`experiments/threepeg_floor.py` (Three-Peg Collapse, reserves (2,2)–(14,14))
+
+> **Scope — read this first. This is a *sibling* game, not a miniature of
+> Collapse3.** *Three-Peg Collapse* restricts placements to the single row of
+> pegs (0, 1, 2) and changes nothing else — stacking, gravity, the
+> Collapse/removal and all five of its legality conditions, cooldown, the Oops
+> rule, line and attrition wins, and the repo rule (no legal action → immediate
+> attrition end) are byte-for-byte the same engine (it is a move-legality
+> restriction, not a fork). But the geometry is different: only **8 of the full
+> board's 49 winning lines** can ever fire (3 verticals, the row at 3 levels, 2
+> staircases), which makes the sibling **attrition-dominant** — P0 wins by bead
+> count at nearly every size, whereas real Collapse3 at (6,6)+ is a 7-ply forced
+> **line** win ([Finding 11](#11-the-full-game-fell--1414-is-a-first-player-forced-win-found-by-accident)).
+> Its findings are **parallel evidence about the same mechanics under different
+> geometry**. They do **not** transfer to Collapse3 and must never be quoted as
+> facts about it. The value is exactly the contrast: two environments, one
+> engine, different boards — which lets us ask *which findings are caused by the
+> mechanics and which by the geometry.*
+
+**Why the sibling exists.** Finding 4's scaling claim — that a missing feature's
+cost grows with the game — rests on the only two enumerable full-board points,
+hide_reserves **0.0805** at (4,4) and **0.1677** at (5,5); the full board stops
+being enumerable at (6,6). Two points show a *trend* but not a *shape*. Because
+Three-Peg Collapse lives on one row, it is fully enumerable at **every** reserve
+size — the real **(14,14)** has only **94,824** reachable states and enumerates
+in ~2s — turning two points into a complete 13-point curve (uniform-over-decision
+regret, WDL units, the same machinery as Finding 4).
+
+| reserves | states | decisions | hide cooldown | Δcd | hide reserves | Δres |
+|---|---|---|---|---|---|---|
+| (2,2) | 154 | 55 | 0.0000 | — | 0.0000 | — |
+| (3,3) | 1,108 | 616 | 0.0049 | +0.0049 | 0.0097 | +0.0097 |
+| (4,4) | 4,352 | 2,869 | 0.0199 | +0.0150 | 0.0641 | +0.0544 |
+| (5,5) | 10,505 | 7,435 | 0.0371 | +0.0173 | 0.1235 | +0.0593 |
+| (6,6) | 18,624 | 13,614 | 0.0422 | +0.0051 | 0.1643 | +0.0408 |
+| (7,7) | 27,773 | 20,674 | **0.0424** | +0.0001 | 0.1905 | +0.0262 |
+| (8,8) | 37,338 | 28,080 | 0.0401 | −0.0023 | 0.2090 | +0.0184 |
+| (9,9) | 46,919 | 35,562 | 0.0390 | −0.0011 | 0.2209 | +0.0119 |
+| (10,10) | 56,500 | 43,044 | 0.0383 | −0.0006 | 0.2286 | +0.0078 |
+| (11,11) | 66,081 | 50,526 | 0.0379 | −0.0005 | 0.2341 | +0.0055 |
+| (12,12) | 75,662 | 58,008 | 0.0375 | −0.0003 | 0.2382 | +0.0041 |
+| (13,13) | 85,243 | 65,490 | 0.0373 | −0.0003 | 0.2413 | +0.0031 |
+| (14,14) | 94,824 | 72,972 | 0.0371 | −0.0002 | 0.2438 | +0.0025 |
+
+The Δ columns are the point. Three exact reads, then the phase boundary that
+unifies them.
+
+**(i) The reserves floor grows steeply, then *saturates* — bounded, not
+unbounded.** hide_reserves climbs to a peak *increment* of +0.0593 at (5,5),
+after which the increments collapse monotonically — +0.041, +0.026, +0.018, …,
++0.0025 — with the floor converging toward roughly **~0.25**. So in the sibling
+the cost of the missing reserve feature is **bounded**. This does **not** retract
+Finding 4: for the sizes actually measured on the full board the growth claim
+stands exactly as written. What the curve adds is *shape* — and it is a caution
+about extrapolation, because the full board's only two enumerable points,
+(4,4) and (5,5), sit squarely on the **steep early section** of a saturating
+curve. Two points on that section could suggest unbounded growth or a plateau
+equally well; nothing in them reveals which. In the sibling it saturates; on the
+full board the shape beyond (5,5) **remains unknown** (see the cross-reference
+now in Finding 4).
+
+**(ii) The cooldown floor is *non-monotonic* — it rises, peaks at (7,7), then
+falls.** hide_cooldown climbs to **0.0424** at (7,7) and then *declines* and
+plateaus near ~0.037. A hidden feature's cost that goes **up and then down** with
+game size is the result **no two-point extrapolation could ever have produced** —
+from (4,4)→(5,5) (0.0199 → 0.0371) one would only ever predict continued growth.
+
+**(iii) One phase boundary near (6,6)–(7,7), three signatures.** The exact
+openings tell the same story from the strategy side. The empty-board root is a P0
+attrition win at every size ≥ (3,3), but the *value of playing the centre peg*
+inverts across a single boundary (peg 0 and peg 2 are symmetric ends throughout):
+
+| reserves | centre (peg 1) | ends (pegs 0, 2) | reading |
+|---|---|---|---|
+| (3,3)–(4,4) | P0 attrition | P0 attrition | everything wins |
+| (5,5) | **P0 attrition** | draw | centre *uniquely* wins |
+| (6,6) | draw | P0 attrition | centre only draws |
+| (7,7)–(14,14) | **P1 line win** | P0 attrition | centre **loses to a line**, then frozen |
+
+Three signatures land on the same transition near (6,6)–(7,7): the centre-strategy
+inversion **freezes** (identical from (7,7) up), the cooldown floor **peaks**, and
+the reserve-floor increments **collapse**. One mechanism explains all three — the
+9-cell board (here, 3 pegs × 3 levels) becomes the binding constraint. Below the
+boundary material is scarce and the reserve *count* discriminates between
+positions; above it the board fills before reserves matter, so extra beads stop
+carrying information and every added-material signal flattens at once.
+
+**(iv) Hypothesis (labelled as such — not a result).** *If* board capacity sets
+the boundary, then a larger board should push the boundary later: a 27-cell board
+would saturate far beyond a 9-cell one, so the real 14-bead game may **never leave
+its pre-saturation regime**. This is a conjecture the present data cannot settle.
+The named test is a **6-peg (two-row, 18-cell) sibling** as the middle data point
+between 9 and 27 cells; it is deliberately **not** run here.
+
+**Exactness re-verified for the variant (A3).** Finding 4's Exactness lemma (the
+charity rule never fires for the single-hide ablations, so those floors are exact
+optima rather than deflated bounds) was proven by enumeration on the *full* board;
+it is not assumed to carry. The scan was re-run here at every reserve size 2..14
+and `no_common_legal_action == 0` for both hide_cooldown and hide_reserves
+throughout — so every floor in the table above is an **exact optimum**, not a
+bound. (`hide_both` is the deliberate contrast: hiding both fields gates legality,
+the charity rule fires, and the column is a deflated lower bound, exactly as in
+Finding 4.) All numbers, the openings gate, and the lemma scan are guarded by
+`tests/test_threepeg_floor.py` and recorded in
+[`results/threepeg_floor_latest.json`](../results/threepeg_floor_latest.json).
+
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
 
@@ -973,6 +1091,7 @@ python -m experiments.sandbagging 3 4 5             # throwing is provably hard 
 python -m experiments.masked_floor 3 4 5            # floors when the legal-move mask is visible
 python -m experiments.full_game_value               # 14×14 opening grid + root solve
 python -m experiments.horizon                       # full-size game grading battery
+python -m experiments.threepeg_floor                # Three-Peg sibling: full floor curve (2,2)-(14,14)
 ```
 
 Cite the `results/*.json` file for any number, not prose. Exact state counts and

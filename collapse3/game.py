@@ -15,8 +15,9 @@ All scores are expressed from P0's global perspective (P0 maximizes,
 P1 minimizes). Use :func:`orient` to view a score from a given player's seat.
 """
 
+from contextlib import contextmanager
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
+from typing import Iterator, List, Optional, Tuple
 
 Board = Tuple[Tuple[int, ...], ...]
 Move = Tuple
@@ -157,15 +158,43 @@ def evaluate_terminal(state: GameState) -> Optional[int]:
 # -----------------------------------------------------------------------------
 # Move generation & application
 # -----------------------------------------------------------------------------
+# Variant hook: which pegs accept a placement. Default is all 9 (standard
+# Collapse3). The three-peg sibling variant restricts placements to the single
+# row (0, 1, 2) -- a pure move-legality restriction, not a forked engine. Every
+# other mechanic (stacking, gravity, removal legality, cooldown, Oops, line/
+# attrition wins) is untouched; pegs 3-8 simply stay empty, so their winning
+# lines can never fire. Removal legality already self-restricts to occupied
+# pegs, so only placements need gating. See ``placement_pegs`` below.
+PLACEMENT_PEGS: Tuple[int, ...] = tuple(range(9))
+
+
+@contextmanager
+def placement_pegs(pegs: Tuple[int, ...]) -> Iterator[None]:
+    """Temporarily restrict which pegs accept a placement (variant scope).
+
+    Used by the three-peg sibling variant: ``with placement_pegs((0, 1, 2)):``
+    makes every ``get_legal_moves`` call in the block emit placements only on
+    the first row. The restriction is a global the enumerator/solver read, so it
+    threads through :func:`get_legal_moves` without changing any call site.
+    """
+    global PLACEMENT_PEGS
+    prev = PLACEMENT_PEGS
+    PLACEMENT_PEGS = tuple(pegs)
+    try:
+        yield
+    finally:
+        PLACEMENT_PEGS = prev
+
+
 def get_legal_moves(state: GameState) -> List[Move]:
     moves: List[Move] = []
     p = state.turn
     opp = 1 - p
     board = state.board
 
-    # Placements.
+    # Placements (restricted to PLACEMENT_PEGS for variants; all 9 by default).
     if state.res[p] > 0:
-        for peg_idx in range(9):
+        for peg_idx in PLACEMENT_PEGS:
             if len(board[peg_idx]) < 3:
                 moves.append(('place', peg_idx))
 
