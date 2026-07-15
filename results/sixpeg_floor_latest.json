@@ -1,0 +1,456 @@
+{
+  "experiment": "sixpeg_floor",
+  "provenance": {
+    "timestamp_utc": "2026-07-15T22:05:32.482246+00:00",
+    "git_commit": "d1873ff41b1dd45903b4315a107a6bb90e8d3a85",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "placement_pegs": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "results": {
+    "variant": "Six-Peg Collapse",
+    "placement_pegs": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "winning_line_census": {
+      "total": 49,
+      "live": 16,
+      "verticals": 6,
+      "row_levels": 6,
+      "staircases": 4
+    },
+    "sizes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "openings": {
+      "2_2": {
+        "root": 0,
+        "root_label": "draw",
+        "placements": [
+          {
+            "peg": 0,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 1,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 2,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 3,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 4,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 5,
+            "value": 0,
+            "label": "draw"
+          }
+        ]
+      },
+      "3_3": {
+        "root": 0,
+        "root_label": "draw",
+        "placements": [
+          {
+            "peg": 0,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 1,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 2,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 3,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 4,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 5,
+            "value": 0,
+            "label": "draw"
+          }
+        ]
+      },
+      "4_4": {
+        "root": 0,
+        "root_label": "draw",
+        "placements": [
+          {
+            "peg": 0,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 1,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 2,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 3,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 4,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 5,
+            "value": 0,
+            "label": "draw"
+          }
+        ]
+      },
+      "5_5": {
+        "root": 0,
+        "root_label": "draw",
+        "placements": [
+          {
+            "peg": 0,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 1,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 2,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 3,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 4,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 5,
+            "value": 0,
+            "label": "draw"
+          }
+        ]
+      },
+      "6_6": {
+        "root": 10,
+        "root_label": "P0 attrition",
+        "placements": [
+          {
+            "peg": 0,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 1,
+            "value": 10,
+            "label": "P0 attrition"
+          },
+          {
+            "peg": 2,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 3,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 4,
+            "value": 10,
+            "label": "P0 attrition"
+          },
+          {
+            "peg": 5,
+            "value": 0,
+            "label": "draw"
+          }
+        ]
+      },
+      "7_7": {
+        "root": 10,
+        "root_label": "P0 attrition",
+        "placements": [
+          {
+            "peg": 0,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 1,
+            "value": 10,
+            "label": "P0 attrition"
+          },
+          {
+            "peg": 2,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 3,
+            "value": 0,
+            "label": "draw"
+          },
+          {
+            "peg": 4,
+            "value": 10,
+            "label": "P0 attrition"
+          },
+          {
+            "peg": 5,
+            "value": 0,
+            "label": "draw"
+          }
+        ]
+      }
+    },
+    "by_size": {
+      "2_2": {
+        "states": 1126,
+        "decisions": 253,
+        "rows": {
+          "hide_cooldown": {
+            "floor": 0.0,
+            "obs_groups": 253,
+            "aliased_groups": 0,
+            "conflict_groups": 0,
+            "no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor": 0.0,
+            "obs_groups": 253,
+            "aliased_groups": 0,
+            "conflict_groups": 0,
+            "no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor": 0.0,
+            "obs_groups": 199,
+            "aliased_groups": 42,
+            "conflict_groups": 6,
+            "no_common_legal_action": 6
+          }
+        },
+        "hide_cooldown_increment": null,
+        "hide_reserves_increment": null,
+        "seconds": 0.04
+      },
+      "3_3": {
+        "states": 16759,
+        "decisions": 6100,
+        "rows": {
+          "hide_cooldown": {
+            "floor": 0.0009836065573770492,
+            "obs_groups": 4528,
+            "aliased_groups": 1242,
+            "conflict_groups": 6,
+            "no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor": 0.004918032786885246,
+            "obs_groups": 4264,
+            "aliased_groups": 1227,
+            "conflict_groups": 30,
+            "no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor": 0.0009836065573770492,
+            "obs_groups": 2824,
+            "aliased_groups": 855,
+            "conflict_groups": 417,
+            "no_common_legal_action": 411
+          }
+        },
+        "hide_cooldown_increment": 0.001,
+        "hide_reserves_increment": 0.0049,
+        "seconds": 0.8
+      },
+      "4_4": {
+        "states": 142173,
+        "decisions": 66643,
+        "rows": {
+          "hide_cooldown": {
+            "floor": 0.0071125249463559565,
+            "obs_groups": 43770,
+            "aliased_groups": 17245,
+            "conflict_groups": 279,
+            "no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor": 0.061761925483546656,
+            "obs_groups": 35931,
+            "aliased_groups": 14030,
+            "conflict_groups": 2164,
+            "no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor": 0.0006902450369881308,
+            "obs_groups": 21545,
+            "aliased_groups": 8720,
+            "conflict_groups": 5595,
+            "no_common_legal_action": 5549
+          }
+        },
+        "hide_cooldown_increment": 0.0061,
+        "hide_reserves_increment": 0.0568,
+        "seconds": 8.3
+      },
+      "5_5": {
+        "states": 799389,
+        "decisions": 430543,
+        "rows": {
+          "hide_cooldown": {
+            "floor": 0.01119981047189247,
+            "obs_groups": 255154,
+            "aliased_groups": 130295,
+            "conflict_groups": 3413,
+            "no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor": 0.1239643891550902,
+            "obs_groups": 181819,
+            "aliased_groups": 90143,
+            "conflict_groups": 21550,
+            "no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor": 0.0009476405376466462,
+            "obs_groups": 96350,
+            "aliased_groups": 50207,
+            "conflict_groups": 33607,
+            "no_common_legal_action": 33215
+          }
+        },
+        "hide_cooldown_increment": 0.0041,
+        "hide_reserves_increment": 0.0622,
+        "seconds": 51.51
+      },
+      "6_6": {
+        "states": 3167065,
+        "decisions": 1855107,
+        "rows": {
+          "hide_cooldown": {
+            "floor": 0.014202954330936168,
+            "obs_groups": 982439,
+            "aliased_groups": 613804,
+            "conflict_groups": 19350,
+            "no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor": 0.17900746425947398,
+            "obs_groups": 588465,
+            "aliased_groups": 362912,
+            "conflict_groups": 98710,
+            "no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor": 0.001978322544198259,
+            "obs_groups": 263963,
+            "aliased_groups": 173386,
+            "conflict_groups": 120927,
+            "no_common_legal_action": 119113
+          }
+        },
+        "hide_cooldown_increment": 0.003,
+        "hide_reserves_increment": 0.055,
+        "seconds": 214.95
+      },
+      "7_7": {
+        "states": 9152201,
+        "decisions": 5627479,
+        "rows": {
+          "hide_cooldown": {
+            "floor": 0.01666856508926999,
+            "obs_groups": 2677136,
+            "aliased_groups": 1937563,
+            "conflict_groups": 63642,
+            "no_common_legal_action": 0
+          },
+          "hide_reserves": {
+            "floor": 0.2319315629609635,
+            "obs_groups": 1222203,
+            "aliased_groups": 919652,
+            "conflict_groups": 270630,
+            "no_common_legal_action": 0
+          },
+          "hide_both": {
+            "floor": 0.001915955617071161,
+            "obs_groups": 459011,
+            "aliased_groups": 372288,
+            "conflict_groups": 278941,
+            "no_common_legal_action": 275151
+          }
+        },
+        "hide_cooldown_increment": 0.0025,
+        "hide_reserves_increment": 0.0529,
+        "seconds": 722.66
+      }
+    },
+    "exactness_lemma_holds": true
+  }
+}

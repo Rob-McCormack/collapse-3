@@ -37,6 +37,7 @@
 - [experiments/optimal_move_rate.py](experiments/optimal_move_rate.py): Optimal-move rate: aggregate vs critical-only.
 - [experiments/representation_amplification.py](experiments/representation_amplification.py): Does optimizing around a lossy representation *amplify* regret?
 - [experiments/sandbagging.py](experiments/sandbagging.py): Sandbagging / misere solves: is throwing the game forceable?
+- [experiments/sixpeg_floor.py](experiments/sixpeg_floor.py): Six-Peg Collapse: the middle capacity point (18 cells) between 9 and 27.
 - [experiments/solve_reserves.py](experiments/solve_reserves.py): Exact game value for symmetric reserves, with provenance.
 - [experiments/structural_census.py](experiments/structural_census.py): Exhaustive structural census of Collapse3 at reserves (r, r).
 - [experiments/threepeg_floor.py](experiments/threepeg_floor.py): Three-Peg Collapse: the complete aliasing-floor curve across every reserve size.

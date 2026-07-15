@@ -960,7 +960,12 @@ the boundary, then a larger board should push the boundary later: a 27-cell boar
 would saturate far beyond a 9-cell one, so the real 14-bead game may **never leave
 its pre-saturation regime**. This is a conjecture the present data cannot settle.
 The named test is a **6-peg (two-row, 18-cell) sibling** as the middle data point
-between 9 and 27 cells; it is deliberately **not** run here.
+between 9 and 27 cells. **That test is now run — see
+[Finding 13](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested):**
+every boundary signature is delayed by ~2 reserve sizes on the 18-cell board,
+confirming the *direction* (capacity, not mechanics, sets the boundary), though
+the un-folded state space explodes (9.15M states at (7,7)) and six-peg's own
+boundary stays out of enumeration reach.
 
 **Exactness re-verified for the variant (A3).** Finding 4's Exactness lemma (the
 charity rule never fires for the single-hide ablations, so those floors are exact
@@ -973,6 +978,91 @@ the charity rule fires, and the column is a deflated lower bound, exactly as in
 Finding 4.) All numbers, the openings gate, and the lemma scan are guarded by
 `tests/test_threepeg_floor.py` and recorded in
 [`results/threepeg_floor_latest.json`](../results/threepeg_floor_latest.json).
+
+### 13. A second sibling (six pegs) shows the boundary *moves* with capacity — Finding 12(iv), tested
+`experiments/sixpeg_floor.py` (Six-Peg Collapse, reserves (2,2)–(7,7))
+
+> **Scope — same discipline as Finding 12. This is a *third geometry*, not a
+> miniature of anything.** *Six-Peg Collapse* restricts placements to the top two
+> rows (pegs 0–5) and changes nothing else — byte-for-byte the same engine, a
+> move-legality restriction only. The board is now **18 cells** (6 pegs × 3
+> levels) and **16 of the full board's 49 winning lines** can fire (6 verticals,
+> 2 rows at 3 levels, 4 staircases) — double the three-peg sibling's 8, so it is
+> less attrition-dominant. Its numbers are **parallel evidence about the same
+> mechanics under a third board**; they do **not** transfer to Collapse3 and must
+> never be quoted as facts about it. The value is the *three-point contrast*: one
+> engine, boards of 9, 18, and 27 cells.
+
+**Why the second sibling exists.** Finding 12(iv) made a falsifiable conjecture:
+*if board capacity (not the mechanics) sets the phase boundary near (6,6)–(7,7)
+in the three-peg sibling, a larger board should push that boundary later.* Six
+pegs are the named middle point between the 9-cell single row and the 27-cell
+full board. This finding runs that test.
+
+**The feasibility wall (a result in itself).** Unlike the single row, the two-row
+board is *not* capped small: the un-folded reachable set explodes ~3–4× per
+reserve, reaching **9,152,201 states at (7,7)** — already ~100× the three-peg
+sibling's *entire* (14,14). Enumeration is memory-bound around (7,7)–(8,8), and
+the sibling's own predicted boundary (~(12,12)+) is **out of reach by brute
+force**. So this finding cannot show six-peg's boundary *peak*; it shows the
+boundary's *location has moved*, which is exactly what 12(iv) predicted.
+
+**All three signatures are delayed by ~2 reserve sizes on the 18-cell board.**
+The cooldown floor is the sharpest test, because on three pegs it *peaks at
+(7,7)* and then falls:
+
+| floor | three-peg (9 cells) | six-peg (18 cells) |
+|---|---|---|
+| hide_cooldown (5,5) | 0.0371 | 0.0112 |
+| hide_cooldown (6,6) | 0.0422 | 0.0142 |
+| hide_cooldown (7,7) | **0.0424 — peak, then declines** | **0.0167 — still rising (+0.0025)** |
+
+At (7,7) three-peg has turned over; six-peg is still on the rising limb, at a
+much lower level. The reserve floor tells the same story — its increments, which
+on three pegs **collapse** after the (5,5) peak, roll off far more gently on six
+pegs (increment still **+0.0529** at (7,7), vs three-peg's +0.0262):
+
+| hide_reserves (increment) | three-peg | six-peg |
+|---|---|---|
+| (5,5) | 0.1235 (+0.0593) | 0.1240 (+0.0622) |
+| (6,6) | 0.1643 (+0.0408 ← collapsing) | 0.1790 (+0.0550) |
+| (7,7) | 0.1905 (+0.0262) | 0.2319 (**+0.0529 ← barely rolling off**) |
+
+And the exact openings — the strategy side — are shifted by the same ~2 sizes.
+The empty-board root becomes a P0 attrition win at **(3,3)** on three pegs but
+only at **(6,6)** on six pegs; the "centre peg uniquely wins" phase lands at
+**(5,5)** on three pegs and at **(7,7)** on six pegs; and the centre's collapse
+into an outright *line loss* — reached by (7,7) on three pegs — has **not
+appeared at all** in the feasible six-peg range:
+
+| phase | three-peg | six-peg |
+|---|---|---|
+| root becomes a P0 win | (3,3) | (6,6) |
+| centre uniquely wins | (5,5) | (7,7) |
+| centre draws | (6,6) | not reached |
+| centre loses to a line | (7,7)+ | not reached |
+
+**Reading.** Doubling the board from 9 to 18 cells delays every boundary
+signature by ~2 reserve sizes and does **not** relocate it to a *different kind*
+of transition — same three signatures, later. That is direct evidence that the
+boundary is set by **board capacity, not the mechanics**: the mechanics are
+identical across all three siblings; only the geometry changed, and the boundary
+moved with it. It also sharpens Finding 12(iv)'s corollary: if 18 cells already
+pushes the boundary out toward ~(12,12), the 27-cell real game plausibly spends
+its entire 14-bead reserve budget in the **pre-saturation, still-rising** regime
+— a statement offered as parallel evidence, **not** a fact about Collapse3 (which
+this experiment cannot enumerate). What remains unmeasured is the exact scaling
+*law*: the direction is confirmed on all three signatures; the magnitude (and
+six-peg's own peak) is beyond enumeration.
+
+**Exactness re-verified for the second variant.** The single-hide charity rule
+never fired at any measured size (`no_common_legal_action == 0` for both
+hide_cooldown and hide_reserves through (7,7)), so every six-peg floor above is
+an **exact optimum**, not a deflated bound — the lemma holds under a third
+geometry. (`hide_both` again gates legality and its charity fires, the deliberate
+contrast.) All numbers, the census, the opening gate, and the lemma scan are
+guarded by `tests/test_sixpeg_floor.py` and recorded in
+[`results/sixpeg_floor_latest.json`](../results/sixpeg_floor_latest.json).
 
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
