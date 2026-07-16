@@ -3,29 +3,32 @@
 <img src="docs/images/3x3-simple.png" width="640" alt="Collapse3 board: a 3×3 grid of pegs holding red and blue beads">
 
 
+Collapse3 is a tiny, perfect-information, deterministic 3×3×3 board game — and it
+is **solved**: an exact solver ships in this repository. Yet it is complex enough
+that teachable "basic strategy" runs out almost immediately (a compact rulebook
+draws at the smallest board and is *certifiably* dead beyond it).
+
+The repository's exact solver is pure Python (no dependencies). It isn't a
+player here — it's an examiner: it grades every move against perfect play,
+turning "how good is this agent?" into a number (**value-based regret**), and the
+game into an instrument for measuring **competence**, not just performance.
+
 **Is competence a property of the agent — or of the agent plus the opponents it
-happens to face?**
+happens to face?** A one-ply agent posts its highest optimal-move rate (**78%**)
+against the opponent it loses to **84%** of the time (and wins **0%**). In a
+measured round-robin, **Elo ranks a certifiably exploitable rulebook above the
+perfect player** ([Finding 10](docs/FINDINGS.md)). Because the ground truth is
+exact, no opponent can make a bad move grade as good and no thrown game grades
+clean — surrendered value always logs as regret ([Finding 9](docs/FINDINGS.md)).
+What an opponent *can* still shape is which states get visited — which is why
+every average we report names its distribution.
 
-A one-ply agent posts its highest optimal-move rate (**78%**) against the
-opponent it loses to **84%** of the time (and wins **0%**). In a measured
-round-robin, **Elo ranks a certifiably exploitable rulebook above the perfect
-player** ([Finding 10](docs/FINDINGS.md)). Collapse3 is a
-**perfect-information, deterministic** game small enough to solve exactly — and
-the **exact solver is included in this repository** (pure Python, no
-dependencies). The solver isn't a player here, it's an examiner: it grades every
-move against perfect play, turning "how good is this agent?" into a number —
-**value-based regret**. No opponent can make a bad move grade as good, and no
-thrown game grades clean — surrendered value always logs as regret
-([Finding 9](docs/FINDINGS.md)). What an opponent *can* still shape is which
-states get visited, which is why every average we report names its
-distribution.
-
-In large systems we watch agents fail and wonder why. In Collapse3, we can
-measure *exactly why* — and **unit-test proposed evaluation methods against
-ground truth** before trusting them on systems you cannot solve. It aims to be
-a small, fully reproducible exhibit of the failure modes — distribution-dependent
-competence, representation gaps, brittle plans, sandbagging — that AI safety and
-evaluation researchers care about, measured exactly rather than estimated.
+In large systems we watch agents fail and wonder why. In Collapse3 we can measure
+*exactly why* — and **unit-test proposed evaluation methods against ground truth**
+before trusting them on systems you cannot solve. It aims to be a small, fully
+reproducible exhibit of the failure modes — distribution-dependent competence,
+representation gaps, brittle plans, sandbagging — that AI safety and evaluation
+researchers care about, measured exactly rather than estimated.
 
 *New to the game? The rules fit in ten lines — see [The game](#the-game) below
 (full rules: [`rules.md`](rules.md)). Enough to read the findings: players
