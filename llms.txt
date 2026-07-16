@@ -41,6 +41,7 @@
 - [experiments/solve_reserves.py](experiments/solve_reserves.py): Exact game value for symmetric reserves, with provenance.
 - [experiments/structural_census.py](experiments/structural_census.py): Exhaustive structural census of Collapse3 at reserves (r, r).
 - [experiments/threepeg_floor.py](experiments/threepeg_floor.py): Three-Peg Collapse: the complete aliasing-floor curve across every reserve size.
+- [experiments/threepeg_selfplay.py](experiments/threepeg_selfplay.py): Self-play on the Three-Peg sibling, audited against the exact oracle.
 - [experiments/win_rate_vs_regret.py](experiments/win_rate_vs_regret.py): Win rate vs. competence: performance is not competence.
 
 ## Full context

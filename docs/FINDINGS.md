@@ -1064,6 +1064,86 @@ contrast.) All numbers, the census, the opening gate, and the lemma scan are
 guarded by `tests/test_sixpeg_floor.py` and recorded in
 [`results/sixpeg_floor_latest.json`](../results/sixpeg_floor_latest.json).
 
+### 14. Self-play saturates: flawless on its own trajectories, globally blind, and it trips over the phase boundary
+`experiments/threepeg_selfplay.py` (Three-Peg Collapse, reserves (4,4)–(7,7), 5 seeds)
+
+> **Scope — sibling, parallel evidence.** Same discipline as Findings 12–13: this
+> is the Three-Peg *sibling*, not Collapse3, and its numbers never transfer. What
+> is new is the *agent*: this is the first **learned-agent** result on the sibling,
+> and the first **true self-play** anywhere in the repo. Everything else trains
+> *against the oracle* ([Finding 2](#2-performance-and-competence-come-apart),
+> [Finding 7](#7-the-floor-is-real-but-realized-regret-slips-beneath-it--interface-first-then-steering)); here **one shared Q-table drives both seats with zero
+> oracle access during training** (Monte-Carlo, terminal reward only). The oracle
+> is used *only afterwards*, to grade the frozen policy exactly. Un-folded
+> throughout (the sibling is not grid-symmetric). Seeds are fixed, so every number
+> is deterministic and reproducible.
+
+The sibling is exactly solvable at *every* reserve size, so a self-play agent can
+be graded across the whole (6,6)–(7,7) phase boundary — which the full board
+(enumerable only to (5,5)) never permits. Two observation regimes: `full` (no
+aliasing) and `hide_reserves` (the load-bearing lossy feature).
+
+**(i) It looks flawless where it plays and is blind everywhere else — and the
+blindness *grows* with size.** With **full** observation there is no aliasing
+floor, so uniform (all-decisions) regret is a pure coverage/learning gap. On its
+own trajectories the agent stays near-perfect; over the whole state space it does
+not:
+
+| (r,r) | states visited | regret on its own games | regret over ALL states | seat-0 forced below a win |
+|---|---|---|---|---|
+| (4,4) | 72% | 0.026 | 0.064 | 0 / 5 |
+| (5,5) | 68% | 0.038 | 0.098 | 0 / 5 |
+| (6,6) | 57% | 0.044 | 0.149 | 1 / 5 |
+| (7,7) | 42% | **0.045** | **0.215** | **2 / 5** |
+
+On-policy regret is flat (~0.045) while global regret **triples** and coverage
+**falls to 42%**; the gap widens to ~5×. This is the project's core thesis
+reproduced by self-play with no oracle in the loop: *strong where sampled, weak
+where measured.*
+
+**(ii) The "perfect-looking" policy is exactly exploitable — increasingly so with
+size.** Freezing each policy and letting the worst-case adversary reply
+(`experiments/best_response.py`, exact, un-folded) certifies the outcome. The
+empty-board root is a P0 forced win at every size, so **seat 1 is theoretically
+lost regardless** — its best-response loss is the game value, *not* an exploit,
+and is reported only for completeness. The informative seat is the winnable
+seat 0: at (4,4)/(5,5) self-play secures the win in all 5 seeds, but at (6,6) one
+seed and at (7,7) **two of five** can be forced off their won game to a draw or
+loss. A policy that goes flat/undefeated in self-play is provably not robust.
+
+**(iii) The headline: a self-play agent trips over the exact phase boundary.** A
+reserve-blind (`hide_reserves`) policy has a *size-independent* opening — the
+empty-board observation is identical at every reserve. Trained at **(5,5)**, where
+[Finding 12](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)
+proves the centre *uniquely* wins, **all 5 seeds learn to open on the centre** —
+and carry it straight across the boundary:
+
+| opening chosen at (5,5) | value at (5,5) | at (6,6) | at (7,7) |
+|---|---|---|---|
+| centre (peg 1), all 5 seeds | **win** | draw | **loss** |
+
+At (7,7) the centre inverts to a forced P1 line loss
+([Finding 13](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested)),
+and best-response confirms **5/5 seeds are forced to lose**. The agent learned a
+rule that was *provably optimal in its training regime* and applied it after the
+environment crossed into a different strategic regime — a clean, exact
+distribution-shift failure landing on the enumerated boundary.
+
+**Caution (do not over-read the representation comparison).** Under a fixed
+budget the `hide_reserves` agent posts *lower* global regret than the full-state
+agent at the larger sizes (~0.06 vs 0.215 at (7,7)) — but that is a coverage
+artifact (hiding reserves collapses many states to one key, so the smaller table
+is better covered), **not** evidence that hiding information improves competence:
+the very same reserve-blind agent is forced below a win in **5/5** seeds at (5,5),
+exactly where reserves are decisive. Low average, fatal worst case — the
+aggregation lesson, now at the level of *representation*. (The same
+average-versus-worst-case failure has been observed independently via a second
+learning route — supervised oracle imitation — as external parallel evidence; it
+is not reproduced in-repo here.)
+
+All numbers are guarded by `tests/test_threepeg_selfplay.py` and recorded in
+[`results/threepeg_selfplay_latest.json`](../results/threepeg_selfplay_latest.json).
+
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
 
@@ -1261,6 +1341,8 @@ python -m experiments.masked_floor 3 4 5            # floors when the legal-move
 python -m experiments.full_game_value               # 14×14 opening grid + root solve
 python -m experiments.horizon                       # full-size game grading battery
 python -m experiments.threepeg_floor                # Three-Peg sibling: full floor curve (2,2)-(14,14)
+python -m experiments.sixpeg_floor                  # Six-Peg sibling: boundary moves with capacity (2,2)-(7,7)
+python -m experiments.threepeg_selfplay             # self-play: globally blind, exploitable, trips the boundary
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 ```
 

@@ -149,6 +149,23 @@ the oracle cannot see that choice. The oracle audits thrown *value*, not thrown
 *intent*. Or, concretely: a grandfather provably cannot guarantee his grandson
 wins ([Finding 9](docs/FINDINGS.md)).
 
+## A self-play agent looks flawless — and walks off a cliff
+
+*The same evaluation blind spot, now with a learned agent that never saw the
+solver.* On an exactly-solvable **sibling** of the game (three pegs; a parallel
+environment, never a claim about Collapse3), a **true self-play** agent — one
+shared brain playing both seats, learning only from who won — becomes
+near-perfect **on its own trajectories** (~0.045 regret) and *stays* there as
+the game grows. Graded over the *whole* game by the exact solver, its regret
+**triples** (0.06 → 0.21) and it has only ever visited **42%** of the positions:
+brilliant where it plays, blind everywhere else. Freezing that "undefeated"
+policy, an exact best-response forces it off its winnable game in **2 of 5**
+runs at the largest size — a flat self-play record is not robustness. And the
+sharpest failure is distribution shift: trained where the centre opening
+*uniquely wins*, **all five** runs learn "play centre" and carry it across the
+enumerated phase boundary into a size where the centre **loses** — provably
+optimal in training, fatal one reserve later ([Finding 14](docs/FINDINGS.md)).
+
 ## The game
 
 ![Ready, fire, aim](docs/images/ready-fire-aim.png)
