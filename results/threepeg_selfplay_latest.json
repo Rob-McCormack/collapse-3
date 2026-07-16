@@ -1,8 +1,8 @@
 {
   "experiment": "threepeg_selfplay",
   "provenance": {
-    "timestamp_utc": "2026-07-16T11:29:29.335485+00:00",
-    "git_commit": "736e1470ce3a845a8945a7142a5cf5b5e25718b1",
+    "timestamp_utc": "2026-07-16T12:02:51.095532+00:00",
+    "git_commit": "f520eefbc0802114b97ca8ef8ec8ad59232132ec",
     "git_dirty": true,
     "package_version": "0.2.0",
     "python": "3.9.6",
@@ -44,6 +44,7 @@
       "4_4": {
         "states": 4352,
         "exact_floor_hide_reserves": 0.0641,
+        "random_uniform_regret": 0.1979,
         "regimes": {
           "full": {
             "coverage_mean": 0.7231,
@@ -144,6 +145,7 @@
       "5_5": {
         "states": 10505,
         "exact_floor_hide_reserves": 0.1235,
+        "random_uniform_regret": 0.2868,
         "regimes": {
           "full": {
             "coverage_mean": 0.6801,
@@ -244,6 +246,7 @@
       "6_6": {
         "states": 18624,
         "exact_floor_hide_reserves": 0.1643,
+        "random_uniform_regret": 0.3511,
         "regimes": {
           "full": {
             "coverage_mean": 0.5676,
@@ -344,6 +347,7 @@
       "7_7": {
         "states": 27773,
         "exact_floor_hide_reserves": 0.1905,
+        "random_uniform_regret": 0.3935,
         "regimes": {
           "full": {
             "coverage_mean": 0.4227,

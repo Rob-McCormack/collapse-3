@@ -1,9 +1,15 @@
 # Superposition: a conceptual framing
 
-> **This is interpretation, not a result.** Nothing here is quantum — "superposition"
-> is a metaphor for information that stays *unresolved* at the interface between a
-> bounded agent and the game. The measurements it gestures at are all in
-> [`FINDINGS.md`](FINDINGS.md); if the framing doesn't help you, skip it.
+> **Not part of the audited research.** This note was moved out of `docs/` so a
+> reviewer auditing the repo encounters only falsifiable claims. The phenomena it
+> gestures at already have standard names used correctly in the findings —
+> aliasing, partial observability, bounded rationality — and the measurements
+> live in [`../docs/FINDINGS.md`](../docs/FINDINGS.md). Kept here only as a
+> personal framing note; nothing below is a result.
+>
+> Nothing here is quantum — "superposition" is a metaphor for information that
+> stays *unresolved* at the interface between a bounded agent and the game. If
+> the framing doesn't help you, skip it.
 
 Collapse3 rests on four kinds of unresolved information. None are physical. But
 each one forces a bounded agent to act before the relevant fact is settled — and

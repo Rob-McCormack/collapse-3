@@ -72,3 +72,19 @@ def test_recorded_myopic_seat_split_vs_kimi_v1():
     assert gap > 250
     rec = h2h["kimi-v1"]["myopic"]
     assert rec["w"] == 50 and rec["l"] == 50 and rec["d"] == 0
+
+
+def test_recorded_inversion_gap_has_positive_bootstrap_ci():
+    """The +21 Elo inversion is not a sampling fluke: 95% CI excludes 0."""
+    data = json.loads(RESULTS.read_text())["results"]
+    boot = data["bootstrap_kimi_v2_minus_optimal"]
+    assert boot["point_gap"] == 21.1
+    lo, hi = boot["ci95"]
+    assert lo > 0 and hi > lo
+    assert boot["p_positive"] >= 0.99
+    # H2H recovers the recorded ratings exactly (bootstrap input is sound).
+    from experiments.elo_tournament import fit_elo, scores_from_h2h
+    score, n_games = scores_from_h2h(data["head_to_head"])
+    r = fit_elo(score, n_games)
+    assert abs(r["kimi-v2"] - 1825.3) < 0.05
+    assert abs(r["optimal"] - 1804.2) < 0.05

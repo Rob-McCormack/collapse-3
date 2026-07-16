@@ -24,7 +24,7 @@ exhaustive results are exact, and any illustrative small-budget run is labelled.
 11. **[The full game fell — (14,14) is a first-player forced win](#11-the-full-game-fell--1414-is-a-first-player-forced-win-found-by-accident)** — the full game is a first-player win, found by accident; the drawish picture flips with capacity.
 12. **[A sibling game shows the floor's *shape*](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)** — a three-peg sibling maps the floor across all sizes: bounded growth, saturation, a cost that rises then falls.
 13. **[A second sibling shows the boundary *moves* with capacity](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested)** — a six-peg sibling confirms the phase boundary shifts later as board capacity grows (Finding 12(iv), tested).
-14. **[Self-play saturates: flawless, blind, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-globally-blind-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet is globally blind, exactly exploitable, and forced to lose when it carries a trained-optimal opening across the phase boundary.
+14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary.
 
 **Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -46,7 +46,11 @@ But any **average** of those labels is taken over the states actually visited,
 which the opponent shapes — the same agent scores 0.0019 against one opponent
 distribution and 0.0508 against another (Finding 5). So we report regret
 *per distribution* and name the distribution, rather than pretending a single
-scalar transfers.
+scalar transfers. For *realized* (learned-policy) regrets we also print a
+**random-policy baseline** on the same denominator, so a number like "0.215"
+has a scale and coverage is never blended into "competence" (Finding 14).
+Exact interface floors already *are* the optimum over memoryless policies — they
+need the interface named (the ladder below), not a random baseline.
 
 We deliberately use *value* regret, not policy distance `|π_agent − π_opt|`:
 optimal play here is highly non-unique (many moves hold a draw), so policy
@@ -739,10 +743,14 @@ and — for the deterministic policies — its **exact best-response worst case*
 predicted Elo would merely *saturate* at the top of a drawish game. Measured,
 it does worse: **Elo ranks a certifiably exploitable rulebook above the
 perfect player.** kimi-v2 — a certified forced loss at (4,4), the very size
-the tournament was played at — out-rates the optimal agent 1825 to 1804, while
-the right-hand columns tell the truth: optimal is the *only* agent with zero
-losses and zero regret, and its worst case is a theorem where the
-table-topper's is a 7-ply kill.
+the tournament was played at — out-rates the optimal agent 1825 to 1804
+(**+21.1 Elo**). A nonparametric bootstrap over the recorded head-to-head
+outcome multinomials (1,000 resamples, Bradley-Terry refit each time; no game
+replay) puts a **95% CI of [5.1, 38.3]** on that gap, with **P(gap > 0) =
+0.996** — the inversion is not a sampling fluke of a thin lead. The right-hand
+columns tell the truth: optimal is the *only* agent with zero losses and zero
+regret, and its worst case is a theorem where the table-topper's is a 7-ply
+kill.
 
 **The mechanism is structural.** The equal game is a draw, so "unbeatable"
 caps what optimal play can earn; the surplus Elo comes from *converting* wins
@@ -1087,7 +1095,7 @@ contrast.) All numbers, the census, the opening gate, and the lemma scan are
 guarded by `tests/test_sixpeg_floor.py` and recorded in
 [`results/sixpeg_floor_latest.json`](../results/sixpeg_floor_latest.json).
 
-### 14. Self-play saturates: flawless on its own trajectories, globally blind, and it trips over the phase boundary
+### 14. Self-play saturates: flawless on its own trajectories, weaker off them, and it trips over the phase boundary
 `experiments/threepeg_selfplay.py` (Three-Peg Collapse, reserves (4,4)–(7,7), 5 seeds)
 
 > **Scope — sibling, parallel evidence.** Same discipline as Findings 12–13: this
@@ -1106,23 +1114,35 @@ be graded across the whole (6,6)–(7,7) phase boundary — which the full board
 (enumerable only to (5,5)) never permits. Two observation regimes: `full` (no
 aliasing) and `hide_reserves` (the load-bearing lossy feature).
 
-**(i) It looks flawless where it plays and is blind everywhere else — and the
-blindness *grows* with size.** With **full** observation there is no aliasing
-floor, so uniform (all-decisions) regret is a pure coverage/learning gap. On its
-own trajectories the agent stays near-perfect; over the whole state space it does
-not:
+**(i) Near-perfect where it plays; globally competent but *eroding* — the
+baselined version.** With **full** observation there is no aliasing floor, so
+uniform (all-decisions) regret is a coverage/learning gap. A global regret of
+"0.215" means nothing without a scale bar, so every row prints one: a
+**uniformly-random legal policy** graded the same way (exact, closed-form, no
+sampling — the mean legal-move regret per state, averaged over the same
+denominator).
 
-| (r,r) | states visited | regret on its own games | regret over ALL states | seat-0 forced below a win |
-|---|---|---|---|---|
-| (4,4) | 72% | 0.026 | 0.064 | 0 / 5 |
-| (5,5) | 68% | 0.038 | 0.098 | 0 / 5 |
-| (6,6) | 57% | 0.044 | 0.149 | 1 / 5 |
-| (7,7) | 42% | **0.045** | **0.215** | **2 / 5** |
+| (r,r) | states visited | regret on its own games | regret over ALL states | random-policy baseline | seat-0 forced below a win |
+|---|---|---|---|---|---|
+| (4,4) | 72% | 0.026 | 0.064 | 0.198 | 0 / 5 |
+| (5,5) | 68% | 0.038 | 0.098 | 0.287 | 0 / 5 |
+| (6,6) | 57% | 0.044 | 0.149 | 0.351 | 1 / 5 |
+| (7,7) | 42% | **0.045** | **0.215** | **0.394** | **2 / 5** |
 
-On-policy regret is flat (~0.045) while global regret **triples** and coverage
-**falls to 42%**; the gap widens to ~5×. This is the project's core thesis
-reproduced by self-play with no oracle in the loop: *strong where sampled, weak
-where measured.*
+So the agent is **not** "blind everywhere" — globally it removes about two-thirds
+of a random policy's regret at (4,4). The honest failure is subtler and shows up
+only *because* the baseline is there: as the game grows the agent stays
+near-perfect on its own trajectories (~0.045), while its **global edge erodes** —
+from removing **67%** of the random baseline's regret at (4,4) to just **45%** at
+(7,7) — and its coverage falls to 42%. On-policy regret alone would report a
+flawless agent that is not getting worse; the baselined global number reports a
+policy whose competence *off its own lines* is decaying. That disagreement — one
+policy, two distributions — is the project's core thesis, reproduced by self-play
+with no oracle in the loop. (Caveat, stated rather than hidden: this is a fixed
+50k-episode budget, so part of the raw growth is coverage decay, not pure skill.
+That is exactly why the random baseline and the coverage column sit *beside* the
+regret, never blended into a single "competence" scalar — the denominator
+discipline of Finding 5, applied to a learned agent.)
 
 **(ii) The "perfect-looking" policy is exactly exploitable — increasingly so with
 size.** Freezing each policy and letting the worst-case adversary reply
@@ -1341,13 +1361,17 @@ stating explicitly in any write-up.
 
 ## Reproducibility
 
-Every experiment records provenance via `experiments/_provenance.py`:
+Every experiment records provenance via `experiments/_provenance.py`. Exact
+claims are guarded by **reproduce-or-abort** tests: if a recomputed number
+drifts from the shipped gate, the suite fails rather than quietly rewriting
+the finding. Cite the `results/*.json` file for any number, not prose.
 
 ```bash
 python -m experiments.aliasing_floor 5              # scaling floors (heavy)
 python -m experiments.frozen_plan_vs_blunder 4      # inversions
 python -m experiments.optimal_move_rate             # flattering aggregates
 python -m experiments.elo_tournament                # Elo vs regret vs exploitability
+python -m experiments.elo_tournament --bootstrap    # CI on the Elo inversion (from recorded H2H)
 python -m experiments.structural_census 4           # where difficulty lives
 python -m experiments.oneply_vs_learned 4           # performance vs competence
 python -m experiments.objective_failure 4           # objective vs representation failure
@@ -1365,7 +1389,7 @@ python -m experiments.full_game_value               # 14×14 opening grid + root
 python -m experiments.horizon                       # full-size game grading battery
 python -m experiments.threepeg_floor                # Three-Peg sibling: full floor curve (2,2)-(14,14)
 python -m experiments.sixpeg_floor                  # Six-Peg sibling: boundary moves with capacity (2,2)-(7,7)
-python -m experiments.threepeg_selfplay             # self-play: globally blind, exploitable, trips the boundary
+python -m experiments.threepeg_selfplay             # self-play: near-perfect on-policy, global edge erodes, trips the boundary
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 ```
 

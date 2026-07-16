@@ -3,6 +3,24 @@
 Short answers to recurring questions. Detail and numbers live in
 [`FINDINGS.md`](FINDINGS.md); the rules live in [`../rules.md`](../rules.md).
 
+## Questions at a glance
+
+1. **[Is Collapse3 a POMDP?](#1-is-collapse3-a-pomdp--partially-observable)** — the game is perfect-information; the *experiments* induce a POMDP by restricting observation.
+2. **[Isn't the current state always sufficient?](#2-isnt-the-current-state-always-sufficient--like-in-chess)** — yes for the full state; no for a lossy view of it.
+3. **[Is hiding reserves "cheating"?](#3-is-hiding-reserves-cheating-in-a-perfect-information-game)** — no: it is an ablation that prices a missing feature exactly.
+4. **[Is the (6,6) first-player win a bug?](#4-is-the-66-first-player-win-a-solver-bug)** — no; equal reserves become a P0 win from (6,6) through (14,14).
+5. **[Won't more data / bigger models fix this?](#5-wont-more-data-bigger-models-or-better-training-fix-this)** — not the representation floors: the missing information is absent from the input.
+6. **[Why value-based regret instead of win rate?](#6-why-value-based-regret-instead-of-win-rate)** — win rate convolves agent and opponent; regret grades each decision against the oracle.
+7. **[Does any of this scale to the real game?](#7-does-any-of-this-scale-to-the-real-game-14-beads)** — yes: (14,14) is solved, and the full-size battery grades every move.
+8. **[Don't the findings just restate "PO is hard"?](#8-dont-the-findings-just-restate-partial-observability-is-hard)** — yes, with *exact* per-interface prices and scoreboard unit-tests.
+9. **[Someone proposed a simple strategy — what happened?](#9-someone-proposed-a-simple-strategy--what-happened)** — certified draw at (3,3); certified forced loss from (4,4) up.
+10. **[Why not just rank agents by Elo?](#10-why-not-just-rank-agents-by-elo)** — Elo ranked an exploitable rulebook above the perfect player (+21.1; CI excludes 0).
+11. **[Could a grandfather let his grandson win every time?](#11-could-a-grandfather-let-his-grandson-win-every-time)** — not by force; the oracle audits thrown value, not intent.
+12. **[You solved it — so what's the strategy?](#12-you-solved-the-game--so-whats-the-strategy-is-the-theoretical-solution-meaningful)** — computationally solved ≠ strategically compressible.
+13. **[Why score wins 100 / 10 / 0 / −10 / −100?](#13-why-does-the-solver-score-wins-100--10--0----10----100)** — ordinal for move choice; headline metrics use magnitude-free WDL units.
+
+---
+
 ## 1. Is Collapse3 a POMDP / partially observable?
 
 The *game* is a perfect-information, deterministic MDP — nothing is hidden from
@@ -127,14 +145,15 @@ agent zoo (`experiments/horizon.py`). The "approximate oracle" for play
 evaluation is no longer future work — optimal play at (14,14) costs seconds per
 move.
 
-## 8. What's the "superposition" framing about — isn't that overreach?
+## 8. Don't the findings just restate "partial observability is hard"?
 
-It's an optional *interpretation*, kept deliberately separate from the empirical
-claims. The idea is that each mechanic forces a bounded agent to act on
-**unresolved information**, and the exact solver is what resolves it. None of it
-is quantum — it's a framing device, not a claim. If it helps, read
-[`PERSPECTIVE.md`](PERSPECTIVE.md); if it doesn't, ignore it — the results in
-[`FINDINGS.md`](FINDINGS.md) stand on their own.
+Yes — and with exact numbers. The classical names for what Collapse3 measures
+are already the right ones: **aliasing**, **partial observability**, and
+**bounded rationality**. The contribution is not a new vocabulary; it is that
+the cost of a missing feature becomes an *enumerated* floor per interface, that
+the floor's shape can be mapped across sizes on sibling boards, and that
+standard scoreboards (win rate, Elo, on-policy regret) can be unit-tested
+against those floors. See [`FINDINGS.md`](FINDINGS.md).
 
 ## 9. Someone proposed a simple strategy — what happened?
 
@@ -155,8 +174,9 @@ Finding 8 in [`FINDINGS.md`](FINDINGS.md).
 Because we ran that tournament, and Elo got the top of the table wrong. In a
 nine-agent round-robin at (4,4) — 3,600 oracle-graded games, ratings fitted by
 maximum likelihood — **Elo ranks a certifiably exploitable rulebook above the
-perfect player** (1825 vs 1804): the equal game is drawn, so "unbeatable" caps
-what optimal play can earn, and the surplus rating comes from converting wins
+perfect player** (1825 vs 1804, **+21.1**; bootstrap 95% CI **[5.1, 38.3]**,
+P(gap > 0) = 0.996): the equal game is drawn, so "unbeatable" caps what
+optimal play can earn, and the surplus rating comes from converting wins
 against weak opponents — a skill the value-preserving optimal agent has no
 reason to have. The truthful columns from the *same games* rank differently:
 the optimal agent is the only one with zero losses and zero regret, and its
@@ -183,7 +203,40 @@ to win from — and that choice is invisible to any value audit. The oracle sees
 thrown value, not thrown intent. Details in [`FINDINGS.md`](FINDINGS.md)
 (Finding 9).
 
-## 12. Why does the solver score wins 100 / 10 / 0 / −10 / −100?
+## 12. You solved the game — so what's the strategy? Is the theoretical solution meaningful?
+
+Traditionally, a "theoretical solution" means more than knowing the game's value
+or the correct move in every position. It implies a coherent, reasonably compact
+theory of play: principles that explain what matters and how correct decisions
+can be derived without calculating every state.
+
+Collapse3 creates tension with that idea. Because it is finite and deterministic,
+an exact solver can determine every position's value and generate a complete
+contingent policy. But that may amount only to an enormous collection of
+state-specific instructions — a highly detailed roadmap **without a legend**. It
+tells you where to turn at every junction; it may not explain the landscape.
+
+The research suggests the game can be **computationally solved without being
+strategically compressible**. Compact rulebooks succeed at the smallest size and
+receive shallow forced refutations as it grows ([Finding 8](FINDINGS.md)).
+Apparently natural principles reverse with scale: the centre opening can go from
+winning to drawing to losing ([Findings 12–13](FINDINGS.md)), and intuitive
+line-building can perform worse than random. Correct action increasingly depends
+on detailed calculation — reserves, buried beads, cooldown, gravity, and the
+opponent's replies — not on a teachable rule.
+
+Self-play shows the same gap. An agent can learn a certified winning corridor
+from the start without acquiring a general theory of the game or playing
+correctly over the wider state space ([Finding 14](FINDINGS.md)). It has learned
+how to navigate one robust route, not *why* the game works.
+
+So the important distinction is between an **exact computational solution** and
+a **traditional theoretical solution**. The first clearly exists — it ships in
+this repository. The second may not exist in any useful, compact, or
+human-interpretable form. Collapse3 may be completely mapped while remaining
+strategically unexplained — and that tension is central to the research.
+
+## 13. Why does the solver score wins 100 / 10 / 0 / −10 / −100?
 
 These encode an **ordering** — true win > attrition win > draw > attrition loss
 > true loss — and for **move selection they are purely ordinal**. The solver

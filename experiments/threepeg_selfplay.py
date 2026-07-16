@@ -14,10 +14,13 @@ un-folded ``best_response`` certifier, never the folded Oracle/solver).
 
 Three exact measurements, multi-seed, both seats, across the (6,6)-(7,7) boundary:
 
-  1. SATURATION vs GLOBAL BLINDNESS. Self-play reaches ~0 regret on its OWN
+  1. SATURATION vs GLOBAL EROSION. Self-play reaches ~0 regret on its OWN
      trajectories while its GLOBAL regret (uniform over all reachable decisions)
-     stays large and grows with size, and state-space coverage stays low. It
-     looks perfect where it plays; it is mediocre everywhere else.
+     stays higher and its edge over a random-policy baseline ERODES with size
+     (it removes ~2/3 of the baseline's regret small, <1/2 large), with coverage
+     falling too. The baseline is printed beside the regret so the number has a
+     scale and coverage is never blended into "competence" (Finding 5 denominator
+     discipline).
 
   2. EXPLOITABILITY (exact best response). Freezing the self-play policy and
      letting the worst-case adversary reply (``best_response.solve_best_response``)
@@ -123,6 +126,28 @@ def audit_uniform(Q: QTable, obs_fn, memo) -> float:
     return reg / n if n else 0.0
 
 
+def random_uniform_baseline(memo) -> float:
+    """Exact expected uniform regret of a uniformly-random legal policy over ALL
+    reachable decision states -- the scale bar for ``audit_uniform``. Closed-form
+    (no sampling): a random mover's expected regret in a state is the mean regret
+    of its legal moves. Same denominator as ``audit_uniform`` so they compare.
+    """
+    n = 0
+    reg = 0.0
+    for s in memo:
+        if evaluate_terminal(s) is not None:
+            continue
+        moves = get_legal_moves(s)
+        if not moves:
+            continue
+        mover = s.turn
+        avals = [wdl(memo[apply_move(s, m)], mover) for m in moves]
+        best = max(avals)
+        reg += sum(best - v for v in avals) / len(avals)
+        n += 1
+    return reg / n if n else 0.0
+
+
 def audit_onpolicy_self(Q: QTable, obs_fn, memo, root, games, seed, eps=0.1) -> float:
     """Mean regret vs the oracle along the agent's OWN eps-noisy self-play games."""
     rng = random.Random(seed)
@@ -216,10 +241,11 @@ def main(sizes=(4, 5, 6, 7), episodes=50_000, games=300):
         # the game value, not an exploit. The informative exploitability signal
         # is at the winnable seat 0: "not_won" = forced below a win (to draw/loss).
         print(f"{'size':>6} {'regime':>14} {'cover':>7} {'uniform(min..max)':>22} "
-              f"{'onpol':>7} {'s0 not-won':>10}")
+              f"{'random':>7} {'onpol':>7} {'s0 not-won':>10}")
         for r in sizes:
             memo = memos[r]
             floor = EXPECTED_FLOORS.get(r, (None, None, None, None))
+            baseline = round(random_uniform_baseline(memo), 4)
             regimes = {}
             for obs_name in REGIMES:
                 t0 = time.time()
@@ -228,10 +254,12 @@ def main(sizes=(4, 5, 6, 7), episodes=50_000, games=300):
                 print(f"({r:>2},{r:<2}) {obs_name:>14} {rep['coverage_mean']:>7.3f} "
                       f"{rep['uniform_regret_mean']:>8.4f}"
                       f" ({rep['uniform_regret_min']:.3f}..{rep['uniform_regret_max']:.3f}) "
+                      f"{baseline:>7.4f} "
                       f"{rep['onpolicy_self_mean']:>7.4f} "
                       f"{rep['not_won_seat0']:>3}/{len(SEEDS)}     [{time.time()-t0:.0f}s]")
             by_size[f"{r}_{r}"] = {"states": len(memo),
                                    "exact_floor_hide_reserves": floor[3],
+                                   "random_uniform_regret": baseline,
                                    "regimes": regimes}
 
         print("\nTransfer across the boundary (reserve-blind, trained at (5,5)):")

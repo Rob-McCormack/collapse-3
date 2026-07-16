@@ -29,9 +29,12 @@ Method notes (fitting):
 Run:  python -m experiments.elo_tournament [base_seed]
 """
 
+import json
+import random
 import sys
 from collections import defaultdict
-from typing import Dict, Tuple
+from pathlib import Path
+from typing import Dict, List, Tuple
 
 from collapse3.agents import (
     HeuristicNPlyAgent,
@@ -109,6 +112,94 @@ def fit_elo(scores: Dict[str, float], games: Dict[Tuple[str, str], int],
     return r
 
 
+def scores_from_h2h(h2h: Dict[str, Dict[str, Dict[str, int]]]):
+    """Recover (score, n_games) from the recorded undirected head-to-head table.
+
+    ``h2h[a][b]`` aggregates both seat orders (100 games per unordered pair).
+    """
+    names = sorted(h2h)
+    score: Dict[str, float] = {n: 0.0 for n in names}
+    n_games: Dict[Tuple[str, str], int] = {}
+    for i, a in enumerate(names):
+        for b in names[i + 1:]:
+            w, d, l = h2h[a][b]["w"], h2h[a][b]["d"], h2h[a][b]["l"]
+            n = w + d + l
+            score[a] += w + 0.5 * d
+            score[b] += l + 0.5 * d
+            n_games[(a, b)] = n
+            n_games[(b, a)] = n
+    return score, n_games
+
+
+def bootstrap_elo_gap(
+    h2h: Dict[str, Dict[str, Dict[str, int]]],
+    a: str = "kimi-v2",
+    b: str = "optimal",
+    n_boot: int = 1000,
+    seed: int = 0,
+    fit_iters: int = 80,
+) -> Dict[str, object]:
+    """Nonparametric bootstrap CI for ``elo[a] - elo[b]`` from recorded H2H.
+
+    Resamples each unordered pair's 100 outcomes from its empirical multinomial
+    (with replacement), refits Bradley-Terry, and reports the percentile CI.
+    Cheap (~1 min) — does not replay games.
+    """
+    names = sorted(h2h)
+    pairs = [(x, y) for i, x in enumerate(names) for y in names[i + 1:]]
+    gaps: List[float] = []
+    for i in range(n_boot):
+        rng = random.Random(seed + i)
+        score = {n: 0.0 for n in names}
+        n_games: Dict[Tuple[str, str], int] = {}
+        for x, y in pairs:
+            w, d, l = h2h[x][y]["w"], h2h[x][y]["d"], h2h[x][y]["l"]
+            n = w + d + l
+            outcomes = [0] * w + [1] * d + [2] * l
+            samp = rng.choices(outcomes, k=n)
+            sw, sd, sl = samp.count(0), samp.count(1), samp.count(2)
+            score[x] += sw + 0.5 * sd
+            score[y] += sl + 0.5 * sd
+            n_games[(x, y)] = n
+            n_games[(y, x)] = n
+        ratings = fit_elo(score, n_games, iters=fit_iters)
+        gaps.append(ratings[a] - ratings[b])
+    gaps.sort()
+    lo = gaps[int(0.025 * n_boot)]
+    hi = gaps[int(0.975 * n_boot)]
+    return {
+        "pair": [a, b],
+        "n_boot": n_boot,
+        "seed": seed,
+        "fit_iters": fit_iters,
+        "point_gap": round(sum(gaps) / n_boot, 1),  # bootstrap mean (approx)
+        "median_gap": round(gaps[n_boot // 2], 1),
+        "ci95": [round(lo, 1), round(hi, 1)],
+        "p_positive": round(sum(g > 0 for g in gaps) / n_boot, 4),
+        "method": ("nonparametric bootstrap over unordered-pair outcome "
+                   "multinomials from the recorded head-to-head; Bradley-Terry "
+                   "refit each replicate"),
+    }
+
+
+def bootstrap_recorded(path: Path = None) -> Dict[str, object]:
+    """Attach a bootstrap CI to the shipped tournament JSON (no game replay)."""
+    path = path or (Path(__file__).resolve().parent.parent
+                    / "results" / "elo_tournament_latest.json")
+    data = json.loads(path.read_text())
+    boot = bootstrap_elo_gap(data["results"]["head_to_head"])
+    # Prefer the exact recorded point gap over the bootstrap mean.
+    table = {row["agent"]: row for row in data["results"]["table"]}
+    boot["point_gap"] = round(table["kimi-v2"]["elo"] - table["optimal"]["elo"], 1)
+    data["results"]["bootstrap_kimi_v2_minus_optimal"] = boot
+    path.write_text(json.dumps(data, indent=2) + "\n")
+    # Keep the timestamped sibling in sync if the alias points at one.
+    print(f"bootstrap {boot['pair'][0]}-{boot['pair'][1]}: "
+          f"gap={boot['point_gap']}  95% CI {boot['ci95']}  "
+          f"P(gap>0)={boot['p_positive']}")
+    return boot
+
+
 def main(base_seed: int = 0) -> None:
     start = empty_state(RES, RES)
     game_value(start)                                # warm the shared table
@@ -178,6 +269,14 @@ def main(base_seed: int = 0) -> None:
               f"{row['mean_wdl_regret']:>9.4f}"
               f"{row['mean_wdl_regret_critical']:>13.4f}  {row['worst_case']}")
 
+    h2h_out = {a: {b: {"w": v[0], "d": v[1], "l": v[2]}
+                   for b, v in row.items()}
+               for a, row in h2h.items()}
+    boot = bootstrap_elo_gap(h2h_out)
+    boot["point_gap"] = round(elo["kimi-v2"] - elo["optimal"], 1)
+    print(f"\nbootstrap kimi-v2 − optimal: gap={boot['point_gap']}  "
+          f"95% CI {boot['ci95']}  P(gap>0)={boot['p_positive']}")
+
     path = write_result(NAME, {
         "reserves": [RES, RES],
         "games_per_ordered_pair": GAMES_PER_ORDERED_PAIR,
@@ -185,11 +284,13 @@ def main(base_seed: int = 0) -> None:
         "base_seed": base_seed,
         "anchor": {"rating": ANCHOR_RATING, "virtual_draws": ANCHOR_GAMES},
     }, {"table": rows,
-        "head_to_head": {a: {b: {"w": v[0], "d": v[1], "l": v[2]}
-                             for b, v in row.items()}
-                         for a, row in h2h.items()}})
+        "head_to_head": h2h_out,
+        "bootstrap_kimi_v2_minus_optimal": boot})
     announce(NAME, path)
 
 
 if __name__ == "__main__":
-    main(int(sys.argv[1]) if len(sys.argv) > 1 else 0)
+    if len(sys.argv) > 1 and sys.argv[1] == "--bootstrap":
+        bootstrap_recorded()
+    else:
+        main(int(sys.argv[1]) if len(sys.argv) > 1 else 0)

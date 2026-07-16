@@ -76,50 +76,41 @@ forced refutation** the exact solve finds in ~0.03 seconds. Playing lots of
 games, the way most agents are evaluated, missed the shallowest possible kill
 ([Finding 8](docs/FINDINGS.md)).
 
-## Competence has a price, and it scales
+## Competence has a price — and the price is a property of the *interface*
 
-Exact regret floor of the best memoryless policy that sees a lossy observation
-— and *only* the observation, not the state's legal-move list (win/draw/loss
-units), by game size. *Reserves* = the beads each player starts with (14 in the
-full game); smaller counts `(r, r)` keep the game exactly enumerable, and larger
-reserves mean more material and longer games.
+A floor is not a property of a game or an agent. The **same** missing feature
+(the reserve count) costs a ladder of different *exact* amounts depending on
+what the policy sees — at (4,4):
 
-| reserves | states | hide cooldown | hide reserves |
-|---|---|---|---|
-| (2,2) | 4K | 0.0000 | 0.0000 |
-| (3,3) | 97K | 0.0003 | 0.0028 |
-| (4,4) | 1.36M | 0.0024 | 0.0805 |
-| (5,5) | 12.7M | 0.0034 | **0.1677** |
+| what the policy sees | exact cost |
+|---|---|
+| board + cooldown only (reserve fully aliased) | **0.0805** |
+| + the legal-move list (the interface our trained agents actually had) | **0.0026** |
+| + destroyed-bead memory (reserves reconstructed) | **0.0000** |
+| ⟶ its own on-policy trajectory (ε-optimal opponent) | ~0.0013 *(not a floor)* |
 
-The cost grows with the game — it is **structural, not small-game triviality**.
-More sophisticated training cannot help, because the failure isn't in the
-optimizer: the distinguishing information is absent from the input — and every
-method that appears to help works by putting it back. That includes subtle
-routes: give the policy the **legal-move list** and the mask itself leaks state
-(removals reveal cooldown; missing placements reveal an empty reserve) — the
-cooldown floor drops to (nearly) 0 and the reserves floor collapses ~30–70×
-(0.0805 → 0.0026 at (4,4); 0.1677 → 0.0024 at (5,5)). The floor is a property
-of the *interface*, priced exactly per interface (Finding 4).
+We priced the first rung; our agents lived on the second; realized on-policy
+regret is a third, opponent-dependent quantity again. Only measuring all of them
+showed which number was honest — the exact failure mode of real evaluation:
+*the bound you prove is for the system you modeled, not the one you shipped*
+(Findings 4 and 7).
 
-**The quiet twist: a floor is a property of an *interface*, not a game or an
-agent.** The **same** missing feature (the reserve count) costs a ladder of
-different exact amounts depending on what the policy sees: **0.0805** to a
-(board, cooldown) agent, **~0.0026** once it also holds the legal-move list (the
-interface our trained agents actually had — the mask leaks "zero vs. positive
-reserve"), and **0.0000** with destroyed-bead memory. On top of that, *realized*
-on-policy regret is a different, opponent-dependent quantity again (~0.0013 vs an
-ε-optimal opponent, ~0.24 vs a random one). We priced the first rung, our agents
-lived on the second, and only measuring all of them showed which number was
-honest — the exact failure mode of real evaluation: *the bound you prove is for
-the system you modeled, not the one you shipped* (Findings 4 and 7).
+The mask-blind rung (board + cooldown only) is the clean theoretical anchor,
+and it grows with size (0.08 at (4,4) → **0.17** at (5,5)) — structural, not
+small-game triviality. But it is *not* the interface anyone shipped a trained
+agent under: give the policy the legal-move list and the mask leaks state
+(removals reveal cooldown; missing placements reveal an empty reserve), and the
+reserves floor collapses ~30–70×. Every method that appears to "beat" the floor
+works by putting the missing information back. Details and the full size sweep
+in [`docs/FINDINGS.md`](docs/FINDINGS.md).
 
 Collapse3 is an exact, game-based demonstration of the memoryless-policy problem
 Littman (1994) formalized. That such policies pay a floor under aliased
 observations is classical (Whitehead & Ballard 1991; Littman 1994; Singh,
 Jaakkola & Jordan 1994); what Collapse3 adds is the *exact*, enumerated value of
-that floor in a natural, fully solved game — not a worst-case bound — its growth
-with size, and a constructive recovery to a **0.0000** floor from remembered game
-history ([`docs/FINDINGS.md`](docs/FINDINGS.md)).
+that floor **per interface** in a natural, fully solved game — not a worst-case
+bound — and a constructive recovery to a **0.0000** floor from remembered game
+history.
 
 Collapse3 is a deterministic, perfect-information game turned into an instrument
 for studying partially observable decision-making: restricting what an agent
@@ -159,9 +150,12 @@ solver.* On an exactly-solvable **sibling** of the game (three pegs; a parallel
 environment, never a claim about Collapse3), a **true self-play** agent — one
 shared brain playing both seats, learning only from who won — becomes
 near-perfect **on its own trajectories** (~0.045 regret) and *stays* there as
-the game grows. Graded over the *whole* game by the exact solver, its regret
-**triples** (0.06 → 0.21) and it has only ever visited **42%** of the positions:
-brilliant where it plays, blind everywhere else. Freezing that "undefeated"
+the game grows. Graded over the *whole* game by the exact solver — against a
+random-policy baseline, so the number has a scale — its edge **erodes**: it
+removes two-thirds of a random agent's mistakes at the small end but under half
+at the largest size, having ever visited only **42%** of the positions. Sharp
+where it plays, fading off its lines — and on-policy scores alone would never
+show it. Freezing that "undefeated"
 policy, an exact best-response forces it off its winnable game in **2 of 5**
 runs at the largest size — a flat self-play record is not robustness. And the
 sharpest failure is distribution shift: trained where the centre opening
@@ -208,9 +202,8 @@ priority) in [`rules.md`](rules.md).
 ## More
 
 - **Findings & significance:** [`docs/FINDINGS.md`](docs/FINDINGS.md)
-- **FAQ** (is this a POMDP? is (6,6) a bug? would a bigger model help? why not
+- **FAQ** (is this a POMDP? you solved it — so what's the strategy? why not
   Elo?): [`docs/FAQ.md`](docs/FAQ.md)
-- **Perspective** (optional interpretation, not results): [`docs/PERSPECTIVE.md`](docs/PERSPECTIVE.md)
 - **Ask an LLM about this repo:** paste [`llms-full.txt`](llms-full.txt) (the
   entire project in one ~108K-token file) into any chat model. Index: [`llms.txt`](llms.txt).
 

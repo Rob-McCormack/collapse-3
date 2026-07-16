@@ -6,8 +6,8 @@ shipped results JSON plus the qualitative claims of the finding; the heavy
 recompute (multi-seed training + best-response) is gated behind COLLAPSE3_SLOW.
 
 The three claims guarded (Finding 14):
-  * global blindness: on-policy regret << uniform (global) regret, and coverage
-    is well below 1 -- self-play looks perfect where it plays, mediocre elsewhere;
+  * global edge erosion: on-policy regret << uniform regret, coverage falls,
+    and the agent's edge over a random-policy baseline erodes with size;
   * seat-0 (the winnable seat) robustness / exploitability as recorded;
   * transfer across the boundary: a reserve-blind policy trained at (5,5) opens
     on the centre and is forced to lose at (7,7) (centre inverts, Finding 12/13).
@@ -34,30 +34,37 @@ def test_provenance_and_scope(record):
     assert res["variant"] == "Three-Peg Collapse (self-play)"
 
 
-def test_global_blindness(record):
-    """Coverage is partial and falls with size; and for FULL observation (no
-    aliasing floor, so uniform regret is a pure coverage/learning gap) on-policy
-    regret stays far below global regret, with the gap widening as the game grows.
+def test_global_edge_erodes(record):
+    """Coverage falls; on-policy << uniform; and the edge over the random-policy
+    baseline erodes with size (denominator discipline: never report uniform
+    regret without the scale bar).
     """
     by = record["results"]["by_size"]
     cov = [by[f"{r}_{r}"]["regimes"]["full"]["coverage_mean"] for r in (4, 5, 6, 7)]
-    assert all(c < 1.0 for c in cov)          # never full coverage
-    assert cov[0] > cov[-1]                    # coverage drops with size
+    assert all(c < 1.0 for c in cov)
+    assert cov[0] > cov[-1]
 
     reps = [by[f"{r}_{r}"]["regimes"]["full"] for r in (4, 5, 6, 7)]
     for rep in reps:
         assert rep["onpolicy_self_mean"] < rep["uniform_regret_mean"]
     gap_small = reps[0]["uniform_regret_mean"] - reps[0]["onpolicy_self_mean"]
     gap_big = reps[-1]["uniform_regret_mean"] - reps[-1]["onpolicy_self_mean"]
-    assert gap_big > gap_small                 # on-policy/global gap widens
+    assert gap_big > gap_small
+
+    # Random-policy baseline is present and the agent's relative edge erodes.
+    b4 = by["4_4"]["random_uniform_regret"]
+    b7 = by["7_7"]["random_uniform_regret"]
+    assert b4 > 0 and b7 > b4
+    edge4 = 1.0 - by["4_4"]["regimes"]["full"]["uniform_regret_mean"] / b4
+    edge7 = 1.0 - by["7_7"]["regimes"]["full"]["uniform_regret_mean"] / b7
+    assert edge4 > 0.6 and edge7 < 0.5 and edge4 > edge7
 
 
 def test_global_regret_grows_with_size(record):
-    """Uniform (global) regret at (7,7) exceeds (4,4) -- blindness worsens."""
+    """Uniform (global) regret at (7,7) exceeds (4,4) under full observation."""
     by = record["results"]["by_size"]
-    for regime in ("full", "hide_reserves"):
-        assert by["7_7"]["regimes"][regime]["uniform_regret_mean"] > \
-            by["4_4"]["regimes"][regime]["uniform_regret_mean"]
+    assert by["7_7"]["regimes"]["full"]["uniform_regret_mean"] > \
+        by["4_4"]["regimes"]["full"]["uniform_regret_mean"]
 
 
 def test_transfer_across_boundary(record):

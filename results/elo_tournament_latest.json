@@ -512,6 +512,23 @@
           "l": 79
         }
       }
+    },
+    "bootstrap_kimi_v2_minus_optimal": {
+      "pair": [
+        "kimi-v2",
+        "optimal"
+      ],
+      "n_boot": 1000,
+      "seed": 0,
+      "fit_iters": 80,
+      "point_gap": 21.1,
+      "median_gap": 21.4,
+      "ci95": [
+        5.1,
+        38.3
+      ],
+      "p_positive": 0.996,
+      "method": "nonparametric bootstrap over unordered-pair outcome multinomials from the recorded head-to-head; Bradley-Terry refit each replicate"
     }
   }
 }
