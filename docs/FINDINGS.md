@@ -14,7 +14,7 @@ exhaustive results are exact, and any illustrative small-budget run is labelled.
 1. **[Aggregate metrics are adversarially flattering](#1-aggregate-metrics-are-adversarially-flattering)** — most states have many optimal moves, so headline "optimal-move rate" hides the decisive mistakes.
 2. **[Performance and competence come apart](#2-performance-and-competence-come-apart)** — win rate and value-based regret diverge; the same agent looks strong or weak purely by opponent.
 3. **[An open-loop plan is not a strategy](#3-an-open-loop-plan-is-not-a-strategy--shown-exactly)** — a frozen oracle-derived plan is a best-response to one line; a re-solving player crushes it.
-4. **[Representation cost is real, quantifiable, and scales](#4-representation-cost-is-real-quantifiable-and-scales)** — the exact regret floor of a memoryless agent under a lossy view grows with size (hide-reserves 0.08 → 0.17); every fix re-adds the missing information.
+4. **[Representation cost is real, quantifiable, and scales](#4-representation-cost-is-real-quantifiable-and-scales)** — exact floors per interface; mask-blind hide-reserves grows (0.08 → 0.17) while the shipped mask-aware floor declines (0.0026 → 0.0024) — opposite signs.
 5. **[Objective failure vs. representation failure](#5-objective-failure-vs-representation-failure)** — two distinct failure modes separated exactly: missing information vs. the wrong objective.
 6. **[Seat and material decide the opening](#6-seat-and-material-decide-the-opening--a-hidden-confound-in-win-rate)** — opening value is fixed by seat and reserves, a hidden confound baked into any win-rate comparison.
 7. **[The floor is real, but realized regret slips beneath it](#7-the-floor-is-real-but-realized-regret-slips-beneath-it--interface-first-then-steering)** — the agent's true interface erases most of the aliasing floor and its trajectories steer around the rest.
@@ -22,7 +22,7 @@ exhaustive results are exact, and any illustrative small-budget run is labelled.
 9. **[Throwing the game is provably hard](#9-throwing-the-game-is-provably-hard)** — you cannot force the opponent to win at any solved size; the oracle audits thrown value, not intent.
 10. **[Elo prefers the exploitable agent](#10-elo-prefers-the-exploitable-agent--the-rating-inversion-measured)** — in a round-robin, Elo rates a certifiably exploitable rulebook above the perfect player.
 11. **[The full game fell — (14,14) is a first-player forced win](#11-the-full-game-fell--1414-is-a-first-player-forced-win-found-by-accident)** — the full game is a first-player win, found by accident; the drawish picture flips with capacity.
-12. **[A sibling game shows the floor's *shape*](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)** — a three-peg sibling maps the floor across all sizes: bounded growth, saturation, a cost that rises then falls.
+12. **[A sibling game shows the floor's *shape*](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)** — a three-peg sibling maps the floor across all sizes: steep then flattens near 0.25 over the game-range; cooldown rises then falls.
 13. **[A second sibling shows the boundary *moves* with capacity](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested)** — a six-peg sibling confirms the phase boundary shifts later as board capacity grows (Finding 12(iv), tested).
 14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary.
 
@@ -70,6 +70,13 @@ exact cost is a ladder, and every rung is a different, exactly-enumerated number
 | + the legal-move list (what our trained agents actually saw) | **0.0026** | exact interface floor |
 | + destroyed-bead memory (reserves reconstructed) | **0.0000** | exact interface floor |
 | ⟶ *its own on-policy trajectory* (trained, ε-optimal opponent) | ~0.0013 | **not a floor** — see below |
+
+**Same missing feature, opposite scaling signs.** Across the two full-board sizes
+we can enumerate, the mask-blind reserve floor **grows** (0.0805 → **0.1677**)
+while the mask-aware floor — the interface our trained agents actually had —
+**declines** slightly (0.0026 → **0.0024**; Finding 4 / `masked_floor.py`).
+"Grows with size" is true of the theoretical anchor, not of the shipped
+interface. Pricing only one rung would have told the wrong scaling story.
 
 The first three rungs are exact, uniform-over-decision-state floors (the Finding 4
 machinery) and are **opponent-independent**. The mask rung is load-bearing and easy
@@ -278,15 +285,17 @@ cooldown information the mask cannot carry: the opponent's flag, and the
 mover's own flag when no removal is available regardless). (ii) The **reserves
 floor survives the mask but collapses ~30–70×** (0.0805 → 0.0026 at (4,4);
 0.1677 → 0.0024 at (5,5)): the mask reveals *zero vs. positive* reserve but not
-the count, leaving a real residual — note the masked reserves floor no longer
-grows with size the way the mask-blind one does. (iii) The headline numbers
-(0.0805, 0.1677) are therefore **exact for the mask-blind interface, not lower
-bounds on the repo's own trained agents**, whose interface is mask-aware. The
-honest one-line reading: *how much a missing feature costs depends on the
-interface it is missing from — and Collapse3 can price each interface exactly.*
-The full ladder for the reserve feature (mask-blind → mask-aware → +memory, plus
-the separate on-policy layer) is collected in the measurement-problem preamble and
-is the synthesis of this finding with Finding 7.
+the count, leaving a real residual. And the two interfaces scale with **opposite
+signs**: mask-blind hide_reserves **grows** 0.0805 → 0.1677, while mask-aware
+**declines** 0.0026 → 0.0024. "The floor grows with size" is true of the
+theoretical anchor, not of the interface the repo's agents shipped under.
+(iii) The headline numbers (0.0805, 0.1677) are therefore **exact for the
+mask-blind interface, not lower bounds on the repo's own trained agents**, whose
+interface is mask-aware. The honest one-line reading: *how much a missing feature
+costs depends on the interface it is missing from — and Collapse3 can price each
+interface exactly.* The full ladder for the reserve feature (mask-blind →
+mask-aware → +memory, plus the separate on-policy layer) is collected in the
+measurement-problem preamble and is the synthesis of this finding with Finding 7.
 
 ### 5. Objective failure vs. representation failure
 `experiments/objective_failure.py` (reserves (4,4), 150K episodes)
@@ -942,23 +951,27 @@ machinery as Finding 4).
 The Δ columns are the point. Three exact reads, then the phase boundary that
 unifies them.
 
-**(i) The reserves floor grows steeply, then *saturates* — bounded, not
-unbounded.** hide_reserves climbs to a peak *increment* of +0.0593 at (5,5),
-after which the increments collapse monotonically — +0.041, +0.026, +0.018, …,
-+0.0025 — with the floor converging toward roughly **~0.25**. So in the sibling
-the cost of the missing reserve feature is **bounded**. This does **not** retract
+**(i) The reserves floor grows steeply, then *flattens* — bounded over the
+complete game-range, not unbounded.** hide_reserves climbs to a peak *increment*
+of +0.0593 at (5,5), after which the increments collapse monotonically — +0.041,
++0.026, +0.018, …, +0.0025 — and the complete 2..14 curve **flattens sharply near
+0.25** (exact value at (14,14): **0.2438**). That is finite-range flattening,
+not a proved mathematical asymptote beyond 14 — but 14 is the real game's material
+limit, so the complete game-range curve is what matters. So in the sibling the
+cost of the missing reserve feature is **bounded**. This does **not** retract
 Finding 4: for the sizes actually measured on the full board the growth claim
 stands exactly as written. What the curve adds is *shape* — and it is a caution
 about extrapolation, because the full board's only two enumerable points,
-(4,4) and (5,5), sit squarely on the **steep early section** of a saturating
+(4,4) and (5,5), sit squarely on the **steep early section** of a flattening
 curve. Two points on that section could suggest unbounded growth or a plateau
-equally well; nothing in them reveals which. In the sibling it saturates; on the
+equally well; nothing in them reveals which. In the sibling it flattens; on the
 full board the shape beyond (5,5) **remains unknown** (see the cross-reference
-now in Finding 4). The saturation is visible even in the raw state count: from
+now in Finding 4). The flattening is visible even in the raw state count: from
 **(8,8) onward each added reserve contributes a constant +9,581-state shell**
-(37,338 → 46,919 → 56,500 → … each exactly +9,581), i.e. once the reserve exceeds
-what a 9-cell board can be *about*, the marginal bead adds another identical layer
-of positions and no new structure — which is precisely why the floors flatten.
+(37,338 → 46,919 → 56,500 → … each exactly +9,581), and the observation-group
+count **freezes at 1,441** — once the reserve exceeds what a 9-cell board can be
+*about*, the marginal bead adds another identical layer of positions and no new
+structure, which is precisely why the floors flatten.
 
 **(ii) The cooldown floor is *non-monotonic* — it rises, peaks at (7,7), then
 falls.** hide_cooldown climbs to **0.0424** at (7,7) and then *declines* and
@@ -980,11 +993,13 @@ inverts across a single boundary (peg 0 and peg 2 are symmetric ends throughout)
 
 Three signatures land on the same transition near (6,6)–(7,7): the centre-strategy
 inversion **freezes** (identical from (7,7) up), the cooldown floor **peaks**, and
-the reserve-floor increments **collapse**. One mechanism explains all three — the
-9-cell board (here, 3 pegs × 3 levels) becomes the binding constraint. Below the
-boundary material is scarce and the reserve *count* discriminates between
-positions; above it the board fills before reserves matter, so extra beads stop
-carrying information and every added-material signal flattens at once.
+the reserve-floor increments **collapse**. The unifying reading — labelled as a
+**hypothesis**, not a theorem — is that the 9-cell board (here, 3 pegs × 3 levels)
+becomes the binding constraint. Below the boundary material is scarce and the
+reserve *count* discriminates between positions; above it the board fills before
+reserves matter, so extra beads stop carrying information and every added-material
+signal flattens at once. Finding 13 tests the directional prediction of that
+hypothesis on a larger sibling.
 
 **(iv) Hypothesis (labelled as such — not a result).** *If* board capacity sets
 the boundary, then a larger board should push the boundary later: a 27-cell board

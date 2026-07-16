@@ -99,10 +99,12 @@ The mask-blind rung (board + cooldown only) is the clean theoretical anchor,
 and it grows with size (0.08 at (4,4) → **0.17** at (5,5)) — structural, not
 small-game triviality. But it is *not* the interface anyone shipped a trained
 agent under: give the policy the legal-move list and the mask leaks state
-(removals reveal cooldown; missing placements reveal an empty reserve), and the
-reserves floor collapses ~30–70×. Every method that appears to "beat" the floor
-works by putting the missing information back. Details and the full size sweep
-in [`docs/FINDINGS.md`](docs/FINDINGS.md).
+(removals reveal cooldown; missing placements reveal an empty reserve), the
+reserves floor collapses ~30–70× — and that **shipped** (mask-aware) floor
+**declines** slightly over the same interval (0.0026 → 0.0024). Same missing
+feature, **opposite scaling signs**. Every method that appears to "beat" the
+floor works by putting the missing information back. Details in
+[`docs/FINDINGS.md`](docs/FINDINGS.md).
 
 Collapse3 is an exact, game-based demonstration of the memoryless-policy problem
 Littman (1994) formalized. That such policies pay a floor under aliased
