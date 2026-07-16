@@ -7,6 +7,29 @@ exhaustive results are exact, and any illustrative small-budget run is labelled.
 
 ---
 
+## Findings at a glance
+
+*One line per finding — click through to its full form below.*
+
+1. **[Aggregate metrics are adversarially flattering](#1-aggregate-metrics-are-adversarially-flattering)** — most states have many optimal moves, so headline "optimal-move rate" hides the decisive mistakes.
+2. **[Performance and competence come apart](#2-performance-and-competence-come-apart)** — win rate and value-based regret diverge; the same agent looks strong or weak purely by opponent.
+3. **[An open-loop plan is not a strategy](#3-an-open-loop-plan-is-not-a-strategy--shown-exactly)** — a frozen oracle-derived plan is a best-response to one line; a re-solving player crushes it.
+4. **[Representation cost is real, quantifiable, and scales](#4-representation-cost-is-real-quantifiable-and-scales)** — the exact regret floor of a memoryless agent under a lossy view grows with size (hide-reserves 0.08 → 0.17); every fix re-adds the missing information.
+5. **[Objective failure vs. representation failure](#5-objective-failure-vs-representation-failure)** — two distinct failure modes separated exactly: missing information vs. the wrong objective.
+6. **[Seat and material decide the opening](#6-seat-and-material-decide-the-opening--a-hidden-confound-in-win-rate)** — opening value is fixed by seat and reserves, a hidden confound baked into any win-rate comparison.
+7. **[The floor is real, but realized regret slips beneath it](#7-the-floor-is-real-but-realized-regret-slips-beneath-it--interface-first-then-steering)** — the agent's true interface erases most of the aliasing floor and its trajectories steer around the rest.
+8. **[Is there a teachable "basic strategy"?](#8-is-there-a-teachable-basic-strategy-certified-yes-at-33--certified-refutations-from-44-up)** — a compact rulebook is a certified draw at (3,3) and a certified forced loss from (4,4) up.
+9. **[Throwing the game is provably hard](#9-throwing-the-game-is-provably-hard)** — you cannot force the opponent to win at any solved size; the oracle audits thrown value, not intent.
+10. **[Elo prefers the exploitable agent](#10-elo-prefers-the-exploitable-agent--the-rating-inversion-measured)** — in a round-robin, Elo rates a certifiably exploitable rulebook above the perfect player.
+11. **[The full game fell — (14,14) is a first-player forced win](#11-the-full-game-fell--1414-is-a-first-player-forced-win-found-by-accident)** — the full game is a first-player win, found by accident; the drawish picture flips with capacity.
+12. **[A sibling game shows the floor's *shape*](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)** — a three-peg sibling maps the floor across all sizes: bounded growth, saturation, a cost that rises then falls.
+13. **[A second sibling shows the boundary *moves* with capacity](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested)** — a six-peg sibling confirms the phase boundary shifts later as board capacity grows (Finding 12(iv), tested).
+14. **[Self-play saturates: flawless, blind, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-globally-blind-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet is globally blind, exactly exploitable, and forced to lose when it carries a trained-optimal opening across the phase boundary.
+
+**Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
+
+---
+
 ## The measurement problem
 
 Standard evaluation reports **performance** (win rate against some opponent
