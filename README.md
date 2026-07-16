@@ -1,6 +1,6 @@
 # Collapse3
 
-<img src="docs/images/3x3-simple.png" width="640" alt="Collapse3 board: a 3×3 grid of pegs holding red and blue beads">
+<img src="docs/images/3x3-simple.png" width="400" alt="Collapse3 board: a 3×3 grid of pegs holding red and blue beads">
 
 
 Collapse3 is a tiny, perfect-information, deterministic 3×3×3 board game — and it
