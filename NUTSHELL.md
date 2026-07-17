@@ -44,4 +44,16 @@ surprisingly hard to compress into rules a human can hold, and dangerously
 deceptive to a pattern-matching machine — all at once. And because the game is
 solved, none of it is opinion.
 
+## Other ways to see it
+
+- **Metrics.** In one tournament, Elo ranked a rulebook with a short forced loss
+  above the perfect player. Win rate alone would never have caught that.
+- **Strategy.** Solved is not the same as teachable. The centre opening uniquely
+  wins at one reserve size and loses by a forced line two sizes later.
+- **Learning.** A self-play agent can look near-perfect on the paths it practices,
+  then carry that “winning” opening straight across the boundary where it dies.
+- **Interface.** Hide the same fact (the reserve count) and the exact cost depends
+  on what else the agent still sees — different interfaces, different prices,
+  even opposite scaling with size.
+
 Full write-up: [`README.md`](README.md) and [`docs/FINDINGS.md`](docs/FINDINGS.md).
