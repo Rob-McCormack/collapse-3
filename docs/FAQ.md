@@ -18,6 +18,7 @@ Short answers to recurring questions. Detail and numbers live in
 11. **[Could a grandfather let his grandson win every time?](#11-could-a-grandfather-let-his-grandson-win-every-time)** — not by force; the oracle audits thrown value, not intent.
 12. **[You solved it — so what's the strategy?](#12-you-solved-the-game--so-whats-the-strategy-is-the-theoretical-solution-meaningful)** — computationally solved ≠ strategically compressible.
 13. **[Why score wins 100 / 10 / 0 / −10 / −100?](#13-why-does-the-solver-score-wins-100--10--0----10----100)** — ordinal for move choice; headline metrics use magnitude-free WDL units.
+14. **[Does this mean AI is "hitting a wall"?](#14-does-this-mean-ai-is-hitting-a-wall)** — no: the urgent split is capability vs. what we can still certify.
 
 ---
 
@@ -259,3 +260,30 @@ This is also why regret figures differ by orders of magnitude between findings:
 a mean like **21–64** is weighted solver-units (Finding 1), while **0.002–0.25**
 is per-decision WDL units averaged over all decisions (Findings 5, 7). Same
 underlying labels, two scales — always check which one a table names.
+
+## 14. Does this mean AI is "hitting a wall"?
+
+No — and the distinction matters.
+
+Collapse3 shows that **exact reasoning can punch through walls that brute-force
+enumeration cannot**. The (14,14) root solves in ~96K nodes despite a state
+space far beyond enumeration ([Finding 11](FINDINGS.md)). The "wall" is not at
+the frontier of capability.
+
+The wall is at the frontier of **what we can certify**. We can solve the root;
+we cannot enumerate the aliasing floors, the census, or the misère properties
+at full size. We can grade specific moves; we cannot verify global behavior
+without visiting every state. We can train an agent to look perfect on its own
+trajectories; we cannot prove it is robust off them ([Finding 14](FINDINGS.md)).
+
+In real AI systems, the same split applies: models may keep getting more capable
+while our ability to evaluate them scales worse. The "hitting a wall" discourse
+usually asks "can AI keep getting better?" Collapse3 suggests the more urgent
+question is "can we keep knowing whether it's better?"
+
+This is why the repo focuses on **evaluation methodology**, not model design.
+Some of the failure modes measured here — win-rate deception, Elo inversion,
+invisible steering — are pathologies of the *evaluator*. Others — aliasing
+floors, interface leakage, coverage decay — are priced properties of the
+*agent's interface* or training distribution. Fixing either class requires
+better measurement, not just more compute.
