@@ -28,6 +28,7 @@ INCLUDE_GLOBS = [
     "README.md",
     "NUTSHELL.md",
     "rules.md",
+    "NOTATION.md",
     "docs/*.md",
     "pyproject.toml",
     "CITATION.cff",
@@ -44,12 +45,14 @@ DESCRIPTIONS = {
     "README.md": "Project front page: thesis, headline result, quickstart.",
     "NUTSHELL.md": "Brief plain-language overview of the game and why it matters.",
     "rules.md": "Complete Collapse3 game rules.",
+    "NOTATION.md": "Plain-text board notation (produced by collapse3/render.py).",
     "docs/FINDINGS.md": "Full research findings and their significance.",
     "pyproject.toml": "Package metadata, dependencies, pytest config.",
 }
 
 INDEX_SECTIONS = [
-    ("Start here", ["NUTSHELL.md", "README.md", "rules.md", "docs/FINDINGS.md"]),
+    ("Start here", ["NUTSHELL.md", "README.md", "rules.md", "NOTATION.md",
+                    "docs/FINDINGS.md"]),
     ("Engine & tools", ["collapse3/game.py", "collapse3/solver.py",
                         "collapse3/enumeration.py", "collapse3/oracle.py",
                         "collapse3/agents.py", "collapse3/learning.py",

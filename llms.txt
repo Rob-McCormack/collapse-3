@@ -6,6 +6,7 @@
 - [NUTSHELL.md](NUTSHELL.md): Brief plain-language overview of the game and why it matters.
 - [README.md](README.md): Project front page: thesis, headline result, quickstart.
 - [rules.md](rules.md): Complete Collapse3 game rules.
+- [NOTATION.md](NOTATION.md): Plain-text board notation (produced by collapse3/render.py).
 - [docs/FINDINGS.md](docs/FINDINGS.md): Full research findings and their significance.
 
 ## Engine & tools
