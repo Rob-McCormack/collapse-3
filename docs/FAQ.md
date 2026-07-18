@@ -97,6 +97,11 @@ See Finding 6.
 
 ## 5. Won't more data, bigger models, or better training fix this?
 
+**Does this deny that scaling works?** No — it shows scaling is *conditional*:
+more data and compute fix a weak training signal, but cannot cross a
+representation floor (enumerated, Finding 4) or repair an evaluation that
+structurally can't see the failure (Findings 8, 10, 14).
+
 Only if the failure is in the *objective*, not the *representation*. The same
 full-state learner trained against a random opponent wins ~98% but carries real
 regret (0.0581); trained against an optimal opponent the regret collapses ~30×
