@@ -24,7 +24,7 @@ exhaustive results are exact, and any illustrative small-budget run is labelled.
 11. **[The full game fell — (14,14) is a first-player forced win](#11-the-full-game-fell--1414-is-a-first-player-forced-win-found-by-accident)** — the full game is a first-player win, found by accident; the drawish picture flips with capacity.
 12. **[A sibling game shows the floor's *shape*](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)** — a three-peg sibling maps the floor across all sizes: steep then flattens near 0.25 over the game-range; cooldown rises then falls.
 13. **[A second sibling shows the boundary *moves* with capacity](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested)** — a six-peg sibling confirms the phase boundary shifts later as board capacity grows (Finding 12(iv), tested).
-14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary.
+14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary. Part (iv): the exploiter need not be strong — a policy random except on six memorized moves beats a >99%-vs-random champion (KataGo analogue).
 
 **Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -786,9 +786,12 @@ pair, one rating model (MLE Bradley-Terry with the stated anchor). The
 inversion mechanism is structural in any drawish domain rated by average
 results against a mixed pool, and here it is measured rather than argued.
 Ratings answer "who beats whom, on average, in this pool"; they do not answer
-"who plays correctly" — and in a solved game the two visibly disagree.
-Accessible version in [FAQ #10](FAQ.md); numbers in
-[`results/elo_tournament_latest.json`](../results/elo_tournament_latest.json).
+"who plays correctly" — and in a solved game the two visibly disagree. And the
+exploiting agent need not itself be strong: Finding 14(iv) exhibits a policy
+that is random except on six memorized decisions yet forces a >99%-vs-random
+champion to lose — a high rating measures who performs well in the tested pool,
+not who is hardest to exploit. Accessible version in [FAQ #10](FAQ.md); numbers
+in [`results/elo_tournament_latest.json`](../results/elo_tournament_latest.json).
 
 ### 11. The full game fell — (14,14) is a first-player forced win, found by accident
 `experiments/full_game_value.py`, `experiments/horizon.py` (reserves (14,14))
@@ -1202,6 +1205,53 @@ is not reproduced in-repo here.)
 All numbers are guarded by `tests/test_threepeg_selfplay.py` and recorded in
 [`results/threepeg_selfplay_latest.json`](../results/threepeg_selfplay_latest.json).
 
+**(iv) The exploiter need not itself be strong.** Part (ii) certifies the
+champion is force-losable; `experiments/weak_exploiter.py` characterizes the
+*forcing policy*, and the result is sharper than "the champion is exploitable."
+Take the reserve-blind champion trained at (5,5) and transferred (its opening is
+size-independent). It beats a uniformly-random opponent **99.5%** at (6,6) and
+**99.1%** at (7,7) — yet a policy that plays **uniformly at random everywhere
+except six memorized decisions** forces it to lose (12-ply line). Those six
+decisions are **0.044%** of the reachable decision states at (6,6) (0.029% at
+(7,7)); the shipped-style full-state champions (trained natively, >99.99% vs
+random) fall the same way to **seven** memorized decisions.
+
+| champion | vs-random win | force-losable? | exploiter differs from random on |
+|---|---|---|---|
+| transfer→(5,5) | 99.3% | **no** (draw only) | — |
+| transfer→(6,6) | 99.5% | yes (12 plies) | **6 states — 0.044%** |
+| transfer→(7,7) | 99.1% | yes (12 plies) | 6 states — 0.029% |
+| local (6,6), seed 2 | 99.99% | yes (14 plies) | 7 states |
+| local (7,7), seed 0 | 99.997% | yes (14 plies) | 7 states |
+
+So "the strong-looking agent is exploitable" becomes "…exploitable by something
+almost completely incompetent at the game." Two caveats are kept in the open
+because they bound the claim:
+
+- **The "indistinguishable from random" measure is nearly definitional.** A
+  policy that is random except on *k* states cannot differ from random's uniform
+  regret by more than *k* / (#decision states) — so its 99.9% ratio is a
+  restatement of "differs on six states," not independent evidence. The
+  non-trivial content is that those six decisions **suffice**, which is why the
+  *mapped-fraction* is the number we lead with.
+- **This refutes one frozen, deterministic victim — it is not a strategy.** A
+  deterministic champion has exactly one reply per turn, so a single memorized
+  *line* forces the loss. Against a stochastic or adaptive champion a forcing
+  *tree* (many more decisions) would be needed. This is a hard-coded key to one
+  lock, not general skill.
+
+The real-system analogue is Wang et al. (2023), *Adversarial Policies Beat
+Superhuman Go AIs*: a weak, specialized adversary — itself beatable by human
+amateurs — defeats a superhuman KataGo network. Same structure (strong
+generalist victim, weak specialized exploiter); the honest difference is that
+their adversary used **search / a forcing tree** against a searching victim,
+where the frozen-champion case here is the degenerate single-line version, and
+that Collapse3's exploiter is **exact and certified** rather than another
+trained net. We do not claim the failure mode *transfers* from a board game to
+Go; we point at a documented case where a structurally identical failure
+already occurred. Numbers guarded by `tests/test_weak_exploiter.py`, recorded in
+[`results/weak_exploiter_latest.json`](../results/weak_exploiter_latest.json).
+
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
 
@@ -1235,6 +1285,20 @@ classical, not new here:
 - **Singh, Jaakkola & Jordan (1994)**, *Learning without state-estimation in
   POMDPs* — model-free learning for this policy class, including where stochastic
   memoryless policies help.
+
+A separate line of prior work is the real-system analogue of Finding 14(iv)
+(exploitable-champion / weak-exploiter):
+
+- **Wang et al. (2023)**, *Adversarial Policies Beat Superhuman Go AIs* (ICML) —
+  a weak, specialized adversary (itself beatable by human amateurs) defeats a
+  superhuman KataGo network. Same structure as Finding 14(iv) — strong
+  generalist victim, weak specialized exploiter. Collapse3 adds an **exact,
+  certified** version of that structure: the exploiter is a provable
+  best-response, not another trained net. We do **not** claim the failure mode
+  transfers from a board game to Go; we cite a documented case where a
+  structurally identical failure already occurred (their adversary used a
+  forcing *tree* against a searching victim; our frozen-champion case is the
+  degenerate single-*line* version).
 
 Collapse3's contribution is **not** the existence of the floor; it is the *exact
 measurement* of it in a natural (not adversarially constructed) game where the
@@ -1405,6 +1469,7 @@ python -m experiments.horizon                       # full-size game grading bat
 python -m experiments.threepeg_floor                # Three-Peg sibling: full floor curve (2,2)-(14,14)
 python -m experiments.sixpeg_floor                  # Six-Peg sibling: boundary moves with capacity (2,2)-(7,7)
 python -m experiments.threepeg_selfplay             # self-play: near-perfect on-policy, global edge erodes, trips the boundary
+python -m experiments.weak_exploiter                # a near-random policy (6 memorized moves) forces a >99%-vs-random champion to lose
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 ```
 
