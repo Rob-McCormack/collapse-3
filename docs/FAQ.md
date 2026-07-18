@@ -19,6 +19,7 @@ Short answers to recurring questions. Detail and numbers live in
 12. **[You solved it — so what's the strategy?](#12-you-solved-the-game--so-whats-the-strategy-is-the-theoretical-solution-meaningful)** — computationally solved ≠ strategically compressible.
 13. **[Why score wins 100 / 10 / 0 / −10 / −100?](#13-why-does-the-solver-score-wins-100--10--0----10----100)** — ordinal for move choice; headline metrics use magnitude-free WDL units.
 14. **[Does this mean AI is "hitting a wall"?](#14-does-this-mean-ai-is-hitting-a-wall)** — no: the urgent split is capability vs. what we can still certify.
+15. **[If a learner plays it perfectly, why "calculable but not teachable"?](#15-if-a-learner-can-play-it-perfectly-why-call-it-calculable-but-not-teachable)** — learnable by memorizing/searching; not reducible to a compact transferable rulebook.
 
 ---
 
@@ -292,3 +293,30 @@ invisible steering — are pathologies of the *evaluator*. Others — aliasing
 floors, interface leakage, coverage decay — are priced properties of the
 *agent's interface* or training distribution. Fixing either class requires
 better measurement, not just more compute.
+
+## 15. If a learner can play it perfectly, why call it "calculable but not teachable"?
+
+Both are true, and the tension is the point. The repo's own tabular Q-learner
+(full state, no oracle access) reaches **0.0019** mean regret and **99.8%**
+optimal moves — essentially solver-perfect ([Finding 2](FINDINGS.md)). So the
+game is absolutely *learnable*.
+
+"Not teachable" is a different claim: there is no compact, shallow rulebook you
+could write down and hand to a beginner. A naive "build your own lines"
+heuristic is optimal on **0%** of critical decisions; a threat-aware one-ply
+rulebook still loses **64%** of a drawn game; competence appears only at 2-ply
+search (**85%**) and perfection at 6-ply (**100%**) ([Finding 8](FINDINGS.md)).
+The agent succeeds by **memorizing a large table** (~22k–28k states per seat at
+(4,4)) or by **searching** — not by distilling a generalizable principle. Solver
+and learner reach the same competence in different forms; **neither discovers a
+compressible, human-interpretable strategy** (see also #12).
+
+Why it matters — and how it differs from the representation floor of
+[Finding 4](FINDINGS.md): here the state is **fully observed**, so scaling the
+learner works, but only via lookup (needs a small state space to tabulate) or
+search (needs the search to be affordable). That is a *separate* failure from
+the aliasing floor, which comes from a **lossy** observation, not from the
+difficulty of generalizing. If a real task shares this structure — correct
+actions set by long, non-local causal chains that don't project onto local
+features — then near-zero regret on one opponent distribution need not transfer
+to another (Finding 2), and there is no shortcut around search or coverage.
