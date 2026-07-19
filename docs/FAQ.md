@@ -21,6 +21,7 @@ Short answers to recurring questions. Detail and numbers live in
 14. **[Does this mean AI is "hitting a wall"?](#14-does-this-mean-ai-is-hitting-a-wall)** — no: the urgent split is capability vs. what we can still certify.
 15. **[If a learner plays it perfectly, why "calculable but not teachable"?](#15-if-a-learner-can-play-it-perfectly-why-call-it-calculable-but-not-teachable)** — learnable by memorizing/searching; not reducible to a compact transferable rulebook.
 16. **[Can the agent decide *when* to gather more information?](#16-can-the-agent-decide-when-to-gather-more-information)** — yes, exactly: missing ≠ useful, and from (4,4) up only ~1% of decisions must inspect reserves, yet that 1% carries the whole floor.
+17. **[Why are postmortems hard — and why grade with an oracle?](#17-why-are-postmortems-hard--and-why-we-grade-with-an-oracle)** — removal, gravity, and an adversary make the losing move nearly unfindable by hand; the oracle assigns blame exactly, which is why we grade moves not outcomes.
 
 ---
 
@@ -345,3 +346,32 @@ metareasoning about when to sense/compute (Russell & Wefald 1991), and it maps
 directly onto modern agents deciding when to retrieve a document, call a tool,
 consult memory, or think longer before answering. Numbers guarded by
 `tests/test_info_policy.py`; see `results/info_policy_latest.json`.
+
+## 17. Why are postmortems hard — and why we grade with an oracle?
+
+A postmortem asks *which move lost the game.* In most games you can walk the
+record backward, because the board faithfully records how you got there.
+Collapse3 breaks that in three ways at once:
+
+- **Removal destroys beads,** so the position stops recording its own history —
+  the same lost-history property that makes a board snapshot a *lossy*
+  observation ([FAQ #2](#2-isnt-the-current-state-always-sufficient--like-in-chess)).
+- **Gravity drops the beads above a removed one,** so a move's consequences can
+  land somewhere other than where it was played.
+- **An adversary reshapes the position around your earlier move,** so something
+  sound when you played it becomes the weakness that loses.
+
+The upshot: the move where the loss becomes *visible* is usually not the move
+that *caused* it. For a human reading the record, assigning blame is nearly
+hopeless — and that is exactly why we **do not** grade by the record, the
+final outcome, or the win rate.
+
+Because the game is solved, the oracle makes the postmortem exact. **Value-based
+regret** flags the decisive move the instant it is made — it is the first move
+that slides the game-theoretic value down the outcome ladder — regardless of
+when the loss surfaces or who the opponent was
+([Finding 1](FINDINGS.md), [Finding 2](FINDINGS.md)). The postmortem that is
+hopeless by hand is precise by oracle. This is also why aggregate "optimal-move
+rate" flatters ([Finding 1](FINDINGS.md)) and why an opponent reshaping your line
+sinks a frozen open-loop plan ([Finding 3](FINDINGS.md)): the record cannot tell
+you what the oracle can.

@@ -206,3 +206,28 @@ After every action, resolve the game in this order:
 6. If no 3-in-a-row exists, check whether a tiebreaker condition has been reached.
 7. If no win or tiebreaker condition applies, play passes to the next player.
 
+---
+
+## Playing Intuition (informal)
+
+*Flavor, not rules — a feel for why the game plays deeper than it looks.*
+
+### Who is your opponent?
+
+Not just the person across the table — the game itself. Your opponent picks
+their moves, but Collapse3 decides what those moves *do* to everything already on
+the board. Removal and gravity can turn a strength into a weakness and make your
+own beads work against you (see the "Oops" Rule). So you play two opponents at
+once: one trying to beat you, and one with no intentions at all — the game's own
+dynamics, which can undo a good move without any plan to. To play well it is not
+enough to outthink your opponent; you have to make moves that survive what the
+game will later do to them.
+
+### Can a bead be in more than one place at once?
+
+Physically no, strategically yes. A bead occupies one actual slot, but removal
+and gravity can give it meaning tied to another slot it may later drop into. Its
+physical position belongs to the present; its strategic meaning can reach across
+what it meant when placed, what it means now, and what it may become after a
+collapse. So a bead can sit in one place while mattering in several.
+
