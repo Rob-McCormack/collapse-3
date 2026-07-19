@@ -1,6 +1,6 @@
 # Collapse3 in a nutshell
 
-Three plain takes:
+Four plain takes:
 
 1. Collapse3 is a tiny, deterministic, fully solved 3×3×3 game in which an exact
    solver grades every move against perfect play. It shows that a policy can
@@ -24,5 +24,12 @@ Three plain takes:
    surprisingly hard to compress into rules a human can hold, and dangerously
    deceptive to a pattern-matching machine — all at once. And because the game
    is solved, none of it is opinion.
+
+4. A take on time. In Collapse3, the board stops telling you where you are. The
+   past is reinterpreted and partly erased through removal and gravity — the
+   position no longer records how the game arrived. The present forces
+   commitments whose consequences cannot yet be seen. And the future is
+   deterministic yet unreadable from what is in front of you: the game is
+   solved, but not by looking.
 
 Full write-up: [`README.md`](README.md) and [`docs/FINDINGS.md`](docs/FINDINGS.md).
