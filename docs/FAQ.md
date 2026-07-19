@@ -22,6 +22,7 @@ Short answers to recurring questions. Detail and numbers live in
 15. **[If a learner plays it perfectly, why "calculable but not teachable"?](#15-if-a-learner-can-play-it-perfectly-why-call-it-calculable-but-not-teachable)** — learnable by memorizing/searching; not reducible to a compact transferable rulebook.
 16. **[Can the agent decide *when* to gather more information?](#16-can-the-agent-decide-when-to-gather-more-information)** — yes, exactly: missing ≠ useful, and from (4,4) up only ~1% of decisions must inspect reserves, yet that 1% carries the whole floor.
 17. **[Why are postmortems hard — and why grade with an oracle?](#17-why-are-postmortems-hard--and-why-we-grade-with-an-oracle)** — removal, gravity, and an adversary make the losing move nearly unfindable by hand; the oracle assigns blame exactly, which is why we grade moves not outcomes.
+18. **[Is Collapse3 just a fancier 3D tic-tac-toe?](#18-is-collapse3-just-a-more-complicated-version-of-3d-tic-tac-toe)** — no: pieces are removed, gravity restructures the board, and the past is partly erased — tic-tac-toe only ever adds static pieces.
 
 ---
 
@@ -375,3 +376,27 @@ hopeless by hand is precise by oracle. This is also why aggregate "optimal-move
 rate" flatters ([Finding 1](FINDINGS.md)) and why an opponent reshaping your line
 sinks a frozen open-loop plan ([Finding 3](FINDINGS.md)): the record cannot tell
 you what the oracle can.
+
+## 18. Is Collapse3 just a more complicated version of 3D tic-tac-toe?
+
+No. The resemblance is deliberate — both use a 3×3×3 space and win on
+three-in-a-row — but that is where it ends.
+
+Ordinary 3D tic-tac-toe is a **static placement** game: once a piece is played it
+stays exactly where it was placed, and the board only ever grows. Collapse3 is a
+**dynamic** game. Pieces can be removed and permanently destroyed ("the
+Collapse"); gravity then drops the beads above the gap into new positions;
+and reserves and a removal cooldown constrain what can happen next. The board
+changes not only by *adding* beads but by *restructuring* what is already there —
+so a bead's position, and its strategic meaning, can change without you touching
+it (see the "Playing Intuition" note in [`rules.md`](../rules.md)).
+
+Both games are solved, but the solving is not comparable. Plain 3×3×3
+tic-tac-toe is a trivial first-player win (the centre cell sits on 13 lines).
+Collapse3's full 14-bead game is *also* a first-player win
+([Finding 11](FINDINGS.md)), but establishing that means reasoning over a game in
+which earlier moves can move, disappear, and change meaning — which is exactly
+why a board snapshot is a *lossy* record of the game
+([FAQ #2](#2-isnt-the-current-state-always-sufficient--like-in-chess),
+[FAQ #17](#17-why-are-postmortems-hard--and-why-we-grade-with-an-oracle)) and why
+"solved" here does not imply "simple."

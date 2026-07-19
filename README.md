@@ -2,6 +2,7 @@
 
 <img src="docs/images/3x3-simple.png" width="400" alt="Collapse3 board: a 3×3 grid of pegs holding red and blue beads">
 
+*This is **not** 3D tic-tac-toe. The 3×3×3 geometry is familiar; the rules and state dynamics are not ([why?](docs/FAQ.md#18-is-collapse3-just-a-more-complicated-version-of-3d-tic-tac-toe)).*
 
 Collapse3 is a tiny, perfect-information, deterministic 3×3×3 board game — and it
 is **solved**: an exact solver ships in this repository. Yet it is complex enough
