@@ -1,0 +1,306 @@
+{
+  "experiment": "info_policy",
+  "provenance": {
+    "timestamp_utc": "2026-07-19T12:45:48.461341+00:00",
+    "git_commit": "c9ac7f08f771a67f78029e73d9c3d3194e0eebd9",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        3,
+        4
+      ]
+    }
+  },
+  "results": {
+    "sizes": [
+      3,
+      4
+    ],
+    "costs": [
+      0.0,
+      0.01,
+      0.05,
+      0.1,
+      0.2,
+      0.25,
+      0.33,
+      0.5,
+      1.0
+    ],
+    "by_size": {
+      "3_3": {
+        "states": 97093,
+        "axes": {
+          "mask": {
+            "decision_states": 26110,
+            "base_groups": 19819,
+            "base_floor": 0.0027575641516660284,
+            "refined_floor": 0.0,
+            "beneficial_query_groups": 72,
+            "beneficial_query_states": 216,
+            "beneficial_query_state_fraction": 0.008272692454998084,
+            "rows": [
+              {
+                "cost": 0.0,
+                "query_state_fraction": 0.008272692454998084,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.01,
+                "query_state_fraction": 0.008272692454998084,
+                "residual_regret": 0.0,
+                "total_objective": 8.272692454998084e-05
+              },
+              {
+                "cost": 0.05,
+                "query_state_fraction": 0.008272692454998084,
+                "residual_regret": 0.0,
+                "total_objective": 0.00041363462274990423
+              },
+              {
+                "cost": 0.1,
+                "query_state_fraction": 0.008272692454998084,
+                "residual_regret": 0.0,
+                "total_objective": 0.0008272692454998085
+              },
+              {
+                "cost": 0.2,
+                "query_state_fraction": 0.008272692454998084,
+                "residual_regret": 0.0,
+                "total_objective": 0.001654538490999617
+              },
+              {
+                "cost": 0.25,
+                "query_state_fraction": 0.008272692454998084,
+                "residual_regret": 0.0,
+                "total_objective": 0.002068173113749521
+              },
+              {
+                "cost": 0.33,
+                "query_state_fraction": 0.008272692454998084,
+                "residual_regret": 0.0,
+                "total_objective": 0.002729988510149368
+              },
+              {
+                "cost": 0.5,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0027575641516660284,
+                "total_objective": 0.0027575641516660284
+              },
+              {
+                "cost": 1.0,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0027575641516660284,
+                "total_objective": 0.0027575641516660284
+              }
+            ]
+          },
+          "reserve": {
+            "decision_states": 26110,
+            "base_groups": 21124,
+            "base_floor": 0.0,
+            "refined_floor": 0.0,
+            "beneficial_query_groups": 0,
+            "beneficial_query_states": 0,
+            "beneficial_query_state_fraction": 0.0,
+            "rows": [
+              {
+                "cost": 0.0,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.01,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.05,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.1,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.2,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.25,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.33,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.5,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 1.0,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "4_4": {
+        "states": 1357963,
+        "axes": {
+          "mask": {
+            "decision_states": 477960,
+            "base_groups": 300503,
+            "base_floor": 0.0804920913884007,
+            "refined_floor": 0.0026278349652690603,
+            "beneficial_query_groups": 17444,
+            "beneficial_query_states": 63148,
+            "beneficial_query_state_fraction": 0.13211984266465812,
+            "rows": [
+              {
+                "cost": 0.0,
+                "query_state_fraction": 0.13211984266465812,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.0026278349652690603
+              },
+              {
+                "cost": 0.01,
+                "query_state_fraction": 0.13211984266465812,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.003949033391915642
+              },
+              {
+                "cost": 0.05,
+                "query_state_fraction": 0.13211984266465812,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.009233827098501967
+              },
+              {
+                "cost": 0.1,
+                "query_state_fraction": 0.13211984266465812,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.015839819231734872
+              },
+              {
+                "cost": 0.2,
+                "query_state_fraction": 0.10955728512846263,
+                "residual_regret": 0.0069294501631935726,
+                "total_objective": 0.0288409071888861
+              },
+              {
+                "cost": 0.25,
+                "query_state_fraction": 0.10955728512846263,
+                "residual_regret": 0.0069294501631935726,
+                "total_objective": 0.03431877144530923
+              },
+              {
+                "cost": 0.33,
+                "query_state_fraction": 0.10955728512846263,
+                "residual_regret": 0.0069294501631935726,
+                "total_objective": 0.043083354255586244
+              },
+              {
+                "cost": 0.5,
+                "query_state_fraction": 0.08048372248723742,
+                "residual_regret": 0.01698886936145284,
+                "total_objective": 0.057230730605071556
+              },
+              {
+                "cost": 1.0,
+                "query_state_fraction": 0.009373169302870533,
+                "residual_regret": 0.06924428822495607,
+                "total_objective": 0.0786174575278266
+              }
+            ]
+          },
+          "reserve": {
+            "decision_states": 477960,
+            "base_groups": 343556,
+            "base_floor": 0.0026278349652690603,
+            "refined_floor": 0.0,
+            "beneficial_query_groups": 1256,
+            "beneficial_query_states": 5120,
+            "beneficial_query_state_fraction": 0.010712193488994895,
+            "rows": [
+              {
+                "cost": 0.0,
+                "query_state_fraction": 0.010712193488994895,
+                "residual_regret": 0.0,
+                "total_objective": 0.0
+              },
+              {
+                "cost": 0.01,
+                "query_state_fraction": 0.010712193488994895,
+                "residual_regret": 0.0,
+                "total_objective": 0.00010712193488994895
+              },
+              {
+                "cost": 0.05,
+                "query_state_fraction": 0.010712193488994895,
+                "residual_regret": 0.0,
+                "total_objective": 0.0005356096744497448
+              },
+              {
+                "cost": 0.1,
+                "query_state_fraction": 0.010712193488994895,
+                "residual_regret": 0.0,
+                "total_objective": 0.0010712193488994896
+              },
+              {
+                "cost": 0.2,
+                "query_state_fraction": 0.009707925349401623,
+                "residual_regret": 0.00020085362791865427,
+                "total_objective": 0.0021424386977989787
+              },
+              {
+                "cost": 0.25,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.0026278349652690603
+              },
+              {
+                "cost": 0.33,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.0026278349652690603
+              },
+              {
+                "cost": 0.5,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.0026278349652690603
+              },
+              {
+                "cost": 1.0,
+                "query_state_fraction": 0.0,
+                "residual_regret": 0.0026278349652690603,
+                "total_objective": 0.0026278349652690603
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

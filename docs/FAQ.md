@@ -20,6 +20,7 @@ Short answers to recurring questions. Detail and numbers live in
 13. **[Why score wins 100 / 10 / 0 / −10 / −100?](#13-why-does-the-solver-score-wins-100--10--0----10----100)** — ordinal for move choice; headline metrics use magnitude-free WDL units.
 14. **[Does this mean AI is "hitting a wall"?](#14-does-this-mean-ai-is-hitting-a-wall)** — no: the urgent split is capability vs. what we can still certify.
 15. **[If a learner plays it perfectly, why "calculable but not teachable"?](#15-if-a-learner-can-play-it-perfectly-why-call-it-calculable-but-not-teachable)** — learnable by memorizing/searching; not reducible to a compact transferable rulebook.
+16. **[Can the agent decide *when* to gather more information?](#16-can-the-agent-decide-when-to-gather-more-information)** — yes, exactly: missing ≠ useful, and from (4,4) up only ~1% of decisions must inspect reserves, yet that 1% carries the whole floor.
 
 ---
 
@@ -320,3 +321,27 @@ difficulty of generalizing. If a real task shares this structure — correct
 actions set by long, non-local causal chains that don't project onto local
 features — then near-zero regret on one opponent distribution need not transfer
 to another (Finding 2), and there is no shortcut around search or coverage.
+
+## 16. Can the agent decide *when* to gather more information?
+
+Yes — and because the game is solved, we can grade that decision exactly. Instead
+of asking "what does a fixed missing feature cost?" ([Finding 4](FINDINGS.md)),
+[Finding 15](FINDINGS.md) asks the adaptive question a real agent faces: given a
+cheap view, *when should it decide its view is insufficient and go acquire more
+before acting?* For each observation group we compare acting now against querying
+a richer view; the per-group optimum is an exact **information policy**.
+
+Two results stand out. First, **missing is not the same as useful**: at (3,3)
+reserves are aliased away in 36% of decision states, yet inspecting them buys
+**zero** — the optimal number of reserve queries is zero. Second, from (4,4) up
+the value of information turns on, but it is **sparse**: only **~1.07%** of
+decisions need reserves, and that thin slice carries the *entire* irreducible
+floor — querying there drives it to exactly 0. (The legal-action mask, by
+contrast, is *diffusely* useful — ~13% of states — but it normally ships for
+free, so it's only an illustration.)
+
+This is the exact, game-based version of *value of information* (Howard 1966) and
+metareasoning about when to sense/compute (Russell & Wefald 1991), and it maps
+directly onto modern agents deciding when to retrieve a document, call a tool,
+consult memory, or think longer before answering. Numbers guarded by
+`tests/test_info_policy.py`; see `results/info_policy_latest.json`.

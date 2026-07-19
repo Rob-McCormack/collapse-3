@@ -25,6 +25,7 @@ exhaustive results are exact, and any illustrative small-budget run is labelled.
 12. **[A sibling game shows the floor's *shape*](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls)** — a three-peg sibling maps the floor across all sizes: steep then flattens near 0.25 over the game-range; cooldown rises then falls.
 13. **[A second sibling shows the boundary *moves* with capacity](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested)** — a six-peg sibling confirms the phase boundary shifts later as board capacity grows (Finding 12(iv), tested).
 14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary. Part (iv): the exploiter need not be strong — a policy random except on six memorized moves beats a >99%-vs-random champion (KataGo analogue).
+15. **[Knowing when to look — the value of information is sparse](#15-knowing-when-to-look--the-exact-value-of-information-is-sparse)** — an exact information policy: missing ≠ useful (reserves have zero decision value at (3,3)), yet from (4,4) up only ~1% of decisions must inspect reserves and that 1% carries the *entire* irreducible floor.
 
 **Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -1252,6 +1253,74 @@ Go; we point at a documented case where a structurally identical failure
 already occurred. Numbers guarded by `tests/test_weak_exploiter.py`, recorded in
 [`results/weak_exploiter_latest.json`](../results/weak_exploiter_latest.json).
 
+### 15. Knowing when to look — the exact value of information is sparse
+`experiments/info_policy.py` (reserves (3,3), (4,4))
+
+Finding 4 prices a *fixed* missing feature: what does hiding reserves cost a
+memoryless agent that never gets them? The adaptive question is more like the one
+a real agent faces — *when should it decide its current view is insufficient and
+go acquire more before acting?* Because the game is solved, the answer is exact.
+
+For each coarse-observation group we compare two options: **act now** on the
+coarse view (pay that group's aliasing regret), or **query** the finer view
+(split the group into its finer sub-groups, each acting on its own best common
+move). The per-group minimum is an exact **information policy** — an oracle
+labelling of exactly where the coarse representation is genuinely insufficient.
+It is the same enumerated, uniform-over-decision, opponent-independent machinery
+as the aliasing floor, lifted from "one feature, always missing" to "one
+feature, acquired on demand." We measure two axes, each isolating one
+information good (the finer view strictly refines the coarser, so a query only
+ever *splits* a group):
+
+| axis | coarse view | queried good | (3,3) query rate | (4,4) query rate |
+|---|---|---|---:|---:|
+| **reserve** | board+turn+cooldown+**mask** | reserve counts | **0.000%** | **1.071%** |
+| mask | board+turn+cooldown | legal-action mask | 0.827% | 13.212% |
+
+The **reserve** axis is the load-bearing one — the mask is normally free, so
+"querying" it is only illustrative, whereas reserves are a genuine hidden good.
+Three things fall out:
+
+- **Missing ≠ useful (at (3,3)).** Reserves are aliased away in 36% of decision
+  states, yet on the mask-aware interface the exact `hide_reserves` floor is
+  **0.0** — so the optimal number of reserve queries is **zero**. Objectively
+  incomplete information can have no decision value.
+- **An information transition ((3,3) → (4,4)).** From (4,4) up the mask-aware
+  reserve floor becomes nonzero (0.0026278), and now there *are* states an
+  optimal agent must inspect — but **only 1.071%** of them (5,120 / 477,960).
+  That sub-1% of decisions carries the **entire** irreducible reserve floor:
+  querying there drives the floor to exactly **0.0**. The value of information is
+  real but **sparse**.
+- **Sparse vs. diffuse goods.** The two axes look opposite. Reserves matter in a
+  thin, decisive set (1.071%); the legal-mask is *diffusely* useful (13.212% at
+  (4,4)) and querying it everywhere only reduces the view to the mask-aware
+  interface — its residual floor **is** the reserve floor. Not all missing
+  information is missing in the same shape.
+
+An exact cross-check ties this to Finding 4: the (4,4) reserve axis flags exactly
+**1,256** beneficial-query observation groups — identical to the
+`masked_conflict_groups` count in `masked_floor`. The states where reserves help
+are precisely the observation groups that contain an optimal-action conflict.
+
+Attach a per-query cost and the policy sharpens into three measurable regimes:
+**under-observation** (act coarse, eat the floor), **over-observation** (query
+everywhere, pay needless sensing cost), and **selective competence** (query only
+the critical states). On the (4,4) reserve axis the objective (residual regret +
+cost × query rate) keeps querying the sparse set until the per-query cost exceeds
+~0.25 WDL units, past which it is cheaper to accept the 0.0026278 floor.
+
+> **Framing / prior art.** This is an exact, game-based instance of the *value of
+> information* (Howard 1966) and of metareasoning about when to sense or compute
+> (Russell & Wefald 1991) — the contribution is exactness on a fully solved game,
+> not the concept. The mask axis is a semi-artificial "information good" (the
+> mask ships for free), included only to contrast sparse against diffuse VOI; the
+> honest headline is the reserve axis. The heavier (5,5) census (12.7M states) is
+> left as a follow-up; the machinery already accepts it.
+
+Numbers guarded by `tests/test_info_policy.py` (the (3,3) census is recomputed
+live to the digit; (4,4) is guarded from the recorded file), recorded in
+[`results/info_policy_latest.json`](../results/info_policy_latest.json).
+
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
 
@@ -1285,6 +1354,17 @@ classical, not new here:
 - **Singh, Jaakkola & Jordan (1994)**, *Learning without state-estimation in
   POMDPs* — model-free learning for this policy class, including where stochastic
   memoryless policies help.
+
+Finding 15 (deciding *when* to acquire a missing feature) sits in a third
+classical line — the **value of information** and metareasoning about sensing/
+computation:
+
+- **Howard (1966)**, *Information Value Theory* — the expected value of acquiring
+  a signal before deciding; Finding 15 computes it exactly per observation group.
+- **Russell & Wefald (1991)**, *Principles of Metareasoning* — treating "gather
+  more information / compute more vs. act now" as itself a decision. Collapse3
+  adds an exact, enumerated instance on a solved game, where the query policy and
+  its residual regret are certified rather than estimated.
 
 A separate line of prior work is the real-system analogue of Finding 14(iv)
 (exploitable-champion / weak-exploiter):
@@ -1471,6 +1551,7 @@ python -m experiments.sixpeg_floor                  # Six-Peg sibling: boundary 
 python -m experiments.threepeg_selfplay             # self-play: near-perfect on-policy, global edge erodes, trips the boundary
 python -m experiments.weak_exploiter                # a near-random policy (6 memorized moves) forces a >99%-vs-random champion to lose
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
+python -m experiments.info_policy 3 4               # value of information: when to acquire a missing feature (sparse VOI)
 ```
 
 Cite the `results/*.json` file for any number, not prose. Exact state counts and
