@@ -29,6 +29,7 @@ INCLUDE_GLOBS = [
     "NUTSHELL.md",
     "rules.md",
     "NOTATION.md",
+    "30SECONDS.md",
     "docs/*.md",
     "pyproject.toml",
     "CITATION.cff",
@@ -46,6 +47,7 @@ DESCRIPTIONS = {
     "NUTSHELL.md": "Brief plain-language overview of the game and why it matters.",
     "rules.md": "Complete Collapse3 game rules.",
     "NOTATION.md": "Plain-text board notation (produced by collapse3/render.py).",
+    "30SECONDS.md": "30-second explainer: winning shapes and the gravity collapse.",
     "docs/FINDINGS.md": "Full research findings and their significance.",
     "pyproject.toml": "Package metadata, dependencies, pytest config.",
 }
