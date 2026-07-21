@@ -23,6 +23,7 @@ Short answers to recurring questions. Detail and numbers live in
 16. **[Can the agent decide *when* to gather more information?](#16-can-the-agent-decide-when-to-gather-more-information)** — yes, exactly: missing ≠ useful, and from (4,4) up only ~1% of decisions must inspect reserves, yet that 1% carries the whole floor.
 17. **[Why are postmortems hard — and why grade with an oracle?](#17-why-are-postmortems-hard--and-why-we-grade-with-an-oracle)** — removal, gravity, and an adversary make the losing move nearly unfindable by hand; the oracle assigns blame exactly, which is why we grade moves not outcomes.
 18. **[Is Collapse3 just a fancier 3D tic-tac-toe?](#18-is-collapse3-just-a-more-complicated-version-of-3d-tic-tac-toe)** — no: pieces are removed, gravity restructures the board, and the past is partly erased — tic-tac-toe only ever adds static pieces.
+19. **[If the nets generalized well, why still exploitable?](#19-if-the-neural-networks-generalized-well-why-were-they-still-exploitable)** — a few-percent error rate over ~478K states is thousands of reachable mistakes; averages hide them, an adversary hunts one — all six nets fell from both seats.
 
 ---
 
@@ -400,3 +401,19 @@ why a board snapshot is a *lossy* record of the game
 ([FAQ #2](#2-isnt-the-current-state-always-sufficient--like-in-chess),
 [FAQ #17](#17-why-are-postmortems-hard--and-why-we-grade-with-an-oracle)) and why
 "solved" here does not imply "simple."
+
+## 19. If the neural networks generalized well, why were they still exploitable?
+
+Because generalization does not mean perfection. Each network kept a small error
+rate — a few percent, but across the ~478,000 (4,4) decision states that still
+leaves thousands of mistakes, and the mistakes differed from network to network.
+
+An ordinary test averages over many states, so rare errors barely move the score.
+An adversary does the opposite: it searches for a mistake it can actually
+*reach*, then steers the game into it.
+
+The networks really did generalize — but a single reachable fault was enough.
+Every one of the **six** networks we trained (two architectures × three seeds)
+was forced to lose from both seats: **twelve certifications, twelve forced
+losses** ([Finding 16](FINDINGS.md#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable),
+full writeup [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).

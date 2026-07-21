@@ -188,9 +188,9 @@ and be fine. So we trained one — a small neural net on exact solver labels —
 it **does** generalize: **~98%** optimal on held-out (4,4) states it never saw
 (0.933 even at a 0.5%, leakage-light train fraction; 0.923 extrapolating to a
 larger (5,5) board). By every average-case test, it learned the game. Handed to
-the exact best-response solver, **all 12** trained policies (two architectures ×
-three seeds) are nonetheless a **certified forced loss from both seats**, in ≤6
-plies — the adversary wins by playing deliberate blunders that only work against
+the exact best-response solver, **all six** trained policies (two architectures ×
+three seeds) are nonetheless a **certified forced loss from both seats** — twelve
+certifications, twelve forced losses — in ≤6 plies — the adversary wins by playing deliberate blunders that only work against
 that particular net. A near-zero generalization gap certifies *nothing* about
 worst-case robustness: the failure is not in the distribution, it is in what an
 adversary can steer toward. **Performance is not competence; generalization is
