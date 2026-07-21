@@ -25,12 +25,12 @@ def _state(board, res=(5, 5), turn=0, cd=(False, False)):
 
 
 def _shown(board):
-    """Every line of the rendered board appears in the doc.
+    """The full labeled board appears verbatim in the doc.
 
-    The collapse demos lay BEFORE and AFTER side by side, so the full block is
-    not verbatim; each board line is still a substring of its combined line.
+    Every board is rendered with orientation labels and the collapse demos are
+    stacked (BEFORE above AFTER), so each block is present byte-for-byte.
     """
-    return all(line in DOC for line in render_board(board).splitlines())
+    return render_board(board, labeled=True) in DOC
 
 
 def test_winning_positions_are_wins_and_shown():
@@ -40,7 +40,7 @@ def test_winning_positions_are_wins_and_shown():
         ((0,), (1, 0), (1, 1, 0), (), (), (), (), (), ()),   # staircase
     ):
         assert has_win(0, board)
-        assert render_board(board) in DOC
+        assert _shown(board)
 
 
 def test_simple_collapse_shows_gravity_no_win():

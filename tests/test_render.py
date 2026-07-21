@@ -51,6 +51,37 @@ EXAMPLE_RENDER = """\
 
 FOOTER = "reserves O=10 X=10  turn=X  cooldown O=False X=False"
 
+# Labeled (orientation-annotated) renderings — what NOTATION.md actually shows.
+EMPTY_LABELED = """\
+      ┌───┬───┬───┐   columns: left · center · right
+Front │ - │ - │ - │   Level 3 (top)
+      │ - │ - │ - │   Level 2
+      │ - │ - │ - │   Level 1 (floor)
+      ├───┼───┼───┤
+Mid   │ - │ - │ - │
+      │ - │ - │ - │
+      │ - │ - │ - │
+      ├───┼───┼───┤
+Back  │ - │ - │ - │
+      │ - │ - │ - │
+      │ - │ - │ - │
+      └───┴───┴───┘"""
+
+EXAMPLE_LABELED = """\
+      ┌───┬───┬───┐   columns: left · center · right
+Front │ - │ - │ - │   Level 3 (top)
+      │ - │ - │ - │   Level 2
+      │ - │ X │ - │   Level 1 (floor)
+      ├───┼───┼───┤
+Mid   │ - │ - │ - │
+      │ - │ X │ - │
+      │ O │ O │ O │
+      ├───┼───┼───┤
+Back  │ - │ - │ - │
+      │ X │ - │ - │
+      │ X │ - │ - │
+      └───┴───┴───┘"""
+
 
 def test_empty_board_render():
     assert render_board(tuple(() for _ in range(9))) == EMPTY_RENDER
@@ -60,15 +91,20 @@ def test_example_board_render():
     assert render_board(EXAMPLE.board) == EXAMPLE_RENDER
 
 
+def test_labeled_render_matches():
+    assert render_board(tuple(() for _ in range(9)), labeled=True) == EMPTY_LABELED
+    assert render_board(EXAMPLE.board, labeled=True) == EXAMPLE_LABELED
+
+
 def test_example_state_footer():
     assert render_state(EXAMPLE) == f"{EXAMPLE_RENDER}\n{FOOTER}"
 
 
 def test_notation_md_contains_the_rendered_blocks():
-    """Every rendered block and the footer line must appear verbatim in the doc."""
+    """The labeled blocks and the footer line must appear verbatim in the doc."""
     doc = NOTATION.read_text()
-    assert EMPTY_RENDER in doc
-    assert EXAMPLE_RENDER in doc
+    assert EMPTY_LABELED in doc
+    assert EXAMPLE_LABELED in doc
     assert FOOTER in doc
 
 
