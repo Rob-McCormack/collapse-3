@@ -10,9 +10,8 @@ venv/
 # Timestamped experiment outputs are reproducible; keep only the _latest alias.
 results/*__*.json
 
-# probes/ scratch artifacts (large binaries / staged outputs, not committed)
+# probes/ large binary artifacts (regenerable; never committed)
 *.pkl
 *.pt
-results/matrix.json
 
 .DS_Store

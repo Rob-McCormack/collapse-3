@@ -1365,7 +1365,9 @@ have flagged, because the failure is not in the distribution.
 > failure-anatomy reconciliation: **[`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)**.
 
 Numbers bound to [`results/neural_best_response_latest.json`](../results/neural_best_response_latest.json)
-and `results/matrix.json` (git-ignored torch artifact; regenerate via `probes/`).
+and [`results/matrix.json`](../results/matrix.json) (the 12-certification record), and
+guarded by `tests/test_neural_exhibit.py` (deterministic counts and the all-forced-loss
+outcome; neural decimals are threshold-checked, not pinned).
 
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
