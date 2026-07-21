@@ -1,0 +1,208 @@
+{
+  "experiment": "neural_generalization_exact_best_response",
+  "setup": {
+    "reserves": [
+      4,
+      4
+    ],
+    "seed": 314159,
+    "decision_states": 477960,
+    "train_fraction": 0.2,
+    "train_states": 95592,
+    "heldout_states": 95592,
+    "architecture": "59->128->128->64->3-class P0 WDL",
+    "epochs": 8,
+    "note": "Independent reproduction inspired by KIMI 3 description; KIMI neural code/model was not present in the uploaded repo."
+  },
+  "heldout": {
+    "n": 95592,
+    "optimal_rate": 0.9802598543811197,
+    "mean_wdl_regret": 0.021644070633525817,
+    "critical_n": 38898,
+    "critical_optimal_rate": 0.9514885084066019,
+    "critical_mean_wdl_regret": 0.053190395393079334,
+    "removal_only_critical_n": 3254,
+    "removal_only_optimal_rate": 0.990780577750461,
+    "removal_only_mean_regret": 0.010448678549477565,
+    "other_critical_n": 35644,
+    "other_critical_optimal_rate": 0.9479014700931433,
+    "other_critical_mean_regret": 0.05709235776007182
+  },
+  "best_response": [
+    {
+      "seat": 0,
+      "worst_wdl": -1,
+      "worst_case": "forced_loss",
+      "depth_to_worst": 6,
+      "one_sided_states": 1080,
+      "seconds": 0.051751136779785156,
+      "policy_states": 397,
+      "line": [
+        {
+          "mover": 0,
+          "move": [
+            "place",
+            4
+          ]
+        },
+        {
+          "mover": 1,
+          "move": [
+            "place",
+            5
+          ]
+        },
+        {
+          "mover": 0,
+          "move": [
+            "place",
+            0
+          ]
+        },
+        {
+          "mover": 1,
+          "move": [
+            "place",
+            8
+          ]
+        },
+        {
+          "mover": 0,
+          "move": [
+            "place",
+            6
+          ]
+        },
+        {
+          "mover": 1,
+          "move": [
+            "place",
+            2
+          ]
+        }
+      ],
+      "grading": {
+        "moves": [
+          {
+            "ply": 1,
+            "mover": "policy",
+            "move": "('place', 4)",
+            "true_game": "optimal"
+          },
+          {
+            "ply": 2,
+            "mover": "opponent",
+            "move": "('place', 5)",
+            "true_game": "blunder(wdl-1)"
+          },
+          {
+            "ply": 3,
+            "mover": "policy",
+            "move": "('place', 0)",
+            "true_game": "optimal"
+          },
+          {
+            "ply": 4,
+            "mover": "opponent",
+            "move": "('place', 8)",
+            "true_game": "optimal"
+          },
+          {
+            "ply": 5,
+            "mover": "policy",
+            "move": "('place', 6)",
+            "true_game": "blunder(wdl-2)"
+          },
+          {
+            "ply": 6,
+            "mover": "opponent",
+            "move": "('place', 2)",
+            "true_game": "optimal"
+          }
+        ],
+        "first_policy_positive_regret_ply": 5
+      }
+    },
+    {
+      "seat": 1,
+      "worst_wdl": -1,
+      "worst_case": "forced_loss",
+      "depth_to_worst": 5,
+      "one_sided_states": 5629,
+      "seconds": 0.3196070194244385,
+      "policy_states": 2756,
+      "line": [
+        {
+          "mover": 0,
+          "move": [
+            "place",
+            0
+          ]
+        },
+        {
+          "mover": 1,
+          "move": [
+            "place",
+            2
+          ]
+        },
+        {
+          "mover": 0,
+          "move": [
+            "place",
+            4
+          ]
+        },
+        {
+          "mover": 1,
+          "move": [
+            "place",
+            3
+          ]
+        },
+        {
+          "mover": 0,
+          "move": [
+            "place",
+            8
+          ]
+        }
+      ],
+      "grading": {
+        "moves": [
+          {
+            "ply": 1,
+            "mover": "opponent",
+            "move": "('place', 0)",
+            "true_game": "optimal"
+          },
+          {
+            "ply": 2,
+            "mover": "policy",
+            "move": "('place', 2)",
+            "true_game": "blunder(wdl-1)"
+          },
+          {
+            "ply": 3,
+            "mover": "opponent",
+            "move": "('place', 4)",
+            "true_game": "blunder(wdl-1)"
+          },
+          {
+            "ply": 4,
+            "mover": "policy",
+            "move": "('place', 3)",
+            "true_game": "blunder(wdl-1)"
+          },
+          {
+            "ply": 5,
+            "mover": "opponent",
+            "move": "('place', 8)",
+            "true_game": "optimal"
+          }
+        ],
+        "first_policy_positive_regret_ply": 2
+      }
+    }
+  ]
+}

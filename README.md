@@ -44,8 +44,9 @@ to make three-in-a-row anywhere in the cube.*
 3. **[Representation floors (by interface)](#representation-floors-by-interface)** — the same missing feature has different exact prices depending on what the agent sees.
 4. **[Sandbagging is hard](#sandbagging-is-hard)** — you cannot force your own loss; the oracle audits thrown value, not intent.
 5. **[Self-play coverage decays](#self-play-coverage-decays)** — on-policy near-perfect play can still walk off a certified cliff.
-6. **[The game](#the-game)** — rules in ten lines.
-7. **[Docs & LLM context](#docs--llm-context)** · **[Reproduce](#reproduce)** · **[Citation](#citation)**
+6. **[Generalization is not robustness](#generalization-is-not-robustness)** — a net that generalizes (~98% on unseen states) is still a certified forced loss.
+7. **[The game](#the-game)** — rules in ten lines.
+8. **[Docs & LLM context](#docs--llm-context)** · **[Reproduce](#reproduce)** · **[Citation](#citation)**
 
 ## Frozen plans vs. re-solving
 
@@ -175,6 +176,27 @@ sharpest failure is distribution shift: trained where the centre opening
 *uniquely wins*, **all five** runs learn "play centre" and carry it across the
 enumerated phase boundary into a size where the centre **loses** — provably
 optimal in training, fatal one reserve later ([Finding 14](docs/FINDINGS.md)).
+
+## Generalization is not robustness
+
+*A learned model can generalize and still be exactly exploitable — a torch-based
+exhibit, not a claim about frontier systems.*
+
+The natural rebuttal to everything above is: sure, a *frozen plan* or a
+*hand-written rulebook* is brittle, but a real *learned* model would generalize
+and be fine. So we trained one — a small neural net on exact solver labels — and
+it **does** generalize: **~98%** optimal on held-out (4,4) states it never saw
+(0.933 even at a 0.5%, leakage-light train fraction; 0.923 extrapolating to a
+larger (5,5) board). By every average-case test, it learned the game. Handed to
+the exact best-response solver, **all 12** trained policies (two architectures ×
+three seeds) are nonetheless a **certified forced loss from both seats**, in ≤6
+plies — the adversary wins by playing deliberate blunders that only work against
+that particular net. A near-zero generalization gap certifies *nothing* about
+worst-case robustness: the failure is not in the distribution, it is in what an
+adversary can steer toward. **Performance is not competence; generalization is
+not robustness.** (A torch-dependent exact exhibit at (4,4) with small MLPs, not
+evidence about large models — [Finding 16](docs/FINDINGS.md), full writeup
+[`docs/NEURAL_EXHIBIT.md`](docs/NEURAL_EXHIBIT.md).)
 
 ## The game
 

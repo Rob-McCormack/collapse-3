@@ -4,6 +4,9 @@ All numbers below are produced by the scripts in `experiments/` and written to
 `results/*.json` with the git commit, config, and seed that generated them.
 Figures are for the shipped rule (**immediate game-end on no legal action**);
 exhaustive results are exact, and any illustrative small-budget run is labelled.
+The one exception is **Finding 16**, a torch-dependent *exhibit* quarantined in
+`probes/`: its 12/12 forced-loss outcome is reproducible, but neural decimals
+drift with the torch build (see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
 
 ---
 
@@ -26,6 +29,7 @@ exhaustive results are exact, and any illustrative small-budget run is labelled.
 13. **[A second sibling shows the boundary *moves* with capacity](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested)** — a six-peg sibling confirms the phase boundary shifts later as board capacity grows (Finding 12(iv), tested).
 14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary. Part (iv): the exploiter need not be strong — a policy random except on six memorized moves beats a >99%-vs-random champion (KataGo analogue).
 15. **[Knowing when to look — the value of information is sparse](#15-knowing-when-to-look--the-exact-value-of-information-is-sparse)** — an exact information policy: missing ≠ useful (reserves have zero decision value at (3,3)), yet from (4,4) up only ~1% of decisions must inspect reserves and that 1% carries the *entire* irreducible floor.
+16. **[Generalization is not robustness](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable)** — a small net that plays ~98% optimally on unseen (4,4) states is still a certified forced loss from both seats; 12 of 12 trained policies fall to the exact adversary. *(Torch-dependent exhibit — see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md).)*
 
 **Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -1321,6 +1325,48 @@ Numbers guarded by `tests/test_info_policy.py` (the (3,3) census is recomputed
 live to the digit; (4,4) is guarded from the recorded file), recorded in
 [`results/info_policy_latest.json`](../results/info_policy_latest.json).
 
+### 16. Generalization is not robustness — a trained net that generalizes is still certifiably force-losable
+`probes/` (torch-dependent exhibit; reserves (4,4))
+
+Findings 3, 10, and 14 show that *bad or average* metrics — win rate, Elo,
+on-policy regret — flatter a weak agent. This finding pushes the same knife into
+the **best** average-case metric there is: a distribution-controlled held-out
+accuracy with a near-zero train/test gap. A small MLP trained on exact solver
+labels for a fraction of the 477,960 (4,4) decision states plays **~98%**
+optimally on held-out states it never saw (0.933 optimal even at a 0.5%,
+leakage-light train fraction; it extrapolates to a 1,200-state (5,5) sample at
+0.923). By every generalization test, the network learned the game.
+
+It is nonetheless a **certified forced loss**. Frozen and handed to the repo's
+exact `best_response` solver from the drawn (4,4) root, **12 of 12** trained
+policies — two independent architectures (WDL classifier, raw-value regressor) ×
+three seeds — are forced to lose from **both** seats, in this reproduction at
+depth 6 (seat 0) / depth 5 (seat 1). The adversary wins by playing deliberate
+true-game blunders that only work against the specific net (the organic
+inversion of Finding 3), and the first value-losing move it exploits lands on
+held-out and unused states — pure generalization failures the audit could never
+have flagged, because the failure is not in the distribution.
+
+> **Why the two gaps diverge.** Average-case competence means the error set is
+> *small*; worst-case robustness in a drawn game means it is *empty or
+> unreachable*. A 2–5% critical-error rate over ~478K states is thousands of
+> candidate errors, and the best-response solver needs only one to be
+> force-reachable. "It generalizes" and "it is adversarially safe" are different
+> claims, and the gap between them is not estimable from any average-case number.
+> Unlike adversarial-ML robustness (attack-relative, broken by the next attack),
+> this certificate is **attack-independent** — the strongest adversary that
+> exists, with a fully traceable exploit.
+
+> **Scope.** Trained neural policies at (4,4), small MLPs on raw features — an
+> exact *exhibit*, not evidence about frontier systems. Nothing here is a fact
+> about Collapse3's solved values. The 12/12 forced-loss outcome is the
+> reproducible claim; exact depths, lines, and neural decimals drift with torch
+> build. Full writeup, tables, exploit anatomy, and the setup-dependent
+> failure-anatomy reconciliation: **[`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)**.
+
+Numbers bound to [`results/neural_best_response_latest.json`](../results/neural_best_response_latest.json)
+and `results/matrix.json` (git-ignored torch artifact; regenerate via `probes/`).
+
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
 
@@ -1552,6 +1598,13 @@ python -m experiments.threepeg_selfplay             # self-play: near-perfect on
 python -m experiments.weak_exploiter                # a near-random policy (6 memorized moves) forces a >99%-vs-random champion to lose
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 python -m experiments.info_policy 3 4               # value of information: when to acquire a missing feature (sparse VOI)
+
+# Finding 16 — torch-dependent exhibit, quarantined in probes/ (needs: pip install numpy torch)
+python probes/make_memo44.py                        # exact labels for every (4,4) state -> memo44.pkl (git-ignored)
+python probes/generalization_experiment.py          # train-fraction sweep + cross-size + (5,5) extrapolation
+python probes/chatgpt_train.py                       # train setup-A net, held-out audit, best-response certification
+python probes/chatgpt_audit.py                       # recompute audit + certification from the saved checkpoint
+python probes/matrix_reconcile.py                    # 6 nets (A/B x 3 seeds) -> 12/12 forced loss + removal-only reconciliation
 ```
 
 Cite the `results/*.json` file for any number, not prose. Exact state counts and
