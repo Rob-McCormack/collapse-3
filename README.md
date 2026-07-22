@@ -4,6 +4,15 @@
 
 *This is **not** 3D tic-tac-toe. The 3×3×3 geometry is familiar; the rules and state dynamics are not ([why?](docs/FAQ.md#18-is-collapse3-just-a-more-complicated-version-of-3d-tic-tac-toe)).*
 
+> Collapse3 is a microscope for AI evaluation. The failure modes it reproduces
+> are not hypothetical — exploitable champions, sandbagging, and networks that
+> generalize yet collapse under adversarial pressure have all been documented in
+> real AI systems. What this tiny, exactly-solved 3×3×3 game adds is proof: here,
+> win rate, Elo, held-out accuracy, and regret are checked directly against
+> ground truth, and the failures ordinary scoreboards miss are certified, not
+> estimated — including a rated champion that outranks a perfect player it never
+> once beat, while a proof shows the champion itself is a forced loss.
+
 Collapse3 is a tiny, perfect-information, deterministic 3×3×3 board game — and it
 is **solved**: an exact solver ships in this repository. Yet it is complex enough
 that teachable "basic strategy" runs out almost immediately (a compact rulebook
