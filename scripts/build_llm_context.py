@@ -27,6 +27,7 @@ REPO = Path(__file__).resolve().parents[1]
 INCLUDE_GLOBS = [
     "README.md",
     "NUTSHELL.md",
+    "RELEVANCE.md",
     "rules.md",
     "NOTATION.md",
     "30SECONDS.md",
@@ -46,6 +47,7 @@ INCLUDE_GLOBS = [
 DESCRIPTIONS = {
     "README.md": "Project front page: thesis, headline result, quickstart.",
     "NUTSHELL.md": "Brief plain-language overview of the game and why it matters.",
+    "RELEVANCE.md": "Why a solved toy game is about your metrics, not your model: the transfer test.",
     "rules.md": "Complete Collapse3 game rules.",
     "NOTATION.md": "Plain-text board notation (produced by collapse3/render.py).",
     "30SECONDS.md": "30-second explainer: winning shapes and the gravity collapse.",
@@ -55,8 +57,8 @@ DESCRIPTIONS = {
 }
 
 INDEX_SECTIONS = [
-    ("Start here", ["NUTSHELL.md", "README.md", "rules.md", "NOTATION.md",
-                    "docs/FINDINGS.md", "docs/NEURAL_EXHIBIT.md"]),
+    ("Start here", ["NUTSHELL.md", "README.md", "RELEVANCE.md", "rules.md",
+                    "NOTATION.md", "docs/FINDINGS.md", "docs/NEURAL_EXHIBIT.md"]),
     ("Engine & tools", ["collapse3/game.py", "collapse3/solver.py",
                         "collapse3/enumeration.py", "collapse3/oracle.py",
                         "collapse3/agents.py", "collapse3/learning.py",

@@ -17,7 +17,7 @@ drift with the torch build (see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
 1. **[Aggregate metrics are adversarially flattering](#1-aggregate-metrics-are-adversarially-flattering)** — most states have many optimal moves, so headline "optimal-move rate" hides the decisive mistakes.
 2. **[Performance and competence come apart](#2-performance-and-competence-come-apart)** — win rate and value-based regret diverge; the same agent looks strong or weak purely by opponent.
 3. **[An open-loop plan is not a strategy](#3-an-open-loop-plan-is-not-a-strategy--shown-exactly)** — a frozen oracle-derived plan is a best-response to one line; a re-solving player crushes it.
-4. **[Representation cost is real, quantifiable, and scales](#4-representation-cost-is-real-quantifiable-and-scales)** — exact floors per interface; mask-blind hide-reserves grows (0.08 → 0.17) while the shipped mask-aware floor declines (0.0026 → 0.0024) — opposite signs.
+4. **[Representation cost is real, quantifiable, and interface-dependent](#4-representation-cost-is-real-quantifiable-and-interface-dependent)** — exact floors per interface; the sharpest result is *opposite scaling signs*: across the two enumerable sizes the mask-blind hide-reserves floor rises (0.08 → 0.17) while the shipped mask-aware floor declines (0.0026 → 0.0024).
 5. **[Objective failure vs. representation failure](#5-objective-failure-vs-representation-failure)** — two distinct failure modes separated exactly: missing information vs. the wrong objective.
 6. **[Seat and material decide the opening](#6-seat-and-material-decide-the-opening--a-hidden-confound-in-win-rate)** — opening value is fixed by seat and reserves, a hidden confound baked into any win-rate comparison.
 7. **[The floor is real, but realized regret slips beneath it](#7-the-floor-is-real-but-realized-regret-slips-beneath-it--interface-first-then-steering)** — the agent's true interface erases most of the aliasing floor and its trajectories steer around the rest.
@@ -173,7 +173,7 @@ deviation and show the failure is 15/23 of strict blunders, not an edge case.
 It is a clean, exact miniature of the open-loop failure mode that recurs in
 plan-then-execute agent designs.
 
-### 4. Representation cost is real, quantifiable, and scales
+### 4. Representation cost is real, quantifiable, and interface-dependent
 `experiments/aliasing_floor.py` (exhaustive, reserves (2,2)–(5,5))
 
 The regret floor of the best *memoryless* policy over a defined **interface**:
@@ -191,14 +191,19 @@ interface is part of the claim" below.
 | (4,4) | 1,357,963 | 0.0024 | 0.0805 | 0.0003 |
 | (5,5) | 12,714,999 | 0.0034 | **0.1677** | 0.0004 |
 
-The reserves-hidden floor grows steeply and monotonically (≈2× from (4,4) to
-(5,5)); the cooldown-hidden floor stays tiny and plateaus. So the cost of a
-missing state feature is **structural and grows with the game**, not an artifact
-of small-game triviality — and reserves, not cooldown, are the load-bearing
-feature. The novel content here is not that such a floor *exists* (that is
-classical — see [Relation to prior work](#relation-to-prior-work)); it is that
-we can **enumerate it exactly**, watch it **grow with game size**, and — for the
-single-hide columns — show it is the *exact* optimum, below.
+Across the two full-board sizes we can enumerate, the reserves-hidden floor
+*rises* (≈2× from (4,4) to (5,5)); the cooldown-hidden floor stays tiny and
+plateaus. So the cost of a missing state feature is **structural**, not an
+artifact of small-game triviality — and reserves, not cooldown, are the
+load-bearing feature. Two full-board points do not by themselves establish a
+*trend*, which is why the strongest and most defensible version of the scaling
+claim is the **opposite signs** result above (mask-blind rises, mask-aware
+falls) — it needs only these two points — and the growth's actual *shape* is
+carried by the sibling games (Findings 12–13), which enumerate every size. The
+novel content here is not that such a floor *exists* (that is classical — see
+[Relation to prior work](#relation-to-prior-work)); it is that we can
+**enumerate it exactly** per interface and — for the single-hide columns —
+show it is the *exact* optimum, below.
 
 > **Cross-reference — the growth's *shape* is only known for a sibling game.**
 > The two points above ((4,4), (5,5)) are the only enumerable full-board data,
@@ -1353,9 +1358,11 @@ have flagged, because the failure is not in the distribution.
 > candidate errors, and the best-response solver needs only one to be
 > force-reachable. "It generalizes" and "it is adversarially safe" are different
 > claims, and the gap between them is not estimable from any average-case number.
-> Unlike adversarial-ML robustness (attack-relative, broken by the next attack),
-> this certificate is **attack-independent** — the strongest adversary that
-> exists, with a fully traceable exploit.
+> Unlike *empirical* adversarial-ML robustness (attack-relative, broken by the
+> next attack) — and unlike *certified* robustness, which is attack-independent
+> but local to a perturbation ball — this certificate is **global and
+> game-theoretic**: the strongest adversary that exists, covering every reachable
+> line, with a fully traceable exploit.
 
 > **Scope.** Trained neural policies at (4,4), small MLPs on raw features — an
 > exact *exhibit*, not evidence about frontier systems. Nothing here is a fact

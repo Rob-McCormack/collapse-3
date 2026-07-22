@@ -67,15 +67,18 @@ Setup A, seed 314159, held-out side verified in-repo to five decimals:
 | train (95,592) | 0.9812 *reported* | 0.9540 *reported* | — |
 | held-out (95,592) | **0.98026** | **0.95149** | 0.0216 (0.0532) |
 
-The train/held-out gap is a fraction of a point. And it is not an artifact of
-the leaky 20%-train split: the train-fraction sweep in
-`probes/generalization_experiment.py` shows the net already at **0.933** optimal
-(0.877 critical) on held-out states with only **0.5%** of states in training —
-where child-value leakage is negligible — rising monotonically to 0.978 at 80%.
-This is not a memorized lookup table. In a separate run the net even extrapolates
+The train/held-out gap is a fraction of a point — but the honest headline is the
+leakage-light number, not the 0.98. Random splits leak child values at high train
+fractions (see Limitations), so the 20%-train held-out figure (0.98026) is best
+read as an **upper bound**. The train-fraction sweep in
+`probes/generalization_experiment.py` removes most of that leak: with only
+**0.5%** of states in training the net already scores **0.933** optimal (0.877
+critical) on held-out states, rising monotonically to 0.978 at 80%. Either way
+this is not a memorized lookup table. In a separate run the net even extrapolates
 to a **larger game**: trained on (3,3)+(4,4) and graded on a 1,200-state (5,5)
 sample it scores **0.923** optimal (0.908 critical). The network really did
-generalize. That is what makes the next section interesting.
+generalize — at 0.933 on the honest measure and ~0.98 as an upper bound. That is
+what makes the next section interesting.
 
 *Bound to `results/neural_best_response_latest.json` (held-out) and the
 `probes/generalization_experiment.py` train-fraction sweep.*
@@ -105,13 +108,17 @@ certificate lands at depth 6 (seat 0) / depth 5 (seat 1).
 accuracy, adversarially exploitable" is a decade-old phenomenon, and the repo
 already cites its existence in the wild (the KataGo adversarial-policy result;
 see [Finding 14](FINDINGS.md#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)).
-What the literature almost never gets is what this table is made of: robustness
-claims there are **attack-relative** — certified against PGD, broken by a
-stronger attack next year. Here the attacker is the best-response solver:
-exhaustive, exact, the strongest adversary that exists. The certificate is
-**attack-independent**, the generalization numbers are exact, and the exploit's
-mechanism is fully traceable. The contribution is not the phenomenon; it is that
-the phenomenon finally comes with a proof.
+The distinction is in what the guarantee covers. *Empirical* robustness there is
+**attack-relative** — a defense certified against PGD can fall to a stronger
+attack next year. *Certified* robustness (randomized smoothing, convex-relaxation
+bounds) is genuinely **attack-independent**, but it is **local**: a guarantee
+about a perturbation ball around fixed inputs. This certificate is neither
+empirical nor local — it is **global, sequential, and game-theoretic**: the
+attacker is the best-response solver, exhaustive and exact, so the guarantee
+covers *every reachable line* rather than a neighborhood. The generalization
+numbers are exact and the exploit's mechanism is fully traceable. The
+contribution is not the phenomenon; it is that the phenomenon finally comes with
+a proof of this kind.
 
 *Bound to `results/matrix.json` (all 12) and `results/neural_best_response_latest.json`
 (seed 314159 lines).*

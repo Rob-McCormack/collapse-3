@@ -26,10 +26,15 @@ every average we report names its distribution.
 
 In large systems we watch agents fail and wonder why. In Collapse3 we can measure
 *exactly why* — and **unit-test proposed evaluation methods against ground truth**
-before trusting them on systems you cannot solve. It aims to be a small, fully
+before trusting them on systems you cannot solve. It aims to be a small,
 reproducible exhibit of the failure modes — distribution-dependent competence,
 representation gaps, brittle plans, sandbagging — that AI safety and evaluation
 researchers care about, measured exactly rather than estimated.
+
+*Why care about a solved toy game? The standing objection — and the transfer
+test that says exactly when a finding here licenses a claim about a real system —
+is answered in [`RELEVANCE.md`](RELEVANCE.md): the toy is not a model of your
+system, it is a unit test of your metric, run where the answer key exists.*
 
 *New to the game? The rules fit in ten lines — see [The game](#the-game) below
 (full rules: [`rules.md`](rules.md)). Enough to read the findings: players
@@ -107,9 +112,11 @@ showed which number was honest — the exact failure mode of real evaluation:
 *the bound you prove is for the system you modeled, not the one you shipped*
 (Findings 4 and 7).
 
-The mask-blind rung (board + cooldown only) is the clean theoretical anchor,
-and it grows with size (0.08 at (4,4) → **0.17** at (5,5)) — structural, not
-small-game triviality. But it is *not* the interface anyone shipped a trained
+The mask-blind rung (board + cooldown only) is the clean theoretical anchor;
+across the two full-board sizes we can enumerate it *rises* (0.08 at (4,4) →
+**0.17** at (5,5)) — structural, not small-game triviality — and the sibling
+geometries map its full shape where the 27-cell board is out of reach
+([Findings 12–13](docs/FINDINGS.md)). But it is *not* the interface anyone shipped a trained
 agent under: give the policy the legal-move list and the mask leaks state
 (removals reveal cooldown; missing placements reveal an empty reserve), the
 reserves floor collapses ~30–70× — and that **shipped** (mask-aware) floor
@@ -240,6 +247,7 @@ priority) in [`rules.md`](rules.md).
 - **FAQ** (is this a POMDP? you solved it — so what's the strategy? why not
   Elo? is AI "hitting a wall"?): [`docs/FAQ.md`](docs/FAQ.md)
 - **In a nutshell:** [`NUTSHELL.md`](NUTSHELL.md)
+- **Why care? (the transfer test):** [`RELEVANCE.md`](RELEVANCE.md)
 - **Ask an LLM about this repo:** paste [`llms-full.txt`](llms-full.txt) (the
   entire project in one file) into any chat model. Index: [`llms.txt`](llms.txt).
 
