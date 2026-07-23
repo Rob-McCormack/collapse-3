@@ -1534,6 +1534,47 @@ Two observations about how our setting relates to Littman's (these are notes on
   which lives in the trajectory-coupled setting where the visit distribution
   depends on the policy and the objective is no longer linear.
 
+Finding 17 (what passing an evaluation rules out) sits in a fourth line — the
+**methodology of evaluation itself**. It is a synthesis of mature ideas, not a
+new method; the honest, per-area inventory with novelty verdicts is
+[`EVALUATION_EQUIVALENCE_PRIOR_ART.md`](EVALUATION_EQUIVALENCE_PRIOR_ART.md). The
+nearest neighbours:
+
+- **Worst-case / exploitability.** Johanson, Waugh, Bowling & Zinkevich (2011),
+  *Accelerating Best Response Calculation in Large Extensive Games* (IJCAI), made
+  it feasible to measure a strategy's exploitability (worst-case value) in poker,
+  and found top agents beat each other by tiny margins yet spanned a wide range of
+  exploitability — win rate ≠ worst case. Bowling, Burch, Johanson & Tammelin
+  (2015), *Heads-up Limit Hold'em Poker is Solved* (Science), pushed the same
+  best-response yardstick to a certified bound. Finding 17's compatible outcome
+  range is a best-response worst-case, but taken over the *set of policies an
+  evaluation cannot distinguish* rather than one fixed strategy.
+- **Oracle-graded move quality.** Guid & Bratko (2006), *Computer Analysis of
+  World Chess Champions* (ICGA Journal), grade human play by centipawn loss
+  against an engine — per-decision, opponent-independent grading, the ancestor of
+  this repo's value-regret. Finding 17 asks what such grading, restricted to the
+  states one opponent induces, fails to certify.
+- **Elo critiques.** Balduzzi, Tuyls, Perolat & Graepel (2018), *Re-evaluating
+  Evaluation* (NeurIPS), show Elo bakes in transitivity and is inflatable by
+  redundant agents, and propose Nash averaging. Finding 10 is the exact-game
+  version of the critique; Finding 17 explains *why* a single strong opponent
+  under-certifies (it never visits the danger zone).
+- **Diagnostic / behavioural suites.** Ribeiro, Wu, Guestrin & Singh (2020),
+  *Beyond Accuracy: Behavioral Testing of NLP Models with CheckList* (ACL), and
+  Osband et al. (2020), *Behaviour Suite for Reinforcement Learning* (bsuite,
+  ICLR), argue held-out accuracy overstates competence and push targeted,
+  capability-level probing — the same move as reporting per-criticality regret and
+  choosing the opponent that scrutinizes the states that matter.
+- **Adversarial policies.** Gleave et al. (2020), *Adversarial Policies:
+  Attacking Deep RL* (ICLR), and Wang et al. (2023) above: a candidate that scores
+  well is beaten off-distribution. Finding 17 turns that phenomenon into an
+  evaluation-design statement (use suboptimal / all-legal probing).
+- **Sandbagging.** van der Weij, Hofstätter, Jaffe, Brown & Ward (2024), *AI
+  Sandbagging: Language Models can Strategically Underperform on Evaluations* —
+  strategic underperformance on capability evals. Finding 9 is the exact-game
+  proof that value-regret audits *thrown value, not thrown intent*; Finding 17
+  bounds how much a passing candidate can still hide.
+
 ---
 
 ## Why this matters for AI research

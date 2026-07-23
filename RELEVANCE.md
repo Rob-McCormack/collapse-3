@@ -78,7 +78,11 @@ that triggered the failure here are measurable and present there — for the
 Elo inversion, a capped upside for optimal play and a heterogeneous opponent
 pool; for Finding 16, a nonzero error rate and an adversary able to steer
 toward reachable errors; for the sandbagging exhibit, a flat optimum where
-choices among value-equal moves go unscored by the auditor; **(iii)** a
+choices among value-equal moves go unscored by the auditor; for the
+[evaluation-equivalence result](docs/FINDINGS.md) (Finding 17), an evaluation
+whose opponent induces a state distribution that never enters the states where
+the weakness lives, so passing certifies only what those states could reveal;
+**(iii)** a
 ground-truth or best-response audit in the real system actually confirms the
 divergence. If (i)–(iii) all hold, the finding has carried over, not merely
 been invoked. If only (i) holds, what travels is the negative claim about the

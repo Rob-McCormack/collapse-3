@@ -24,6 +24,7 @@ Short answers to recurring questions. Detail and numbers live in
 17. **[Why are postmortems hard — and why grade with an oracle?](#17-why-are-postmortems-hard--and-why-we-grade-with-an-oracle)** — removal, gravity, and an adversary make the losing move nearly unfindable by hand; the oracle assigns blame exactly, which is why we grade moves not outcomes.
 18. **[Is Collapse3 just a fancier 3D tic-tac-toe?](#18-is-collapse3-just-a-more-complicated-version-of-3d-tic-tac-toe)** — no: pieces are removed, gravity restructures the board, and the past is partly erased — tic-tac-toe only ever adds static pieces.
 19. **[If the nets generalized well, why still exploitable?](#19-if-the-neural-networks-generalized-well-why-were-they-still-exploitable)** — a few-percent error rate over ~478K states is thousands of reachable mistakes; averages hide them, an adversary hunts one — all six nets fell from both seats.
+20. **[Isn't testing against the strongest opponent the best test?](#20-isnt-testing-against-the-strongest-opponent-the-best-test)** — no: a perfect opponent never enters the states that would expose a catastrophic weakness, so it certifies the least — the strongest player is not the strongest tester.
 
 ---
 
@@ -417,3 +418,20 @@ Every one of the **six** networks we trained (two architectures × three seeds)
 was forced to lose from both seats: **twelve certifications, twelve forced
 losses** ([Finding 16](FINDINGS.md#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable),
 full writeup [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
+
+## 20. Isn't testing against the strongest opponent the best test?
+
+It feels right — beat the best and you must be good. But an evaluation only ever
+scrutinizes the states the opponent actually *induces*, and a **perfect opponent
+induces the fewest revealing ones**. The states that would expose a catastrophic
+weakness are exactly the ones optimal play refuses to enter; a flawless opponent
+can never wander there, so passing against it certifies the least.
+
+[Finding 17](FINDINGS.md) makes this exact on the solved game: at (3,3), an
+evaluator that only ever faces optimal play leaves a candidate whose worst
+compatible outcome is still a **certified forced loss** — while an evaluator
+willing to play *sub-optimal, all-legal* lines rules that loss out. Choosing an
+opponent for evaluation isn't choosing a difficulty level; it's choosing which
+states will ever be examined. The strongest player is not the strongest tester
+(full writeup [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md);
+prior art [`docs/EVALUATION_EQUIVALENCE_PRIOR_ART.md`](EVALUATION_EQUIVALENCE_PRIOR_ART.md)).
