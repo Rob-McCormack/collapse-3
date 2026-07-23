@@ -1,5 +1,11 @@
 # What passing an evaluation rules out
 
+> *We don't evaluate agents. We evaluate the distribution of states a specific
+> opponent induces. If the opponent isn't permitted to play badly, we're relying
+> on it to wander into the danger zone by chance — and a perfect opponent cannot
+> wander there at all. The states that would expose the weakness are exactly the
+> ones optimal play refuses to enter.*
+
 *After a candidate **passes** an evaluation, how bad can a policy still be while
 remaining consistent with everything that evaluation observed? Here the question
 has an exact answer — and the answer is "much worse than you'd think, and it is

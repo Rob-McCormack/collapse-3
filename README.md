@@ -220,6 +220,11 @@ evidence about large models — [Finding 16](docs/FINDINGS.md), full writeup
 *Every result above grades an agent. This one grades the **evaluation** — and it
 is exact, pure-Python, no neural nets.*
 
+Choosing an opponent for evaluation isn't just choosing a difficulty level — it's
+choosing which states will ever be scrutinized. Choose a perfect opponent and you
+are, provably here, choosing to leave the very states that would expose a
+catastrophic weakness unvisited.
+
 After a candidate passes an evaluation, how bad can a policy still be while
 remaining consistent with everything the evaluation observed? Pin the candidate
 to perfect play wherever the evaluation looked, free it everywhere else, and

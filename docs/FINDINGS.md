@@ -1380,6 +1380,12 @@ outcome; neural decimals are threshold-checked, not pinned).
 ### 17. Passing a test rules out less than you think — the strongest player is not the strongest tester
 `experiments/evaluation_equivalence.py` (reserves (3,3)+(4,4), exact, pure-Python)
 
+> *We don't evaluate agents. We evaluate the distribution of states a specific
+> opponent induces. If the opponent isn't permitted to play badly, we're relying
+> on it to wander into the danger zone by chance — and a perfect opponent cannot
+> wander there at all. The states that would expose the weakness are exactly the
+> ones optimal play refuses to enter.*
+
 Every finding above grades a *given* agent. This one grades the **evaluation
 itself**: after a candidate passes, how bad can a policy still be while remaining
 consistent with everything the evaluation observed? An evaluation pins the
