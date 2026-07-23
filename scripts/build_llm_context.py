@@ -54,6 +54,7 @@ DESCRIPTIONS = {
     "docs/FINDINGS.md": "Full research findings and their significance.",
     "docs/NEURAL_EXHIBIT.md": "Finding 16 in full: a net that generalizes is still certifiably force-losable (torch exhibit).",
     "docs/EVALUATION_EQUIVALENCE.md": "Finding 17 in full: what passing an evaluation rules out; the strongest player is not the strongest tester (exact, pure-Python).",
+    "docs/EVALUATION_EQUIVALENCE_PRIOR_ART.md": "Prior-art inventory for Finding 17 (mutation testing, identified sets, adversarial policies, CEGAR): new exact application, not new method.",
     "pyproject.toml": "Package metadata, dependencies, pytest config.",
 }
 

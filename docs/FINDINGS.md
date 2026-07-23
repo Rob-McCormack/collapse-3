@@ -1437,7 +1437,10 @@ tables, the observation-level hierarchy, and limitations:
 **[`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md)**. Numbers bound to
 [`results/evaluation_equivalence_latest.json`](../results/evaluation_equivalence_latest.json)
 and guarded by `tests/test_evaluation_equivalence.py` (reproduce-or-abort Gate 0
-+ the (4,4) headline).
++ the (4,4) headline). This is **not a new method** — it is the exact,
+game-theoretic instance of surviving-mutant reasoning and an identified set;
+prior-art inventory and the honest novelty verdict ("new exact application, not
+new method") in [`docs/EVALUATION_EQUIVALENCE_PRIOR_ART.md`](EVALUATION_EQUIVALENCE_PRIOR_ART.md).
 
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))

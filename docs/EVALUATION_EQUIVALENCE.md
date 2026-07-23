@@ -181,3 +181,14 @@ Gate 0 reproduces the (2,2) and (3,3) anchors (state counts, frozen-policy
 hashes, control outcomes, and the optimal-only/all-legal split) before any
 headline runs; a mismatch aborts. All numbers here are bound to
 [`results/evaluation_equivalence_latest.json`](../results/evaluation_equivalence_latest.json).
+
+## Prior art
+
+The compatible outcome range is **not a new method** — it is the exact,
+game-theoretic instance of a *surviving mutant* (mutation testing) and an
+*identified set* (partial identification; closest ML relative: Skalse et al.
+2023 on reward identifiability), and the attack mechanism is the
+adversarial-policy phenomenon (Gleave 2020; Wang 2023). What is new is the
+*synthesis made exact* against a solved game's answer key, plus the
+opponent-family result. Full inventory, per-area analogues, and the novelty
+verdict: [`EVALUATION_EQUIVALENCE_PRIOR_ART.md`](EVALUATION_EQUIVALENCE_PRIOR_ART.md).
