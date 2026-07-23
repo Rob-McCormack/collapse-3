@@ -59,8 +59,9 @@ to make three-in-a-row anywhere in the cube.*
 4. **[Sandbagging is hard](#sandbagging-is-hard)** — you cannot force your own loss; the oracle audits thrown value, not intent.
 5. **[Self-play coverage decays](#self-play-coverage-decays)** — on-policy near-perfect play can still walk off a certified cliff.
 6. **[Generalization is not robustness](#generalization-is-not-robustness)** — a net that generalizes (~98% on unseen states) is still a certified forced loss.
-7. **[The game](#the-game)** — rules in ten lines.
-8. **[Docs & LLM context](#docs--llm-context)** · **[Reproduce](#reproduce)** · **[Citation](#citation)**
+7. **[The strongest player is not the strongest tester](#the-strongest-player-is-not-the-strongest-tester)** — an evaluator using only optimal opponents leaves a certified forced loss compatible.
+8. **[The game](#the-game)** — rules in ten lines.
+9. **[Docs & LLM context](#docs--llm-context)** · **[Reproduce](#reproduce)** · **[Citation](#citation)**
 
 ## Frozen plans vs. re-solving
 
@@ -213,6 +214,26 @@ adversary can steer toward. **Performance is not competence; generalization is
 not robustness.** (A torch-dependent exact exhibit at (4,4) with small MLPs, not
 evidence about large models — [Finding 16](docs/FINDINGS.md), full writeup
 [`docs/NEURAL_EXHIBIT.md`](docs/NEURAL_EXHIBIT.md).)
+
+## The strongest player is not the strongest tester
+
+*Every result above grades an agent. This one grades the **evaluation** — and it
+is exact, pure-Python, no neural nets.*
+
+After a candidate passes an evaluation, how bad can a policy still be while
+remaining consistent with everything the evaluation observed? Pin the candidate
+to perfect play wherever the evaluation looked, free it everywhere else, and
+best-response solves the exact **compatible outcome range**. The result: an
+evaluator that tests only against **optimal** opponents can inspect as few as
+**10 decisions at (4,4)** and certify *nothing* — a policy that passes it
+perfectly is still a **certified forced loss** — while the same protocol against
+**all-legal** opponents rules the loss out. Seat-0-only at (3,3), **two-sided at
+(4,4)**: it grows with the board. A perfect opponent refuses to enter the
+objectively-losing lines where the candidate's weakness lives, so **opponent
+strength and evaluator strength are different properties**. And strategic
+coverage buys nothing over same-universe random — it's the universe, not the
+selection (H2 falsified). Details in [`docs/FINDINGS.md`](docs/FINDINGS.md)
+([Finding 17](docs/FINDINGS.md)) and [`docs/EVALUATION_EQUIVALENCE.md`](docs/EVALUATION_EQUIVALENCE.md).
 
 ## The game
 

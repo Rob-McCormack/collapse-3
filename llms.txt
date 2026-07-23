@@ -10,6 +10,7 @@
 - [NOTATION.md](NOTATION.md): Plain-text board notation (produced by collapse3/render.py).
 - [docs/FINDINGS.md](docs/FINDINGS.md): Full research findings and their significance.
 - [docs/NEURAL_EXHIBIT.md](docs/NEURAL_EXHIBIT.md): Finding 16 in full: a net that generalizes is still certifiably force-losable (torch exhibit).
+- [docs/EVALUATION_EQUIVALENCE.md](docs/EVALUATION_EQUIVALENCE.md): Finding 17 in full: what passing an evaluation rules out; the strongest player is not the strongest tester (exact, pure-Python).
 
 ## Engine & tools
 - [collapse3/game.py](collapse3/game.py): Collapse3 rules engine.
@@ -26,6 +27,7 @@
 - [experiments/best_response.py](experiments/best_response.py): Exact best-response certification for deterministic policies (Gate C tool).
 - [experiments/depth_sweep.py](experiments/depth_sweep.py): Competence-per-ply: how much lookahead does a strategy need?
 - [experiments/elo_tournament.py](experiments/elo_tournament.py): The Elo mirage, measured exactly: ratings vs regret vs exploitability.
+- [experiments/evaluation_equivalence.py](experiments/evaluation_equivalence.py): Residual worst-case uncertainty: what does passing an evaluation RULE OUT?
 - [experiments/frozen_plan_vs_blunder.py](experiments/frozen_plan_vs_blunder.py): Frozen plan vs. re-solving, under enumerated opponent blunders.
 - [experiments/full_game_value.py](experiments/full_game_value.py): The full 14-bead game is solved at the root: first player forces a true win.
 - [experiments/horizon.py](experiments/horizon.py): The solvability horizon: exact grading of real games at full size (14,14).

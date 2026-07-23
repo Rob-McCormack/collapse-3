@@ -30,6 +30,7 @@ drift with the torch build (see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
 14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary. Part (iv): the exploiter need not be strong — a policy random except on six memorized moves beats a >99%-vs-random champion (KataGo analogue).
 15. **[Knowing when to look — the value of information is sparse](#15-knowing-when-to-look--the-exact-value-of-information-is-sparse)** — an exact information policy: missing ≠ useful (reserves have zero decision value at (3,3)), yet from (4,4) up only ~1% of decisions must inspect reserves and that 1% carries the *entire* irreducible floor.
 16. **[Generalization is not robustness](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable)** — a small net that plays ~98% optimally on unseen (4,4) states is still a certified forced loss from both seats; all six trained nets fall to the exact adversary from both seats (12 of 12 certifications). *(Torch-dependent exhibit — see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md).)*
+17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out. Strategic coverage buys nothing over same-universe random — it's the universe, not the selection (H2 falsified). *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
 
 **Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -1376,6 +1377,62 @@ and [`results/matrix.json`](../results/matrix.json) (the 12-certification record
 guarded by `tests/test_neural_exhibit.py` (deterministic counts and the all-forced-loss
 outcome; neural decimals are threshold-checked, not pinned).
 
+### 17. Passing a test rules out less than you think — the strongest player is not the strongest tester
+`experiments/evaluation_equivalence.py` (reserves (3,3)+(4,4), exact, pure-Python)
+
+Every finding above grades a *given* agent. This one grades the **evaluation
+itself**: after a candidate passes, how bad can a policy still be while remaining
+consistent with everything the evaluation observed? An evaluation pins the
+candidate to the reference at the states it inspected (set **C**); over *all*
+policies compatible with those observations we compute the exact **compatible
+outcome range** `(worst, best)` by best-response with pinned nodes — inside `C`
+the mover is forced to the reference, outside `C` the adversary drives it. `best`
+is always the game value (an assertion, not a finding); `worst` is the residual
+the evaluation failed to rule out.
+
+**The headline (transcript level, Gate C).** Pin the *complete* benchmark
+support under two opponent families:
+
+| size | seat | optimal-only opponents | all-legal opponents |
+|---|---|---|---|
+| (3,3) | 0 | 41 pinned → **forced loss** | 96 pinned → draw ✓ |
+| (4,4) | 0 | **10** pinned → **forced loss** | 447 pinned → draw ✓ |
+| (4,4) | 1 | 1,241 pinned → **forced loss** | 3,982 pinned → draw ✓ |
+
+An evaluator that tests only against **optimal** opponents can inspect as few as
+**10 decisions** and certify nothing — a policy that passes it perfectly is still
+a *certified forced loss* — while the same protocol against **all-legal**
+opponents rules the loss out. The effect is seat-0-only at (3,3) and **two-sided
+at (4,4)**: it grows with the board. The subset direction is structural (fewer
+constraints certify less); the *finding* is that restricting to optimal-opponent
+play — the natural "test against strong bots" choice — is exactly what drops the
+inspected set below the certification threshold, because **a perfect opponent
+refuses to enter the objectively-losing lines where the candidate's specific
+weakness lives**. Opponent strength and evaluator strength are distinct
+properties. This is the same mechanism as [Finding 14](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)
+and [Finding 16](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable),
+where the adversary wins via true-game blunders — stated here as a property of
+the evaluation protocol.
+
+**H2 falsified (Gate D).** Strategic depth-limited coverage buys nothing over
+depth-matched *random* coverage from the **same** exposure universe: whenever
+strategic certifies, same-universe random certifies too (0/30 force-losable);
+random from the whole state space never certifies (30/30). It is the universe,
+not the selection. Reported as a plain falsification, not hidden.
+
+**Gate B.** Finite games are inefficient: ~3,000 transcript-audited games are
+needed to reach the draw certification that exact all-legal coverage nails with
+96/538 decisions.
+
+This is a **transcript-level** result only — the `grade` and `outcome`
+(win-rate/Elo) rungs are deliberately quarantined as unsound to fake by pinning
+actions. Exact and pure-Python (no torch, no sampling in the headline). Full
+tables, the observation-level hierarchy, and limitations:
+**[`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md)**. Numbers bound to
+[`results/evaluation_equivalence_latest.json`](../results/evaluation_equivalence_latest.json)
+and guarded by `tests/test_evaluation_equivalence.py` (reproduce-or-abort Gate 0
++ the (4,4) headline).
+
 ### Where the difficulty lives
 `experiments/structural_census.py` (reserves (4,4))
 
@@ -1607,6 +1664,7 @@ python -m experiments.threepeg_selfplay             # self-play: near-perfect on
 python -m experiments.weak_exploiter                # a near-random policy (6 memorized moves) forces a >99%-vs-random champion to lose
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 python -m experiments.info_policy 3 4               # value of information: when to acquire a missing feature (sparse VOI)
+python -m experiments.evaluation_equivalence 3 4 --full  # what passing an eval rules out: compatible outcome range (Gate C/D/B)
 
 # Finding 16 — torch-dependent exhibit, quarantined in probes/ (needs: pip install numpy torch)
 python probes/make_memo44.py                        # exact labels for every (4,4) state -> memo44.pkl (git-ignored)
