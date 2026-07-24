@@ -158,14 +158,23 @@ lexicographic shortest-path (forced-loss → fewest candidate **mutations** →
 least depth), the smallest number of decisions it can play non-canonically and
 still be driven to a certified loss.
 
-At **(3,3) seat 0 the answer is one.** A single non-canonical decision, first
-reachable at depth 6, is enough — the policy agrees with the reference
-everywhere the perfect opponent ever looked, deviates in exactly one place a
-*suboptimal* opponent can steer it into, and loses by force. (Seat 1 is not
-force-losable under that support, consistent with Gate C.) This is the exact,
-minimum-cardinality cousin of the weak-exploiter result ([Finding 14](FINDINGS.md)):
-the surviving flaw a strong-opponent test misses can be as small as a single
-memorized mistake.
+**The answer is one — and it does not grow with the board.** At (3,3) seat 0 a
+single non-canonical decision (first reachable at depth 6) is enough: the policy
+agrees with the reference everywhere the perfect opponent ever looked, deviates
+in exactly one place a *suboptimal* opponent can steer it into, and loses by
+force. At **(4,4) — a 1.36-million-state board — it is still one mutation, now
+from *both* seats** (seat 0 depth 6, seat 1 depth 5). (At (3,3) seat 1 is not
+force-losable under this support, consistent with Gate C.)
+
+| size | seat 0 | seat 1 |
+|------|--------|--------|
+| (3,3) | 1 mutation (depth 6) | not force-losable |
+| (4,4) | 1 mutation (depth 6) | 1 mutation (depth 5) |
+
+This is the exact, minimum-cardinality cousin of the weak-exploiter result
+([Finding 14](FINDINGS.md)): the surviving flaw a strong-opponent test misses is
+not merely small, it is a **single memorized mistake**, and growing the board
+9× did not make the candidate need more of them.
 
 ## What is *not* established
 
@@ -180,11 +189,12 @@ memorized mistake.
   WDL-optimal move first under an explicit semantic key `(action_rank, peg,
   index)`; its per-seat hash is stamped and regression-tested so a legal-move
   reordering cannot silently change the equivalence classes.
-- **Gate A is exact at (3,3), not swept.** The minimum-mutation count (=1 at
-  (3,3) seat 0) is reported only where it is exactly computed; it is not yet run
-  at (4,4). The provisional pre-freeze depth-limited figures are *not* inherited
-  — every depth-limited number above is recomputed under the stated inclusive
-  horizon convention.
+- **Gate A is exact at (3,3)+(4,4), not swept beyond.** The minimum-mutation
+  count (=1 wherever a loss is compatible) is reported only where it is exactly
+  computed; (5,5)+ is not run (full Gate C is memory-bound there). Two exact
+  points are corroboration, not an asymptotic claim. The provisional pre-freeze
+  depth-limited figures are *not* inherited — every depth-limited number above is
+  recomputed under the stated inclusive horizon convention.
 - **Exact exhibit, not field evidence.** (3,3)/(4,4), one frozen reference
   policy. The transferable claim is the negative one in
   [`RELEVANCE.md`](../RELEVANCE.md): the protocol *can* pass a catastrophic

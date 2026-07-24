@@ -95,8 +95,13 @@ def test_committed_record_backs_the_headline():
             assert b["optimal"]["identified"] is False, seat
             assert b["all"]["worst"] == "draw" and b["all"]["identified"] is True, seat
 
-    # If the committed record carried Gate A, lock the minimum-mutation headline.
+    # If the committed record carried Gate A, lock the minimum-mutation headline:
+    # a single non-canonical decision suffices, and it is two-sided at (4,4).
     gate_a = rec["results"].get("gate_a")
     if gate_a and "(3,3)" in gate_a:
         s0 = gate_a["(3,3)"]["0"]
         assert s0["forced_losable"] is True and s0["min_mutations"] == 1
+    if gate_a and "(4,4)" in gate_a:
+        for seat in ("0", "1"):
+            m = gate_a["(4,4)"][seat]
+            assert m["forced_losable"] is True and m["min_mutations"] == 1, seat

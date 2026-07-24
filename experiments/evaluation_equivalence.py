@@ -472,19 +472,22 @@ def min_mutation_forced_loss(memo, r: int, seat: int,
             "min_mutations": None, "min_depth_at_min_mutations": None}
 
 
+def gate_a_size(memo, r: int, seats: Tuple[int, ...] = (0, 1)) -> Dict:
+    """Gate A for one (already-solved) size: pin the optimal-only benchmark
+    support (the "passed a perfect-opponent evaluation" scenario) and report the
+    minimum mutations to force a loss per seat. Cheap -- reuses `memo`."""
+    size_rec: Dict = {}
+    for seat in seats:
+        C = benchmark_support(memo, r, seat, "optimal")
+        rec = min_mutation_forced_loss(memo, r, seat, C)
+        size_rec[str(seat)] = {"support": "optimal", "pinned": len(C), **rec}
+    return size_rec
+
+
 def _gate_a(sizes: Tuple[int, ...], seats: Tuple[int, ...] = (0, 1)) -> Dict:
-    """Gate A across sizes/seats, pinning the optimal-only benchmark support
-    (the "passed a perfect-opponent evaluation" scenario)."""
-    out: Dict = {}
-    for r in sizes:
-        memo = solve_all(empty_state(r, r, 0))
-        size_rec: Dict = {}
-        for seat in seats:
-            C = benchmark_support(memo, r, seat, "optimal")
-            rec = min_mutation_forced_loss(memo, r, seat, C)
-            size_rec[str(seat)] = {"support": "optimal", "pinned": len(C), **rec}
-        out[f"({r},{r})"] = size_rec
-    return out
+    """Gate A across sizes/seats (solves each size fresh; used by tests)."""
+    return {f"({r},{r})": gate_a_size(solve_all(empty_state(r, r, 0)), r, seats)
+            for r in sizes}
 
 
 # =============================================================== reproduce gate
@@ -536,6 +539,7 @@ def main(sizes: Tuple[int, ...] = (3,), full: bool = False,
           f"policy={CANONICAL_POLICY_VERSION} horizon_inclusive={HORIZON_INCLUSIVE}")
 
     gate_c: Dict = {}
+    gate_a: Dict = {}
     for r in sizes:
         tr = time.time()
         memo = solve_all(empty_state(r, r, 0))
@@ -559,12 +563,20 @@ def main(sizes: Tuple[int, ...] = (3,), full: bool = False,
                   f"-> worst={a['worst']:<4} identified={a['identified']}")
         gate_c[f"({r},{r})"] = seats
 
-    payload: Dict = {"gate0": gate0, "gate_c": gate_c}
+        # Gate A reuses the same solved memo -- cheap wherever Gate C runs.
+        ga = gate_a_size(memo, r)
+        gate_a[f"({r},{r})"] = ga
+        for seat in ("0", "1"):
+            m = ga[seat]
+            print(f"  Gate A seat {seat}: forced_losable={m['forced_losable']} "
+                  f"min_mutations={m['min_mutations']} "
+                  f"depth={m['min_depth_at_min_mutations']}")
+
+    payload: Dict = {"gate0": gate0, "gate_c": gate_c, "gate_a": gate_a}
 
     if full:
-        # Gate A/D/B run at their own (feasible) sizes -- Gate C may span larger
+        # Gate D/B run at their own (feasible) sizes -- Gate C may span larger
         # boards where these sweeps are intractable.
-        payload["gate_a"] = _gate_a(full_sizes)
         payload["gate_d"] = _gate_d(full_sizes, control_seeds)
         payload["gate_b"] = _gate_b(full_sizes)
 

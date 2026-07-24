@@ -1,8 +1,8 @@
 {
   "experiment": "evaluation_equivalence",
   "provenance": {
-    "timestamp_utc": "2026-07-24T00:02:06.045849+00:00",
-    "git_commit": "79699177b14e535e2b672463e9eeb6ba7b203164",
+    "timestamp_utc": "2026-07-24T00:21:27.378302+00:00",
+    "git_commit": "797621ca1cb04fee06432fcd172fc4541edb4dab",
     "git_dirty": true,
     "package_version": "0.2.0",
     "python": "3.9.6",
@@ -307,6 +307,22 @@
           "forced_losable": false,
           "min_mutations": null,
           "min_depth_at_min_mutations": null
+        }
+      },
+      "(4,4)": {
+        "0": {
+          "support": "optimal",
+          "pinned": 10,
+          "forced_losable": true,
+          "min_mutations": 1,
+          "min_depth_at_min_mutations": 6
+        },
+        "1": {
+          "support": "optimal",
+          "pinned": 1241,
+          "forced_losable": true,
+          "min_mutations": 1,
+          "min_depth_at_min_mutations": 5
         }
       }
     },
