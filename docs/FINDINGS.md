@@ -30,7 +30,7 @@ drift with the torch build (see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
 14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary. Part (iv): the exploiter need not be strong — a policy random except on six memorized moves beats a >99%-vs-random champion (KataGo analogue).
 15. **[Knowing when to look — the value of information is sparse](#15-knowing-when-to-look--the-exact-value-of-information-is-sparse)** — an exact information policy: missing ≠ useful (reserves have zero decision value at (3,3)), yet from (4,4) up only ~1% of decisions must inspect reserves and that 1% carries the *entire* irreducible floor.
 16. **[Generalization is not robustness](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable)** — a small net that plays ~98% optimally on unseen (4,4) states is still a certified forced loss from both seats; all six trained nets fall to the exact adversary from both seats (12 of 12 certifications). *(Torch-dependent exhibit — see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md).)*
-17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out — and a **single** non-canonical decision is enough to lose (Gate A, one mutation at (3,3) and (4,4)). Strategic coverage buys nothing over same-universe random — it's the universe, not the selection (H2 falsified). *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
+17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out — and a **single** non-canonical decision is enough to lose (Gate A, one mutation at (3,3), (4,4), and (5,5) — two-sided from (4,4)). Strategic coverage buys nothing over same-universe random — it's the universe, not the selection (H2 falsified). *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
 
 **Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -1434,12 +1434,12 @@ needed to reach the draw certification that exact all-legal coverage nails with
 how *few* non-canonical decisions must a policy that passed the optimal-opponent
 evaluation still make to be force-losable? Exactly by lexicographic
 shortest-path (forced-loss → fewest candidate mutations → least depth), **the
-answer is one — and it does not grow with the board**: at (3,3) seat 0 a single
-non-canonical decision (depth 6) suffices, and at **(4,4), a 1.36M-state board,
-it is still one mutation, now from *both* seats** (depths 6 and 5). The surviving
-flaw a strong-opponent test misses is a **single memorized mistake**, and a 9×
-larger board did not require more of them — the exact, minimum-cardinality cousin
-of the weak exploiter (Finding 14).
+answer is one — and it does not grow with the board**: a single non-canonical
+decision suffices at (3,3) seat 0 (depth 6), and it stays **one mutation, from
+*both* seats, all the way to (5,5) — a 12.7M-state board** (depths 6 and 5). The
+surviving flaw a strong-opponent test misses is a **single memorized mistake**,
+and a board ~130× larger across three exact sizes did not require more of them —
+the exact, minimum-cardinality cousin of the weak exploiter (Finding 14).
 
 This is a **transcript-level** result only — the `grade` and `outcome`
 (win-rate/Elo) rungs are deliberately quarantined as unsound to fake by pinning
@@ -1725,7 +1725,7 @@ python -m experiments.threepeg_selfplay             # self-play: near-perfect on
 python -m experiments.weak_exploiter                # a near-random policy (6 memorized moves) forces a >99%-vs-random champion to lose
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 python -m experiments.info_policy 3 4               # value of information: when to acquire a missing feature (sparse VOI)
-python -m experiments.evaluation_equivalence 3 4 --full  # what passing an eval rules out: compatible outcome range (Gate C/A/D/B)
+python -m experiments.evaluation_equivalence 3 4 --full --ga5  # what passing an eval rules out: compatible outcome range (Gate C/A/D/B; Gate A also (5,5))
 
 # Finding 16 — torch-dependent exhibit, quarantined in probes/ (needs: pip install numpy torch)
 python probes/make_memo44.py                        # exact labels for every (4,4) state -> memo44.pkl (git-ignored)

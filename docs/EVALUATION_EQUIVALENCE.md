@@ -162,19 +162,22 @@ still be driven to a certified loss.
 single non-canonical decision (first reachable at depth 6) is enough: the policy
 agrees with the reference everywhere the perfect opponent ever looked, deviates
 in exactly one place a *suboptimal* opponent can steer it into, and loses by
-force. At **(4,4) — a 1.36-million-state board — it is still one mutation, now
-from *both* seats** (seat 0 depth 6, seat 1 depth 5). (At (3,3) seat 1 is not
-force-losable under this support, consistent with Gate C.)
+force. It stays **one mutation, from *both* seats, all the way to (5,5) — a
+12.7-million-state board.** (At (3,3) seat 1 is not force-losable under this
+support, consistent with Gate C.)
 
-| size | seat 0 | seat 1 |
-|------|--------|--------|
-| (3,3) | 1 mutation (depth 6) | not force-losable |
-| (4,4) | 1 mutation (depth 6) | 1 mutation (depth 5) |
+| size | states | seat 0 | seat 1 |
+|------|--------|--------|--------|
+| (3,3) | 97K | 1 mutation (depth 6) | not force-losable |
+| (4,4) | 1.36M | 1 mutation (depth 6) | 1 mutation (depth 5) |
+| (5,5) | 12.7M | 1 mutation (depth 6) | 1 mutation (depth 5) |
 
 This is the exact, minimum-cardinality cousin of the weak-exploiter result
 ([Finding 14](FINDINGS.md)): the surviving flaw a strong-opponent test misses is
 not merely small, it is a **single memorized mistake**, and growing the board
-9× did not make the candidate need more of them.
+~130× across three exact sizes did not make the candidate need more of them.
+(Full Gate C is memory-bound at (5,5); Gate A there needs only one solve and one
+Dijkstra, so it is recorded via `--ga5`.)
 
 ## What is *not* established
 
@@ -189,10 +192,11 @@ not merely small, it is a **single memorized mistake**, and growing the board
   WDL-optimal move first under an explicit semantic key `(action_rank, peg,
   index)`; its per-seat hash is stamped and regression-tested so a legal-move
   reordering cannot silently change the equivalence classes.
-- **Gate A is exact at (3,3)+(4,4), not swept beyond.** The minimum-mutation
-  count (=1 wherever a loss is compatible) is reported only where it is exactly
-  computed; (5,5)+ is not run (full Gate C is memory-bound there). Two exact
-  points are corroboration, not an asymptotic claim. The provisional pre-freeze
+- **Gate A is exact at (3,3)+(4,4)+(5,5), not swept beyond.** The
+  minimum-mutation count (=1 wherever a loss is compatible) is reported only
+  where it is exactly computed; (6,6)+ is not enumerable. Three exact points are
+  corroboration, not an asymptotic claim (the sibling-geometry non-transfer of
+  [Finding 4](FINDINGS.md) is the standing caution). The provisional pre-freeze
   depth-limited figures are *not* inherited — every depth-limited number above is
   recomputed under the stated inclusive horizon convention.
 - **Exact exhibit, not field evidence.** (3,3)/(4,4), one frozen reference
@@ -203,7 +207,7 @@ not merely small, it is a **single memorized mistake**, and growing the board
 ## Reproduce
 
 ```bash
-python -m experiments.evaluation_equivalence 3 4 --full   # Gate C (3,3)+(4,4), Gate A/D/B (3,3)
+python -m experiments.evaluation_equivalence 3 4 --full --ga5  # Gate C (3,3)+(4,4); Gate A (3,3)+(4,4)+(5,5); Gate D/B (3,3)
 pytest tests/test_evaluation_equivalence.py               # reproduce-or-abort Gate 0 + record guard
 ```
 

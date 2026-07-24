@@ -101,7 +101,9 @@ def test_committed_record_backs_the_headline():
     if gate_a and "(3,3)" in gate_a:
         s0 = gate_a["(3,3)"]["0"]
         assert s0["forced_losable"] is True and s0["min_mutations"] == 1
-    if gate_a and "(4,4)" in gate_a:
-        for seat in ("0", "1"):
-            m = gate_a["(4,4)"][seat]
-            assert m["forced_losable"] is True and m["min_mutations"] == 1, seat
+    for size in ("(4,4)", "(5,5)"):
+        if gate_a and size in gate_a:
+            for seat in ("0", "1"):
+                m = gate_a[size][seat]
+                assert m["forced_losable"] is True and m["min_mutations"] == 1, \
+                    (size, seat)

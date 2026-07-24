@@ -530,7 +530,8 @@ def reproduce_gate0() -> Dict:
 # ================================================================ driver
 
 def main(sizes: Tuple[int, ...] = (3,), full: bool = False,
-         control_seeds: int = 30, full_sizes: Tuple[int, ...] = (3,)) -> None:
+         control_seeds: int = 30, full_sizes: Tuple[int, ...] = (3,),
+         gate_a_extra: Tuple[int, ...] = ()) -> None:
     t0 = time.time()
 
     print("=== Gate 0: reproduce-or-abort (2,2)+(3,3) anchors ===")
@@ -572,6 +573,24 @@ def main(sizes: Tuple[int, ...] = (3,), full: bool = False,
                   f"min_mutations={m['min_mutations']} "
                   f"depth={m['min_depth_at_min_mutations']}")
 
+    # Gate A at extra sizes where full Gate C is memory-bound (e.g. (5,5)):
+    # only a single Dijkstra + one solved memo, so it fits where Gate C does not.
+    for r in gate_a_extra:
+        if f"({r},{r})" in gate_a:
+            continue
+        tr = time.time()
+        memo = solve_all(empty_state(r, r, 0))
+        ga = gate_a_size(memo, r)
+        gate_a[f"({r},{r})"] = ga
+        print(f"\n=== Gate A ({r},{r}): {len(memo):,} states "
+              f"[{time.time()-tr:.0f}s solve] ===")
+        for seat in ("0", "1"):
+            m = ga[seat]
+            print(f"  seat {seat}: forced_losable={m['forced_losable']} "
+                  f"min_mutations={m['min_mutations']} "
+                  f"depth={m['min_depth_at_min_mutations']}")
+        del memo                                   # free before any later work
+
     payload: Dict = {"gate0": gate0, "gate_c": gate_c, "gate_a": gate_a}
 
     if full:
@@ -581,6 +600,7 @@ def main(sizes: Tuple[int, ...] = (3,), full: bool = False,
         payload["gate_b"] = _gate_b(full_sizes)
 
     config = {"sizes": list(sizes), "full": full, "full_sizes": list(full_sizes),
+              "gate_a_extra": list(gate_a_extra),
               "control_seeds": control_seeds if full else None,
               "canonical_policy_version": CANONICAL_POLICY_VERSION,
               "canonical_order": CANONICAL_ORDER_DEFINITION,
@@ -649,4 +669,6 @@ if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     flags = {a for a in sys.argv[1:] if a.startswith("--")}
     sizes = tuple(int(a) for a in args) if args else (3,)
-    main(sizes, full=("--full" in flags))
+    # --ga5: also record Gate A at (5,5) (memory-feasible; full Gate C is not).
+    gate_a_extra = (5,) if "--ga5" in flags else ()
+    main(sizes, full=("--full" in flags), gate_a_extra=gate_a_extra)

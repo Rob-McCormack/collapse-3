@@ -1,8 +1,8 @@
 {
   "experiment": "evaluation_equivalence",
   "provenance": {
-    "timestamp_utc": "2026-07-24T00:21:27.378302+00:00",
-    "git_commit": "797621ca1cb04fee06432fcd172fc4541edb4dab",
+    "timestamp_utc": "2026-07-24T00:48:17.389670+00:00",
+    "git_commit": "c7415858b807a2fd318fc0631670ddc55a09857e",
     "git_dirty": true,
     "package_version": "0.2.0",
     "python": "3.9.6",
@@ -15,6 +15,9 @@
       "full": true,
       "full_sizes": [
         3
+      ],
+      "gate_a_extra": [
+        5
       ],
       "control_seeds": 30,
       "canonical_policy_version": "CANONICAL_POLICY_V1",
@@ -320,6 +323,22 @@
         "1": {
           "support": "optimal",
           "pinned": 1241,
+          "forced_losable": true,
+          "min_mutations": 1,
+          "min_depth_at_min_mutations": 5
+        }
+      },
+      "(5,5)": {
+        "0": {
+          "support": "optimal",
+          "pinned": 15,
+          "forced_losable": true,
+          "min_mutations": 1,
+          "min_depth_at_min_mutations": 6
+        },
+        "1": {
+          "support": "optimal",
+          "pinned": 2735,
           "forced_losable": true,
           "min_mutations": 1,
           "min_depth_at_min_mutations": 5
