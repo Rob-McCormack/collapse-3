@@ -235,9 +235,12 @@ perfectly is still a **certified forced loss** — while the same protocol again
 **all-legal** opponents rules the loss out. Seat-0-only at (3,3), **two-sided at
 (4,4)**: it grows with the board. A perfect opponent refuses to enter the
 objectively-losing lines where the candidate's weakness lives, so **opponent
-strength and evaluator strength are different properties**. And strategic
-coverage buys nothing over same-universe random — it's the universe, not the
-selection (H2 falsified). Details in [`docs/FINDINGS.md`](docs/FINDINGS.md)
+strength and evaluator strength are different properties**. And the surviving
+flaw can be *tiny*: a **single** non-canonical decision is enough to be
+force-losable — one mutation, holding from (3,3) through the **12.7-million-state
+(5,5)** board (Gate A, two-sided from (4,4)). Strategic coverage buys nothing
+over same-universe random — it's the universe, not the selection (H2 falsified).
+Details in [`docs/FINDINGS.md`](docs/FINDINGS.md)
 ([Finding 17](docs/FINDINGS.md)) and [`docs/EVALUATION_EQUIVALENCE.md`](docs/EVALUATION_EQUIVALENCE.md).
 
 ## The game
