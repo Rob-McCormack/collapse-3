@@ -39,6 +39,8 @@ overstates its certification power.
 """
 
 import hashlib
+import heapq
+import itertools
 import sys
 import time
 from collections import Counter, defaultdict, deque
@@ -413,6 +415,78 @@ def gate_c_seat(memo, r: int, seat: int, want_hash: bool = True) -> Dict:
     return row
 
 
+# ================================================================ Gate A
+
+def min_mutation_forced_loss(memo, r: int, seat: int,
+                             C: Set[GameState]) -> Dict:
+    """Gate A: the MINIMUM-MUTATION surviving exploit.
+
+    Among all transcript-compatible candidate policies (pinned to
+    CANONICAL_POLICY_V1 on `C`), what is the FEWEST decisions a candidate may
+    play NON-canonically and still be force-losable?
+
+    Lexicographic objective: (1) reach a seat-LOSS terminal, then (2) minimum
+    candidate mutations, then (3) minimum depth. Computed exactly by Dijkstra
+    over the state graph, cost = number of own decisions outside `C` whose move
+    differs from canonical (a "mutation"); opponent moves and C-pinned moves are
+    free. Because a deterministic candidate faces a single realized line, "a
+    losing line exists consistent with the pinning" is exactly "a compatible
+    policy with these mutations loses" -- the mutated line IS that policy, with
+    canonical played everywhere off it.
+
+    This is the exact, minimum-cardinality analogue of a surviving mutant / a
+    minimum hitting set (see EVALUATION_EQUIVALENCE_PRIOR_ART.md): it prices how
+    WEAK a benchmark-passing flaw can be, the certified cousin of the
+    weak-exploiter result (Finding 14).
+    """
+    root = empty_state(r, r, 0)
+    INF = (float("inf"), float("inf"))
+    dist: Dict[GameState, Tuple] = {root: (0, 0)}
+    ctr = itertools.count()
+    pq: List = [(0, 0, next(ctr), root)]
+    while pq:
+        mut, depth, _, s = heapq.heappop(pq)
+        if (mut, depth) != dist.get(s):
+            continue
+        t = end_value(s)
+        if t is not None:
+            if wdl(t, seat) < 0:                  # first LOSS popped is the min
+                return {"forced_losable": True,
+                        "min_mutations": mut, "min_depth_at_min_mutations": depth}
+            continue                              # draw/win leaf: dead end
+        own = s.turn == seat
+        if own and s in C:
+            edges = [(canonical_optimal(s, memo), 0)]
+        elif own:
+            canon = canonical_optimal(s, memo)
+            edges = [(m, 0 if m == canon else 1) for m in get_legal_moves(s)]
+        else:
+            edges = [(m, 0) for m in get_legal_moves(s)]
+        for m, c in edges:
+            ns = apply_move(s, m)
+            nd = (mut + c, depth + 1)
+            if nd < dist.get(ns, INF):
+                dist[ns] = nd
+                heapq.heappush(pq, (nd[0], nd[1], next(ctr), ns))
+    return {"forced_losable": False,
+            "min_mutations": None, "min_depth_at_min_mutations": None}
+
+
+def _gate_a(sizes: Tuple[int, ...], seats: Tuple[int, ...] = (0, 1)) -> Dict:
+    """Gate A across sizes/seats, pinning the optimal-only benchmark support
+    (the "passed a perfect-opponent evaluation" scenario)."""
+    out: Dict = {}
+    for r in sizes:
+        memo = solve_all(empty_state(r, r, 0))
+        size_rec: Dict = {}
+        for seat in seats:
+            C = benchmark_support(memo, r, seat, "optimal")
+            rec = min_mutation_forced_loss(memo, r, seat, C)
+            size_rec[str(seat)] = {"support": "optimal", "pinned": len(C), **rec}
+        out[f"({r},{r})"] = size_rec
+    return out
+
+
 # =============================================================== reproduce gate
 
 def reproduce_gate0() -> Dict:
@@ -488,8 +562,9 @@ def main(sizes: Tuple[int, ...] = (3,), full: bool = False,
     payload: Dict = {"gate0": gate0, "gate_c": gate_c}
 
     if full:
-        # Gate D/B run at their own (feasible) sizes -- Gate C may span larger
-        # boards where the D/B sweeps are intractable.
+        # Gate A/D/B run at their own (feasible) sizes -- Gate C may span larger
+        # boards where these sweeps are intractable.
+        payload["gate_a"] = _gate_a(full_sizes)
         payload["gate_d"] = _gate_d(full_sizes, control_seeds)
         payload["gate_b"] = _gate_b(full_sizes)
 

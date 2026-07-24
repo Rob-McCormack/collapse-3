@@ -1430,6 +1430,16 @@ not the selection. Reported as a plain falsification, not hidden.
 needed to reach the draw certification that exact all-legal coverage nails with
 96/538 decisions.
 
+**How weak is the missed flaw? (Gate A).** The minimum-cardinality question:
+how *few* non-canonical decisions must a policy that passed the optimal-opponent
+evaluation still make to be force-losable? Exactly by lexicographic
+shortest-path (forced-loss → fewest candidate mutations → least depth), at
+**(3,3) seat 0 the answer is one** — a single non-canonical decision, first
+reachable at depth 6, agreeing with the reference everywhere the perfect
+opponent looked. The surviving flaw a strong-opponent test misses can be one
+memorized mistake — the exact, minimum-cardinality cousin of the weak exploiter
+(Finding 14).
+
 This is a **transcript-level** result only — the `grade` and `outcome`
 (win-rate/Elo) rungs are deliberately quarantined as unsound to fake by pinning
 actions. Exact and pure-Python (no torch, no sampling in the headline). Full
@@ -1714,7 +1724,7 @@ python -m experiments.threepeg_selfplay             # self-play: near-perfect on
 python -m experiments.weak_exploiter                # a near-random policy (6 memorized moves) forces a >99%-vs-random champion to lose
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 python -m experiments.info_policy 3 4               # value of information: when to acquire a missing feature (sparse VOI)
-python -m experiments.evaluation_equivalence 3 4 --full  # what passing an eval rules out: compatible outcome range (Gate C/D/B)
+python -m experiments.evaluation_equivalence 3 4 --full  # what passing an eval rules out: compatible outcome range (Gate C/A/D/B)
 
 # Finding 16 — torch-dependent exhibit, quarantined in probes/ (needs: pip install numpy torch)
 python probes/make_memo44.py                        # exact labels for every (4,4) state -> memo44.pkl (git-ignored)

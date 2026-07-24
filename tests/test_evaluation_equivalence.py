@@ -19,6 +19,7 @@ from pathlib import Path
 
 from experiments.evaluation_equivalence import (
     GATE0_ANCHORS,
+    _gate_a,
     reproduce_gate0,
     verify_depth_formula,
 )
@@ -59,6 +60,18 @@ def test_anchor_table_is_internally_consistent():
     assert a[1]["hash"] == "f4f8e9548e31e5b5"
 
 
+def test_gate_a_minimum_mutation_is_one_at_3_3():
+    # Gate A (live, ~2s): a candidate that passed the optimal-opponent evaluation
+    # needs only a SINGLE non-canonical decision (at depth 6) to be force-losable
+    # at (3,3) seat 0; seat 1 is not force-losable under that same support.
+    a = _gate_a((3,))["(3,3)"]
+    assert a["0"]["forced_losable"] is True
+    assert a["0"]["min_mutations"] == 1
+    assert a["0"]["min_depth_at_min_mutations"] == 6
+    assert a["1"]["forced_losable"] is False
+    assert a["1"]["min_mutations"] is None
+
+
 def test_committed_record_backs_the_headline():
     assert LATEST.exists(), "run: python -m experiments.evaluation_equivalence 3"
     rec = json.loads(LATEST.read_text(encoding="utf-8"))
@@ -81,3 +94,9 @@ def test_committed_record_backs_the_headline():
             assert b["optimal"]["worst"] == "LOSS", seat
             assert b["optimal"]["identified"] is False, seat
             assert b["all"]["worst"] == "draw" and b["all"]["identified"] is True, seat
+
+    # If the committed record carried Gate A, lock the minimum-mutation headline.
+    gate_a = rec["results"].get("gate_a")
+    if gate_a and "(3,3)" in gate_a:
+        s0 = gate_a["(3,3)"]["0"]
+        assert s0["forced_losable"] is True and s0["min_mutations"] == 1

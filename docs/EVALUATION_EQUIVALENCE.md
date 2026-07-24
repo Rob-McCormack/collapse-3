@@ -148,6 +148,25 @@ the way agents are usually evaluated, approaches a certification that exact
 coverage reaches directly. (This is a first data point toward the untested H4,
 not a closed result.)
 
+## Gate A: how weak can the surviving flaw be?
+
+Gate C shows a benchmark-passing policy *can* be force-losable. **Gate A** asks
+the minimum-cardinality question: how *few* non-canonical decisions must such a
+policy make? A candidate is pinned to the reference on the optimal-only support
+(it passed the perfect-opponent evaluation); Gate A then finds, by exact
+lexicographic shortest-path (forced-loss → fewest candidate **mutations** →
+least depth), the smallest number of decisions it can play non-canonically and
+still be driven to a certified loss.
+
+At **(3,3) seat 0 the answer is one.** A single non-canonical decision, first
+reachable at depth 6, is enough — the policy agrees with the reference
+everywhere the perfect opponent ever looked, deviates in exactly one place a
+*suboptimal* opponent can steer it into, and loses by force. (Seat 1 is not
+force-losable under that support, consistent with Gate C.) This is the exact,
+minimum-cardinality cousin of the weak-exploiter result ([Finding 14](FINDINGS.md)):
+the surviving flaw a strong-opponent test misses can be as small as a single
+memorized mistake.
+
 ## What is *not* established
 
 - **`best == game value` is an assertion, not a finding** — a solver sanity
@@ -161,10 +180,11 @@ not a closed result.)
   WDL-optimal move first under an explicit semantic key `(action_rank, peg,
   index)`; its per-seat hash is stamped and regression-tested so a legal-move
   reordering cannot silently change the equivalence classes.
-- **Gate A (minimum-mutation) is not yet run.** No minimum distinct-mutation
-  count is claimed; the provisional pre-freeze depth-limited figures are *not*
-  inherited — every depth-limited number above is recomputed under the stated
-  inclusive horizon convention.
+- **Gate A is exact at (3,3), not swept.** The minimum-mutation count (=1 at
+  (3,3) seat 0) is reported only where it is exactly computed; it is not yet run
+  at (4,4). The provisional pre-freeze depth-limited figures are *not* inherited
+  — every depth-limited number above is recomputed under the stated inclusive
+  horizon convention.
 - **Exact exhibit, not field evidence.** (3,3)/(4,4), one frozen reference
   policy. The transferable claim is the negative one in
   [`RELEVANCE.md`](../RELEVANCE.md): the protocol *can* pass a catastrophic
@@ -173,7 +193,7 @@ not a closed result.)
 ## Reproduce
 
 ```bash
-python -m experiments.evaluation_equivalence 3 4 --full   # Gate C (3,3)+(4,4), Gate D/B (3,3)
+python -m experiments.evaluation_equivalence 3 4 --full   # Gate C (3,3)+(4,4), Gate A/D/B (3,3)
 pytest tests/test_evaluation_equivalence.py               # reproduce-or-abort Gate 0 + record guard
 ```
 
