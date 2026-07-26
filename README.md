@@ -60,8 +60,9 @@ to make three-in-a-row anywhere in the cube.*
 5. **[Self-play coverage decays](#self-play-coverage-decays)** — on-policy near-perfect play can still walk off a certified cliff.
 6. **[Generalization is not robustness](#generalization-is-not-robustness)** — a net that generalizes (~98% on unseen states) is still a certified forced loss.
 7. **[The strongest player is not the strongest tester](#the-strongest-player-is-not-the-strongest-tester)** — an evaluator using only optimal opponents leaves a certified forced loss compatible.
-8. **[The game](#the-game)** — rules in ten lines.
-9. **[Docs & LLM context](#docs--llm-context)** · **[Reproduce](#reproduce)** · **[Citation](#citation)**
+8. **[The "Beat the Best" Fallacy](docs/BEAT_THE_BEST.md)** — plain-language introduction to that result: why a better competitor can be a worse evaluator *(separate doc)*.
+9. **[The game](#the-game)** — rules in ten lines.
+10. **[Docs & LLM context](#docs--llm-context)** · **[Reproduce](#reproduce)** · **[Citation](#citation)**
 
 ## Frozen plans vs. re-solving
 
@@ -240,7 +241,8 @@ flaw can be *tiny*: a **single** non-canonical decision is enough to be
 force-losable — one mutation, holding from (3,3) through the **12.7-million-state
 (5,5)** board (Gate A, two-sided from (4,4)). Strategic coverage buys nothing
 over same-universe random — it's the universe, not the selection (H2 falsified).
-Details in [`docs/FINDINGS.md`](docs/FINDINGS.md)
+Plain-language introduction: [**The "Beat the Best"
+Fallacy**](docs/BEAT_THE_BEST.md). Details in [`docs/FINDINGS.md`](docs/FINDINGS.md)
 ([Finding 17](docs/FINDINGS.md)) and [`docs/EVALUATION_EQUIVALENCE.md`](docs/EVALUATION_EQUIVALENCE.md).
 
 ## The game
@@ -284,6 +286,8 @@ priority) in [`rules.md`](rules.md).
 ## Docs & LLM context
 
 - **Findings & significance:** [`docs/FINDINGS.md`](docs/FINDINGS.md)
+- **One result, in plain language** (why the strongest opponent is not the
+  strongest evaluation): [`docs/BEAT_THE_BEST.md`](docs/BEAT_THE_BEST.md)
 - **FAQ** (is this a POMDP? you solved it — so what's the strategy? why not
   Elo? is AI "hitting a wall"?): [`docs/FAQ.md`](docs/FAQ.md)
 - **In a nutshell:** [`NUTSHELL.md`](NUTSHELL.md)

@@ -53,6 +53,7 @@ DESCRIPTIONS = {
     "30SECONDS.md": "30-second explainer: winning shapes and the gravity collapse.",
     "docs/FINDINGS.md": "Full research findings and their significance.",
     "docs/NEURAL_EXHIBIT.md": "Finding 16 in full: a net that generalizes is still certifiably force-losable (torch exhibit).",
+    "docs/BEAT_THE_BEST.md": "Plain-language on-ramp to Finding 17: why the strongest opponent is not the strongest evaluation.",
     "docs/EVALUATION_EQUIVALENCE.md": "Finding 17 in full: what passing an evaluation rules out; the strongest player is not the strongest tester (exact, pure-Python).",
     "docs/EVALUATION_EQUIVALENCE_PRIOR_ART.md": "Prior-art inventory for Finding 17 (mutation testing, identified sets, adversarial policies, CEGAR): new exact application, not new method.",
     "pyproject.toml": "Package metadata, dependencies, pytest config.",
@@ -61,7 +62,7 @@ DESCRIPTIONS = {
 INDEX_SECTIONS = [
     ("Start here", ["NUTSHELL.md", "README.md", "RELEVANCE.md", "rules.md",
                     "NOTATION.md", "docs/FINDINGS.md", "docs/NEURAL_EXHIBIT.md",
-                    "docs/EVALUATION_EQUIVALENCE.md"]),
+                    "docs/BEAT_THE_BEST.md", "docs/EVALUATION_EQUIVALENCE.md"]),
     ("Engine & tools", ["collapse3/game.py", "collapse3/solver.py",
                         "collapse3/enumeration.py", "collapse3/oracle.py",
                         "collapse3/agents.py", "collapse3/learning.py",

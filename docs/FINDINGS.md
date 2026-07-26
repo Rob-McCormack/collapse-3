@@ -1429,6 +1429,9 @@ outcome; neural decimals are threshold-checked, not pinned).
 > wander there at all. The states that would expose the weakness are exactly the
 > ones optimal play refuses to enter.*
 
+*New to this result? [**The "Beat the Best" Fallacy**](BEAT_THE_BEST.md) is a
+plain-language on-ramp to everything below.*
+
 Every finding above grades a *given* agent. This one grades the **evaluation
 itself**: after a candidate passes, how bad can a policy still be while remaining
 consistent with everything the evaluation observed? An evaluation pins the
