@@ -208,6 +208,18 @@ After every action, resolve the game in this order:
 
 ---
 
+## Variants: Shorter Games
+
+Nothing above depends on starting with 14 beads. The reserve count appears only in **Components** and **Setup** — every other rule (Placement, all five Removal conditions, the three winning lines, the Oops Rule, Simultaneous Wins, and the tiebreaker) is written without reference to how many beads you began with, and the game ends when **both Reserves are empty** rather than after any fixed number of turns. Agree on a different starting reserve and you are still playing a complete, well-defined game.
+
+Give each player 4 or 5 beads for a quick game, or for teaching — long enough to meet gravity, cooldown, and the Oops Rule, short enough to finish in a few minutes. Unequal reserves are legal too, and make a natural handicap.
+
+A reserve setting is written **`(r0, r1)`**: the first player's reserve, then the second player's. The full game is `(14,14)`. This is the notation used throughout the research documents, where small reserves make the game exactly solvable by computer.
+
+**Short games are not merely shorter — they play differently, and here that is measured rather than a matter of taste.** With 4 beads each, only 8 beads ever reach a 27-slot board: it cannot fill, Removal is rarer, and most games end by reserve exhaustion and the surviving-bead count. The full game puts 28 beads onto 27 slots, so the board saturates and the endgame is a different animal. Under *perfect* play the difference is exact: equal reserves are a **draw from `(1,1)` through `(5,5)`**, and a **first-player forced win from `(6,6)` through `(14,14)`**. The short equal-reserve games are therefore the fair ones. See [`docs/FINDINGS.md`](docs/FINDINGS.md) (Finding 11).
+
+---
+
 ## Playing Intuition (informal)
 
 *Flavor, not rules — a feel for why the game plays deeper than it looks.*

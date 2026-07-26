@@ -32,7 +32,50 @@ drift with the torch build (see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
 16. **[Generalization is not robustness](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable)** — a small net that plays ~98% optimally on unseen (4,4) states is still a certified forced loss from both seats; all six trained nets fall to the exact adversary from both seats (12 of 12 certifications). *(Torch-dependent exhibit — see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md).)*
 17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out — and a **single** non-canonical decision is enough to lose (Gate A, one mutation at (3,3), (4,4), and (5,5) — two-sided from (4,4)). Strategic coverage buys nothing over same-universe random — it's the universe, not the selection (H2 falsified). *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
 
-**Also in this document:** [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
+**Also in this document:** [Five mechanisms, seventeen exhibits](#five-mechanisms-seventeen-exhibits) · [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
+
+---
+
+## Five mechanisms, seventeen exhibits
+
+The numbering above counts **exhibits, not independent discoveries**. The
+seventeen findings rest on about **five mechanisms**, and several findings are one
+mechanism deliberately re-instantiated on a different agent class, board size, or
+sibling game. That repetition is *replication* and it is deliberate — but it
+should be read as replication, not as seventeen separate arguments.
+
+| | mechanism | findings |
+|---|---|---|
+| **A** | **Exhaustive best-response kills any frozen policy with a reachable flaw.** | [3](#3-an-open-loop-plan-is-not-a-strategy--shown-exactly), [8](#8-is-there-a-teachable-basic-strategy-certified-yes-at-33--certified-refutations-from-44-up), [14(ii)](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary), [14(iv)](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary), [16](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable) |
+| **B** | **An average is a property of the distribution you average over.** | [1](#1-aggregate-metrics-are-adversarially-flattering), [2](#2-performance-and-competence-come-apart), [6](#6-seat-and-material-decide-the-opening--a-hidden-confound-in-win-rate), [7](#7-the-floor-is-real-but-realized-regret-slips-beneath-it--interface-first-then-steering), [10](#10-elo-prefers-the-exploitable-agent--the-rating-inversion-measured), [14(i)](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary) |
+| **C** | **A missing state feature has an exact price, and that price is a property of the *interface*.** | [4](#4-representation-cost-is-real-quantifiable-and-interface-dependent), [5](#5-objective-failure-vs-representation-failure), [7](#7-the-floor-is-real-but-realized-regret-slips-beneath-it--interface-first-then-steering), [12](#12-a-sibling-game-shows-the-floors-shape--bounded-growth-and-a-hidden-feature-whose-cost-rises-then-falls), [15](#15-knowing-when-to-look--the-exact-value-of-information-is-sparse) |
+| **D** | **Game structure: capacity moves the boundary.** | [11](#11-the-full-game-fell--1414-is-a-first-player-forced-win-found-by-accident), [13](#13-a-second-sibling-six-pegs-shows-the-boundary-moves-with-capacity--finding-12iv-tested), [14(iii)](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary) |
+| **E** | **What a metric provably *cannot* see — the measurement itself as the object.** | [9](#9-throwing-the-game-is-provably-hard), [17](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester) |
+
+**A is the most replicated, so discount it accordingly** — four findings, one
+idea. What the repetition buys is *agent classes*: a frozen oracle-derived plan,
+a hand-written rulebook, a self-play champion, and trained neural nets all fall
+the same way, which is what rules out "an artifact of hand-written rules" or "an
+artifact of tabular learning." One mechanism, four kinds of victim.
+
+**Finding 7 is listed twice on purpose, and Finding 10 straddles** — in both
+cases the intersection *is* the finding. 7 is C×B: the floor is exact, yet the
+realized on-policy average slips beneath it. 10 is filed under B but presupposes
+A: an aggregate rating ranks a certifiably exploitable agent — the Finding 8
+rulebook — above the perfect player it never beat. It is counted once, under B,
+because it re-uses A's mechanism rather than re-demonstrating it. Remove either
+coordinate and neither result exists.
+
+**Finding 14 spans three mechanisms** — (i) in B, (ii) and (iv) in A, (iii) in D —
+while counting once in the numbering. It is a battery, not a single result.
+
+**E is the smallest group and the least like the rest.** Every finding in A–D
+grades an *agent*; the two in E grade the *measurement*. Finding 9's second half
+shows a value-regret audit sees thrown value but not thrown intent — steering
+inside a flat optimum is unscored. Finding 17 computes what passing an evaluation
+rules out at all. Note that **17 is not an instance of A**: best-response is its
+*tool*, but its object is a protocol and the whole set of policies compatible
+with it, not one policy dying to an adversary.
 
 ---
 

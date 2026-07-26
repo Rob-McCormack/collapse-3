@@ -255,7 +255,9 @@ can pull are your opponent's: you play inside their position, not just your own.
 
 **Rules in ten lines.** The board is a 3×3 grid of pegs, each holding up to 3
 beads; each player starts with a **reserve** of beads (14 in the full game;
-`(r, r)` in the experiments). On your turn you do exactly one thing:
+`(r, r)` in the experiments — the smaller reserves are a legal
+[short-game variant](rules.md#variants-shorter-games), not a truncation). On your
+turn you do exactly one thing:
 
 - **Place** a bead from your reserve on any non-full peg — it falls to the
   lowest empty level; or

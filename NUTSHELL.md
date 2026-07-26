@@ -1,5 +1,8 @@
 # Collapse3 in a nutshell
 
+> Every model simplifies reality; every measurement simplifies what it measures.
+> Collapse3 finds the exact point where those simplifications start to lie.
+
 Four plain takes:
 
 1. Collapse3 is a tiny, deterministic, fully solved 3×3×3 game in which an exact
