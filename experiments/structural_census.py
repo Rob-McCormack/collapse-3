@@ -28,6 +28,7 @@ from collapse3.game import (
     empty_state,
     evaluate_terminal,
     get_legal_moves,
+    is_oops,
     orient,
 )
 from collapse3.solver import game_value
@@ -42,14 +43,6 @@ def hypothetical_pass(s: GameState) -> GameState:
     cd = list(s.cooldown)
     cd[s.turn] = False
     return GameState(s.board, s.res, 1 - s.turn, tuple(cd))
-
-
-def is_oops_removal(state: GameState, move) -> bool:
-    """True if this removal immediately ends the game as a loss for the mover
-    (an Oops: the gravity cascade completes only the opponent's line)."""
-    child = apply_move(state, move)
-    t = evaluate_terminal(child)
-    return t is not None and orient(t, state.turn) < 0
 
 
 def main(r: int = 4) -> None:
@@ -99,7 +92,7 @@ def main(r: int = 4) -> None:
                 removal_among_optimal += 1
                 if all(m[0] == 'remove' for m in opt):
                     removal_only_optimal += 1
-            oops = [m for m in removals if is_oops_removal(s, m)]
+            oops = [m for m in removals if is_oops(s, m)]
             if oops:
                 oops_available += 1
                 if len(oops) == len(removals):

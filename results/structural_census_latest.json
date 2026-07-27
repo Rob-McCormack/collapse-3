@@ -1,12 +1,12 @@
 {
   "experiment": "structural_census",
   "provenance": {
-    "timestamp_utc": "2026-07-06T12:38:23.964210+00:00",
-    "git_commit": "b0ef40f3f2a1c329ec291ce0799263a7edf40041",
+    "timestamp_utc": "2026-07-27T18:29:01.833703+00:00",
+    "git_commit": "c93d83fed5f521c47e30738ed9575cc7aa3b5ce6",
     "git_dirty": true,
     "package_version": "0.2.0",
     "python": "3.9.6",
-    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
     "config": {
       "reserves": [
         4,

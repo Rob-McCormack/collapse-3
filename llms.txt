@@ -40,6 +40,7 @@
 - [experiments/memory_floor.py](experiments/memory_floor.py): Memory vs. memoryless floor under hide_reserves.
 - [experiments/objective_failure.py](experiments/objective_failure.py): Objective failure vs. representation failure.
 - [experiments/oneply_vs_learned.py](experiments/oneply_vs_learned.py): One-ply heuristic vs. machine-learned agent, both graded by the oracle.
+- [experiments/oops_ablation.py](experiments/oops_ablation.py): Is the Oops rule load-bearing? An exact ablation.
 - [experiments/opening_values.py](experiments/opening_values.py): Opening values: first-mover advantage, phase transition, and scaling sharpness.
 - [experiments/optimal_move_rate.py](experiments/optimal_move_rate.py): Optimal-move rate: aggregate vs critical-only.
 - [experiments/representation_amplification.py](experiments/representation_amplification.py): Does optimizing around a lossy representation *amplify* regret?

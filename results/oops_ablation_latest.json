@@ -1,0 +1,270 @@
+{
+  "experiment": "oops_ablation",
+  "provenance": {
+    "timestamp_utc": "2026-07-27T19:25:18.066091+00:00",
+    "git_commit": "772595a9d83472e4b0e904f04218380436bec731",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        3,
+        4
+      ],
+      "diagonal_max": 14,
+      "root_cap": 30000000
+    }
+  },
+  "results": {
+    "census": {
+      "(3,3)": {
+        "reserves": [
+          3,
+          3
+        ],
+        "reachable_states": 97093,
+        "states_with_oops_removal": 0,
+        "states_all_removals_oops": 0,
+        "states_all_legal_moves_oops": 0,
+        "oops_moves": 0,
+        "oops_strictly_worse": 0,
+        "oops_tied_optimal": 0,
+        "oops_uniquely_optimal": 0,
+        "oops_ever_strictly_best": null,
+        "lemma1_true_loss_violations": 0,
+        "lemma2_tied_implies_all_tied_violations": 0
+      },
+      "(4,4)": {
+        "reserves": [
+          4,
+          4
+        ],
+        "reachable_states": 1357963,
+        "states_with_oops_removal": 16,
+        "states_all_removals_oops": 0,
+        "states_all_legal_moves_oops": 0,
+        "oops_moves": 16,
+        "oops_strictly_worse": 16,
+        "oops_tied_optimal": 0,
+        "oops_uniquely_optimal": 0,
+        "oops_ever_strictly_best": false,
+        "lemma1_true_loss_violations": 0,
+        "lemma2_tied_implies_all_tied_violations": 0
+      },
+      "(5,5)": {
+        "reserves": [
+          5,
+          5
+        ],
+        "reachable_states": 12714999,
+        "states_with_oops_removal": 2368,
+        "states_all_removals_oops": 0,
+        "states_all_legal_moves_oops": 0,
+        "oops_moves": 2368,
+        "oops_strictly_worse": 2368,
+        "oops_tied_optimal": 0,
+        "oops_uniquely_optimal": 0,
+        "oops_ever_strictly_best": false,
+        "lemma1_true_loss_violations": 0,
+        "lemma2_tied_implies_all_tied_violations": 0
+      }
+    },
+    "ablation": {
+      "(3,3)": {
+        "reserves": [
+          3,
+          3
+        ],
+        "standard_states": 97093,
+        "ablated_states": 97093,
+        "ablated_states_not_in_standard": 0,
+        "value_disagreements": 0,
+        "root_standard": 0,
+        "root_ablated": 0,
+        "root_unchanged": true
+      },
+      "(4,4)": {
+        "reserves": [
+          4,
+          4
+        ],
+        "standard_states": 1357963,
+        "ablated_states": 1357947,
+        "ablated_states_not_in_standard": 0,
+        "value_disagreements": 0,
+        "root_standard": 0,
+        "root_ablated": 0,
+        "root_unchanged": true
+      }
+    },
+    "ablation_note": "sizes in `census_only` are compared at the root by root_diagonal rather than value-by-value (two solved memos at (5,5) is 12.7M states twice)",
+    "root_diagonal": {
+      "(1,1)": {
+        "standard": 0,
+        "ablated": 0,
+        "unchanged": true
+      },
+      "(2,2)": {
+        "standard": 0,
+        "ablated": 0,
+        "unchanged": true
+      },
+      "(3,3)": {
+        "standard": 0,
+        "ablated": 0,
+        "unchanged": true
+      },
+      "(4,4)": {
+        "standard": 0,
+        "ablated": 0,
+        "unchanged": true
+      },
+      "(5,5)": {
+        "standard": 0,
+        "ablated": 0,
+        "unchanged": true
+      },
+      "(6,6)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(7,7)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(8,8)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(9,9)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(10,10)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(11,11)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(12,12)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(13,13)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      },
+      "(14,14)": {
+        "standard": 100,
+        "ablated": 100,
+        "unchanged": true
+      }
+    },
+    "misere": {
+      "(3,3)": {
+        "standard": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": true,
+          "weak_throw_grandpa_second": true,
+          "p_grandson_first_exact": "47/150",
+          "p_grandson_second_exact": "520/8019"
+        },
+        "ablated": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": true,
+          "weak_throw_grandpa_second": true,
+          "p_grandson_first_exact": "47/150",
+          "p_grandson_second_exact": "520/8019"
+        },
+        "changed": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": false,
+          "weak_throw_grandpa_second": false,
+          "p_grandson_first_exact": false,
+          "p_grandson_second_exact": false
+        },
+        "any_change": false,
+        "verdicts_changed": false
+      },
+      "(4,4)": {
+        "standard": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": true,
+          "weak_throw_grandpa_second": true,
+          "p_grandson_first_exact": "142823/259200",
+          "p_grandson_second_exact": "53470343/264627000"
+        },
+        "ablated": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": true,
+          "weak_throw_grandpa_second": true,
+          "p_grandson_first_exact": "35699/64800",
+          "p_grandson_second_exact": "53470343/264627000"
+        },
+        "changed": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": false,
+          "weak_throw_grandpa_second": false,
+          "p_grandson_first_exact": true,
+          "p_grandson_second_exact": false
+        },
+        "any_change": true,
+        "verdicts_changed": false
+      },
+      "(5,5)": {
+        "standard": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": true,
+          "weak_throw_grandpa_second": true,
+          "p_grandson_first_exact": "513274009/641520000",
+          "p_grandson_second_exact": "132796217934929/326951951040000"
+        },
+        "ablated": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": true,
+          "weak_throw_grandpa_second": true,
+          "p_grandson_first_exact": "342110531/427680000",
+          "p_grandson_second_exact": "133015939105169/326951951040000"
+        },
+        "changed": {
+          "forced_throw_grandson_first": false,
+          "forced_throw_grandson_second": false,
+          "weak_throw_grandpa_first": false,
+          "weak_throw_grandpa_second": false,
+          "p_grandson_first_exact": true,
+          "p_grandson_second_exact": true
+        },
+        "any_change": true,
+        "verdicts_changed": false
+      }
+    },
+    "verdict": {
+      "oops_ever_strictly_best_move": false,
+      "oops_ever_forced_all_legal_moves": false,
+      "exact_values_unchanged_by_ablation": true,
+      "full_game_root_unchanged": true,
+      "misere_verdicts_unchanged": true,
+      "misere_probabilities_changed": true
+    },
+    "elapsed_seconds": 997.1
+  }
+}

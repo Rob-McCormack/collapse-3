@@ -168,6 +168,42 @@ def evaluate_terminal(state: GameState) -> Optional[int]:
 PLACEMENT_PEGS: Tuple[int, ...] = tuple(range(9))
 
 
+# Variant hook: the Oops ablation. Default False (standard Collapse3). When set,
+# a Removal whose gravity cascade would complete *only the opponent's* line is
+# ILLEGAL rather than instantly losing -- the game protects the mover from the
+# Oops rule. Used by ``experiments/oops_ablation.py`` to ask whether the Oops
+# rule is load-bearing for exact values. Nothing else changes; if every legal
+# action was such a Removal, the mover now has no legal action and the game ends
+# by surviving-bead count under the shipped immediate-end rule.
+FORBID_OOPS: bool = False
+
+
+@contextmanager
+def forbid_oops() -> Iterator[None]:
+    """Temporarily make self-destructive Removals illegal (ablation scope)."""
+    global FORBID_OOPS
+    prev = FORBID_OOPS
+    FORBID_OOPS = True
+    try:
+        yield
+    finally:
+        FORBID_OOPS = prev
+
+
+def is_oops(state: GameState, move: Move) -> bool:
+    """True if ``move`` is a genuine Oops from ``state``.
+
+    That is: a Removal whose gravity cascade ends the game as an immediate loss
+    for the mover, because it completed a line for the opponent *alone*. If the
+    cascade completes lines for both, the Simultaneous rule awards the mover the
+    win, so that is not an Oops.
+    """
+    if move[0] != 'remove':
+        return False
+    t = evaluate_terminal(apply_move(state, move))
+    return t is not None and orient(t, state.turn) < 0
+
+
 @contextmanager
 def placement_pegs(pegs: Tuple[int, ...]) -> Iterator[None]:
     """Temporarily restrict which pegs accept a placement (variant scope).
@@ -210,6 +246,9 @@ def get_legal_moves(state: GameState) -> List[Move]:
                         for z, bead in enumerate(peg):
                             if bead == opp:         # 5. Any opponent bead
                                 moves.append(('remove', peg_idx, z))
+
+    if FORBID_OOPS:
+        moves = [m for m in moves if not is_oops(state, m)]
     return moves
 
 

@@ -727,7 +727,12 @@ tiebreaker *toward grandpa* — his one form of aggression feeds his own attriti
 win. *Reverse-Oops*: placing risks completing grandpa's own line, and the
 grandson can answer with removals whose gravity cascade completes a line among
 **grandpa's** beads, handing grandpa the win by physics. So a grandson set on not
-winning can always reach a draw or force a grandpa-win. The **weak** throw is
+winning can always reach a draw or force a grandpa-win. (Of these two mechanisms
+only the first is *necessary*: making Oops removals illegal and re-solving leaves
+a forced throw impossible at every solved size, so attrition poisoning carries the
+theorem on its own — see [the Oops ablation](#the-ablation-trap-a-mechanic-can-be-strategically-inert-and-behaviourally-decisive).
+Reverse-Oops does still move the exact probabilities against a random opponent.)
+The **weak** throw is
 easier precisely because grandpa can simply decline to complete his own line and
 let the game peter out — hence "can't force a loss, *can* force a non-win," the
 finding's sharp edge.
@@ -1705,6 +1710,91 @@ ruling **moves the load-bearing hidden feature** (cooldown ↔ reserves). Claims
 about "which feature matters" are fragile to the exact rules — a caution worth
 stating explicitly in any write-up.
 
+### The ablation trap: a mechanic can be strategically inert and behaviourally decisive
+`experiments/oops_ablation.py` (exhaustive (3,3)–(5,5); root diagonal to (14,14))
+
+The **Oops rule** — your removal's gravity cascade completes a line for your
+opponent *alone*, and they win instantly — is the game's signature trap. Does it
+matter? Ablate it and the answer looks like a flat *no*.
+
+A genuine Oops hands the opponent a line, so it is worth exactly `TRUE_LOSS`, the
+bottom of the ladder (if the cascade lines up *both* players the Simultaneous rule
+awards the mover the win, so that is not an Oops). It therefore cannot be
+strictly better than any alternative, and can only be *optimal* in a position
+already lost, or *unavoidable* as the mover's sole legal action. Both lemmas are
+verified over every reachable state rather than assumed, and both edge cases turn
+out to be empty:
+
+| size | states | states with an Oops | strictly worse | tied-optimal | forced |
+|---|---|---|---|---|---|
+| (3,3) | 97,093 | **0** | — | — | — |
+| (4,4) | 1,357,963 | 16 | **16** | 0 | 0 |
+| (5,5) | 12,714,999 | 2,368 | **2,368** | 0 | 0 |
+
+So the trap **proliferates** with board size — absent at (3,3), then 16, then
+2,368 — while never once becoming correct. Every Oops in every solved size is
+strictly worse than some alternative; none is ever tied for optimal, and none is
+ever forced. **Perfect play never chooses an Oops, and never has to.**
+
+Make Oops removals illegal and re-solve: **not one value moves.** Zero
+disagreements across all 97,093 states at (3,3) and all 1,357,947 at (4,4) — the
+ablated space is exactly 16 states smaller, one per Oops move — and the root value
+is identical with and without the rule at every reserve from (1,1) to the full
+**(14,14)** game. Delete the game's most distinctive mechanic and the exact values
+of Collapse3 do not notice.
+
+**And yet the rule is not inert once a player is imperfect, which is the point.**
+Re-run the misère solves of [Finding 9](#9-throwing-the-game-is-provably-hard)
+under the same ablation. The yes/no theorems do not move — but the exact win
+probability against a *uniform-random* opponent does:
+
+| size | seat | P(opponent wins), standard | ablated | exact change |
+|---|---|---|---|---|
+| (4,4) | first | 142823/259200 | 35699/64800 | **−1/9600** |
+| (4,4) | second | 53470343/264627000 | *unchanged* | 0 |
+| (5,5) | first | 513274009/641520000 | 342110531/427680000 | **−787/4665600** |
+| (5,5) | second | 132796217934929/326951951040000 | 133015939105169/326951951040000 | **+5389/8019000** |
+
+So the rule is worth exactly **nothing** to perfect play and an exact, nonzero
+amount once a player is not perfect. **Value-invariance is not irrelevance** —
+the ablation moved nothing at the optimum and moved real probability mass off it.
+
+The signs differ by seat, and both directions have a mechanism: forbidding Oops
+costs a *deliberate* thrower a tool (probability down) while simultaneously
+removing a hazard a *random* player used to blunder into (probability up). Which
+effect dominates flips between seats, so the rule is not a uniform hazard and no
+single scalar "importance" summarises it.
+
+**A correction this forced.** Finding 9 explains the impossibility of a forced
+throw with two mechanisms: attrition poisoning and *reverse-Oops*. The ablation
+shows reverse-Oops is **not necessary** for that result — forbid it and a forced
+throw stays impossible at every solved size, so attrition poisoning alone carries
+the theorem. The explanation over-attributed, and the ablation caught it.
+
+What is *not* measured here: how much of a fallible agent's loss is attributable
+to this rule specifically. At **0.019%** of (5,5) states the opportunity is rare,
+and [Finding 8](#8-is-there-a-teachable-basic-strategy-certified-yes-at-33--certified-refutations-from-44-up)
+attributes the naive heuristic's collapse to the gravity-and-removal trap family
+collectively, not to Oops alone.
+
+Two cautions transfer, and both are about how ablations get read:
+
+- **An ablation that measures only the optimum can miss a component entirely.**
+  "We removed X, optimal performance was unchanged, therefore X does not matter"
+  fails here twice over: the optimum did not move, *and* the outcome distribution
+  for imperfect players did. A mechanic can leave the ceiling exactly where it
+  was while shaping the surface every fallible agent actually lives on.
+- **Relevance is objective- and opponent-relative.** The same rule is strictly
+  dominated under normal play, worth a measurable amount to a player trying to
+  lose, and worth a *differently-signed* amount depending on seat and on the
+  opponent's policy. An ablation result is a statement about a mechanic, an
+  objective, and an opponent — never about the mechanic alone.
+
+Both are exactly the confusion the rest of this document is built to expose,
+arriving here as a property of a *rule* rather than of an agent or a metric.
+Guarded by `tests/test_oops_ablation.py`; numbers bound to
+[`results/oops_ablation_latest.json`](../results/oops_ablation_latest.json).
+
 ---
 
 ## Limitations & scaling
@@ -1772,6 +1862,7 @@ python -m experiments.weak_exploiter                # a near-random policy (6 me
 python -m experiments.interface_ladder 4            # floor is a property of the interface (mask-blind->aware->memory)
 python -m experiments.info_policy 3 4               # value of information: when to acquire a missing feature (sparse VOI)
 python -m experiments.evaluation_equivalence 3 4 --full --ga5  # what passing an eval rules out: compatible outcome range (Gate C/A/D/B; Gate A also (5,5))
+python -m experiments.oops_ablation                 # is the Oops rule load-bearing? inert for values, decisive for play (~13 min)
 
 # Finding 16 — torch-dependent exhibit, quarantined in probes/ (needs: pip install numpy torch)
 python probes/make_memo44.py                        # exact labels for every (4,4) state -> memo44.pkl (git-ignored)
