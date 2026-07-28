@@ -30,7 +30,7 @@ drift with the torch build (see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
 14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary. Part (iv): the exploiter need not be strong — a policy random except on six memorized moves beats a >99%-vs-random champion (KataGo analogue).
 15. **[Knowing when to look — the value of information is sparse](#15-knowing-when-to-look--the-exact-value-of-information-is-sparse)** — an exact information policy: missing ≠ useful (reserves have zero decision value at (3,3)), yet from (4,4) up only ~1% of decisions must inspect reserves and that 1% carries the *entire* irreducible floor.
 16. **[Generalization is not robustness](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable)** — a small net that plays ~98% optimally on unseen (4,4) states is still a certified forced loss from both seats; all six trained nets fall to the exact adversary from both seats (12 of 12 certifications). *(Torch-dependent exhibit — see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md).)*
-17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out — and a **single** non-canonical decision is enough to lose (Gate A, one mutation at (3,3), (4,4), and (5,5) — two-sided from (4,4)). Strategic coverage buys nothing over same-universe random — it's the universe, not the selection (H2 falsified). *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
+17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out — and a **single** non-canonical decision is enough to lose (Gate A, one mutation at (3,3), (4,4), and (5,5) — two-sided from (4,4)). Strategic coverage buys nothing over same-universe random — it's the universe, not the selection (H2 falsified). The gap is closed by permitting the opponent **one deliberate mistake per game** (tremble budget m=1), which exposes exactly the all-legal decision set. *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
 
 **Also in this document:** [Five mechanisms, seventeen exhibits](#five-mechanisms-seventeen-exhibits) · [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -1491,6 +1491,34 @@ decision suffices at (3,3) seat 0 (depth 6), and it stays **one mutation, from
 surviving flaw a strong-opponent test misses is a **single memorized mistake**,
 and a board ~130× larger across three exact sizes did not require more of them —
 the exact, minimum-cardinality cousin of the weak exploiter (Finding 14).
+
+**How wide is wide enough? The tremble budget.**
+`experiments/tremble_budget.py` (reserves (3,3)+(4,4) certified, (5,5) coverage
+only). "All-legal" is not a protocol anyone can run, which leaves the headline a
+diagnosis without a remedy. Interpolate: let the evaluation opponent play
+zero-regret moves but permit it **m value-dropping moves per game**. Under WDL
+grading the answer is **m = 1**. One permitted mistake exposes *exactly the same
+set* of candidate decisions an unrestricted opponent exposes — set equality, not
+merely equal counts — and every cell Gate C left as a certified forced loss
+flips to certified (41 → 96 at (3,3) seat 0; 10 → 447 and 1,241 → 3,982 at
+(4,4)); the coverage half also holds at **(5,5)** (15 → 858, 2,735 → 15,674),
+where the pinned solves are memory-bound as Gate C's were. A separate 0-1 BFS
+reconstructs every support as a cross-check. The mechanism gate says why one
+unit suffices: the opening is a **draw** at every solved size, so the opponent's
+only available mistake drops the game to a loss, and below a blunder every move
+it has left is already zero-regret — the remainder of the line is free. That
+condition is checked rather than assumed; re-rooted at positions the opponent is
+*winning* it has two rungs to fall and the budget does rise to two. Grading the opponent on the raw five-class
+ladder instead can demand a second unit, and at (4,4) seat 0 that becomes a
+certification cliff; the cliff is scale mismatch between the grader and the
+reference policy's objective, and a scale-matched reference removes it.
+**All absolute counts are reference-policy-dependent** — the reversed-tie-break
+control demonstrates it directly — so only the patterns are claimed. A
+conjecture bounding the budget by the number of value classes below the root is
+recorded **refuted rather than reworded**: re-rooting the machinery at non-drawn
+states, exhaustively at (3,3), breaks the unconditional form at (4,4). Numbers
+bound to [`results/tremble_budget_latest.json`](../results/tremble_budget_latest.json),
+guarded by `tests/test_tremble_budget.py`.
 
 This is a **transcript-level** result only — the `grade` and `outcome`
 (win-rate/Elo) rungs are deliberately quarantined as unsound to fake by pinning

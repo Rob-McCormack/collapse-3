@@ -95,6 +95,58 @@ coverage nails with **96** decisions.
 
 ---
 
+## How much wider does the universe have to be?
+
+"All-legal" is a clean mathematical family and a useless instruction. Nobody
+evaluates against an opponent that plays uniformly badly, so the obvious
+objection to everything above is that the diagnosis comes without a remedy.
+
+It doesn't. Interpolate between the two families: let the opponent play its best
+move almost always, but permit it a fixed number of deliberate mistakes per game
+— a **tremble budget**. Then ask how large that budget has to be before the
+evaluation certifies.
+
+The answer is **one**.
+
+| board | seat | perfect opponent | one permitted mistake |
+|---|---|---|---|
+| (3,3) | 0 | 41 inspected → **forced loss** | 96 → draw ✓ |
+| (4,4) | 0 | 10 inspected → **forced loss** | 447 → draw ✓ |
+| (4,4) | 1 | 1,241 inspected → **forced loss** | 3,982 → draw ✓ |
+
+One mistake per game does not merely inspect *as many* decisions as an
+unrestricted opponent. It inspects **exactly the same set**, and it certifies in
+every cell where the perfect opponent failed. At (5,5) — 12.7 million states —
+the coverage claim still holds (15 decisions become 858, and 2,735 become
+15,674); only the certification solve is out of memory reach there, as it was in
+the original experiment.
+
+Why one is enough is worth stating, and it is not a coincidence of these board
+sizes. The opening is a **draw** at every size solved here, so the opponent
+starts one rung above the bottom: the only mistake available to it drops the game
+to a loss, and from a lost position every remaining move is value-neutral —
+there is nothing left to throw. The whole remainder of the line is therefore
+free, and a second unit of budget buys no decision the first did not reach.
+
+That reasoning is conditional, and the experiment checks the condition rather
+than assuming it. Re-rooted at positions the opponent is *winning*, it has two
+rungs to fall through and the budget does rise to two. So "one" is the answer for
+evaluations that start from a drawn opening — which is the case here at every
+solved size, and is the case a benchmark actually faces.
+
+**The caveats, plainly.** Whether one is enough depends on what counts as a
+mistake. Grade the opponent on a scale finer than win/draw/loss and a second unit
+can be demanded — in one cell at (4,4) that difference decides certification.
+That case turns out to be a mismatch between the grader's scale and the reference
+policy's objective rather than a fact about the game, and matching them removes
+it. Separately, every *count* in the table above moves if the reference policy
+moves, so what is claimed is the pattern, not the integers. The mechanism test,
+the counts under three different reference policies, and a bound we conjectured
+and then refuted are all in
+[`experiments/tremble_budget.py`](../experiments/tremble_budget.py).
+
+---
+
 ## "Isn't a subset trivially weaker?"
 
 Partly, and that part is conceded: of course inspecting *fewer* decisions can
@@ -160,7 +212,8 @@ stronger opponent can be harder to beat while revealing less.
 The reason is structural. An optimal opponent systematically avoids the very
 states that would expose the candidate, and no amount of further testing against
 that same family recovers them. The fix is a wider opponent universe, not a
-smarter or a weaker one.
+smarter or a weaker one — and it need not be much wider: **one deliberate
+mistake per game** is the whole gap.
 
 > **A better competitor can be a worse evaluator.**
 

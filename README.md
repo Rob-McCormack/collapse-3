@@ -241,6 +241,10 @@ flaw can be *tiny*: a **single** non-canonical decision is enough to be
 force-losable — one mutation, holding from (3,3) through the **12.7-million-state
 (5,5)** board (Gate A, two-sided from (4,4)). Strategic coverage buys nothing
 over same-universe random — it's the universe, not the selection (H2 falsified).
+And the gap is narrow: permitting the opponent **one deliberate mistake per
+game** exposes *exactly* the all-legal decision set and certifies every cell the
+perfect opponent left open — the opening is a draw, so one mistake drops it to a
+loss and there is nothing left to throw (`experiments/tremble_budget.py`).
 Plain-language introduction: [**The "Beat the Best"
 Fallacy**](docs/BEAT_THE_BEST.md). Details in [`docs/FINDINGS.md`](docs/FINDINGS.md)
 ([Finding 17](docs/FINDINGS.md)) and [`docs/EVALUATION_EQUIVALENCE.md`](docs/EVALUATION_EQUIVALENCE.md).
