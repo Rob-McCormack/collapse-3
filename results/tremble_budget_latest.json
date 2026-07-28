@@ -1,0 +1,2069 @@
+{
+  "experiment": "tremble_budget",
+  "provenance": {
+    "timestamp_utc": "2026-07-28T17:01:55.985487+00:00",
+    "git_commit": "4cd6ef222def9919c9aaad288ad6e055704fd9ae",
+    "git_dirty": true,
+    "package_version": "0.2.0",
+    "python": "3.9.6",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "config": {
+      "sizes": [
+        3,
+        4
+      ],
+      "slow": true,
+      "five": true,
+      "budgets": [
+        0,
+        1,
+        2
+      ],
+      "reference_policy_default": "CANONICAL_POLICY_V1",
+      "counts_are_reference_policy_dependent": true
+    }
+  },
+  "results": {
+    "note": "All absolute counts are reference-policy-dependent: a support set is the set of decisions one frozen candidate is driven through. Only the patterns are claimed (set equalities, the budget at which certification flips, and the maximum min-blunder distance). The reversed-tie-break row demonstrates the dependence directly.",
+    "conjecture": {
+      "status": "unconditional form REFUTED at (4,4); survives only for SCALE-MATCHED grader/reference pairs. equality clause WITHDRAWN",
+      "statement": "When the grader's scale matches the scale the reference policy optimizes, the opponent tremble budget is at most the number of value classes below the root value AS THE OPPONENT SEES IT -- the blundering side is the one with rungs left to fall through. Mismatch the two and the bound does not merely loosen, it FAILS: a candidate indifferent to rungs the grader is scoring hands value back, and the opponent re-descends a ladder it had already fallen down.",
+      "refutations": [
+        "(4,4) seat 0, class grading against the WDL-optimal V1 reference: budget 3 from drawn roots where the bound is 2; budget 2 from roots where the bound is 1; and -- decisively -- budget 2 from roots the opponent has ALREADY LOST outright, where the bound is 0 and no further fall should be possible at all.",
+        "The equality clause of the earlier form ('equality when the descent visits every intermediate class') fails in the other direction: at (3,3) seat 1 the class bound permits 3 at the 882 roots where the opponent is winning on attrition, and the observed budget is 1."
+      ],
+      "what_survives": [
+        "Scale-matched pairs are unviolated everywhere tested: WDL grading against V1, and class grading against the class-optimal V2, at both sizes and both seats -- exhaustively at (3,3) (all 10,882 and 15,228 candidate-to-move roots). The (4,4) evidence is weaker than the word 'tested' suggests: the scan takes the 150 SHALLOWEST roots per value class within 8 ply, so the clean result there rests on a depth-biased subsample of 600 roots. A violation found in such a sample still refutes; a clean one does not confirm.",
+        "The failures are exactly the mismatched pair, and they are the same mechanism as the (4,4) seat-0 certification cliff: V1's indifference between losing outright and losing on the tiebreaker. Section C showed that mismatch manufactures gating states; this shows it also breaks the budget bound.",
+        "The mismatched pair is clean at (3,3) and refuted from (4,4) up -- the same size-dependence as Finding 8, and the same warning against reading a rule off the smallest board."
+      ],
+      "why_not_a_law": "What is left is an unproved upper bound with a scope condition found by testing it, exhaustive at one board size and sampled at one more. It is also loose where it would be informative: it forbids budgets nobody has observed rather than predicting the ones we do."
+    },
+    "convention": {
+      "certification": "WDL (compatible_extreme, unchanged from Finding 17)",
+      "gradings": {
+        "wdl": "ee.zero_regret_moves",
+        "class5": "raw 5-class ladder 100/10/0/-10/-100"
+      },
+      "reference_policies": {
+        "CANONICAL_POLICY_V1": "WDL-optimal, canonical_move_key tie-break",
+        "CANONICAL_POLICY_V2": "class-optimal, canonical_move_key tie-break",
+        "CANONICAL_POLICY_V1_REVERSED": "WDL-optimal, reversed canonical_move_key tie-break"
+      },
+      "canonical_order": "(action_rank, peg, index); place=0, remove=1",
+      "budgets": [
+        0,
+        1,
+        2
+      ]
+    },
+    "sizes": {
+      "(3,3)": {
+        "states": 97093,
+        "certified": true,
+        "seats": {
+          "0": {
+            "gate_c_agreement": {
+              "support0_equals_gate_c_optimal": true,
+              "support_all_equals_gate_c_all": true,
+              "gate_c_optimal_pinned": 41,
+              "gate_c_all_pinned": 96,
+              "caveat": "support(0) == optimal-only is a wiring check: budget 0 is the optimal-only opponent by construction."
+            },
+            "wdl_v1": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 96,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 41,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 96,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 96,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 41,
+                "1": 55
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 41,
+                  "min": 0,
+                  "median": 4,
+                  "max": 6
+                },
+                "1": {
+                  "count": 55,
+                  "min": 2,
+                  "median": 4,
+                  "max": 6
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_wdl": {
+              "below_blunder": 2,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v1": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 96,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 41,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 88,
+                  "equals_all_legal": false,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 96,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 41,
+                "1": 47,
+                "2": 8
+              },
+              "max_min_blunders": 2,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 41,
+                  "min": 0,
+                  "median": 4,
+                  "max": 6
+                },
+                "1": {
+                  "count": 47,
+                  "min": 2,
+                  "median": 4,
+                  "max": 6
+                },
+                "2": {
+                  "count": 8,
+                  "min": 4,
+                  "median": 4,
+                  "max": 4
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_class": {
+              "below_blunder": 2,
+              "violations": 1,
+              "attrition_constrained": 1,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v2": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V2",
+              "all_legal_pinned": 96,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 41,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 88,
+                  "equals_all_legal": false,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 96,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 41,
+                "1": 47,
+                "2": 8
+              },
+              "max_min_blunders": 2,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 41,
+                  "min": 0,
+                  "median": 4,
+                  "max": 6
+                },
+                "1": {
+                  "count": 47,
+                  "min": 2,
+                  "median": 4,
+                  "max": 6
+                },
+                "2": {
+                  "count": 8,
+                  "min": 4,
+                  "median": 4,
+                  "max": 4
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_class_v2": {
+              "below_blunder": 2,
+              "violations": 1,
+              "attrition_constrained": 1,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "wdl_v1_reversed": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1_REVERSED",
+              "all_legal_pinned": 192,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 49,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 192,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 192,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 49,
+                "1": 143
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 49,
+                  "min": 0,
+                  "median": 4,
+                  "max": 6
+                },
+                "1": {
+                  "count": 143,
+                  "min": 2,
+                  "median": 6,
+                  "max": 6
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "conjecture_scan": {
+              "wdl_v1": {
+                "grading": "wdl",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": true,
+                "max_root_depth": null,
+                "roots_per_class": null,
+                "exhaustive": true,
+                "roots_tested": 10882,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 1,
+                    "roots_tested": 3610,
+                    "max_budget_observed": 1,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3537,
+                      "1": 73
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -10,
+                    "classes_below": 0,
+                    "roots_tested": 3708,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3708
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 3564,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3564
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  0,
+                  -10,
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              },
+              "class5_v1": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": false,
+                "max_root_depth": null,
+                "roots_per_class": null,
+                "exhaustive": true,
+                "roots_tested": 10882,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 3610,
+                    "max_budget_observed": 2,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3537,
+                      "1": 66,
+                      "2": 7
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -10,
+                    "classes_below": 1,
+                    "roots_tested": 3708,
+                    "max_budget_observed": 1,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3602,
+                      "1": 106
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 3564,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3564
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  0,
+                  -10,
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              },
+              "class5_v2": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V2",
+                "scale_matched": true,
+                "max_root_depth": null,
+                "roots_per_class": null,
+                "exhaustive": true,
+                "roots_tested": 10882,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 3610,
+                    "max_budget_observed": 2,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3537,
+                      "1": 66,
+                      "2": 7
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -10,
+                    "classes_below": 1,
+                    "roots_tested": 3708,
+                    "max_budget_observed": 1,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3602,
+                      "1": 106
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 3564,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3564
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  0,
+                  -10,
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              }
+            },
+            "two_blunder_family": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "budget": 2,
+              "states_unfolded": 8,
+              "distinct_up_to_symmetry": 8,
+              "is_one_d4_orbit": false,
+              "d4_order": 8,
+              "decision_nodes": 1,
+              "family_is_exactly_the_blundering_children": true,
+              "nodes": [
+                {
+                  "ply_depth": 3,
+                  "min_blunders_to_node": 1,
+                  "value_opponent_seat": -10,
+                  "legal_moves": 9,
+                  "zero_regret_moves": 1,
+                  "blundering_children": 8
+                }
+              ],
+              "reserves": [
+                [
+                  1,
+                  1
+                ]
+              ],
+              "removals_played": [
+                0
+              ],
+              "ply_depths": [
+                4
+              ],
+              "value_trajectory_opponent_seat": [
+                0,
+                0,
+                -10,
+                -10,
+                -100
+              ]
+            }
+          },
+          "1": {
+            "gate_c_agreement": {
+              "support0_equals_gate_c_optimal": true,
+              "support_all_equals_gate_c_all": true,
+              "gate_c_optimal_pinned": 367,
+              "gate_c_all_pinned": 538,
+              "caveat": "support(0) == optimal-only is a wiring check: budget 0 is the optimal-only opponent by construction."
+            },
+            "wdl_v1": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 538,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 367,
+                  "equals_all_legal": false,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 538,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 538,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 367,
+                "1": 171
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 367,
+                  "min": 1,
+                  "median": 5,
+                  "max": 7
+                },
+                "1": {
+                  "count": 171,
+                  "min": 5,
+                  "median": 5,
+                  "max": 5
+                }
+              },
+              "certification_flips_at": 0
+            },
+            "mechanism_wdl": {
+              "below_blunder": 0,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v1": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 538,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 367,
+                  "equals_all_legal": false,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 538,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 538,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 367,
+                "1": 171
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 367,
+                  "min": 1,
+                  "median": 5,
+                  "max": 7
+                },
+                "1": {
+                  "count": 171,
+                  "min": 5,
+                  "median": 5,
+                  "max": 5
+                }
+              },
+              "certification_flips_at": 0
+            },
+            "mechanism_class": {
+              "below_blunder": 0,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v2": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V2",
+              "all_legal_pinned": 538,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 367,
+                  "equals_all_legal": false,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 538,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 538,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 367,
+                "1": 171
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 367,
+                  "min": 1,
+                  "median": 5,
+                  "max": 7
+                },
+                "1": {
+                  "count": 171,
+                  "min": 5,
+                  "median": 5,
+                  "max": 5
+                }
+              },
+              "certification_flips_at": 0
+            },
+            "mechanism_class_v2": {
+              "below_blunder": 0,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "wdl_v1_reversed": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1_REVERSED",
+              "all_legal_pinned": 465,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 323,
+                  "equals_all_legal": false,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 465,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 2,
+                  "pinned": 465,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 6
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 323,
+                "1": 142
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 323,
+                  "min": 1,
+                  "median": 5,
+                  "max": 7
+                },
+                "1": {
+                  "count": 142,
+                  "min": 5,
+                  "median": 5,
+                  "max": 5
+                }
+              },
+              "certification_flips_at": 0
+            },
+            "conjecture_scan": {
+              "wdl_v1": {
+                "grading": "wdl",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": true,
+                "max_root_depth": null,
+                "roots_per_class": null,
+                "exhaustive": true,
+                "roots_tested": 15228,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 10,
+                    "classes_below": 2,
+                    "roots_tested": 882,
+                    "max_budget_observed": 1,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 801,
+                      "1": 81
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 1,
+                    "roots_tested": 10750,
+                    "max_budget_observed": 1,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 10542,
+                      "1": 208
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 3596,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3596
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  0,
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              },
+              "class5_v1": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": false,
+                "max_root_depth": null,
+                "roots_per_class": null,
+                "exhaustive": true,
+                "roots_tested": 15228,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 10,
+                    "classes_below": 3,
+                    "roots_tested": 882,
+                    "max_budget_observed": 1,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 801,
+                      "1": 81
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 10750,
+                    "max_budget_observed": 1,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 10542,
+                      "1": 208
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 3596,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3596
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              },
+              "class5_v2": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V2",
+                "scale_matched": true,
+                "max_root_depth": null,
+                "roots_per_class": null,
+                "exhaustive": true,
+                "roots_tested": 15228,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 10,
+                    "classes_below": 3,
+                    "roots_tested": 882,
+                    "max_budget_observed": 1,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 801,
+                      "1": 81
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 10750,
+                    "max_budget_observed": 1,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 10542,
+                      "1": 208
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 3596,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 3596
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              }
+            }
+          }
+        }
+      },
+      "(4,4)": {
+        "states": 1357963,
+        "certified": true,
+        "seats": {
+          "0": {
+            "gate_c_agreement": {
+              "support0_equals_gate_c_optimal": true,
+              "support_all_equals_gate_c_all": true,
+              "gate_c_optimal_pinned": 10,
+              "gate_c_all_pinned": 447,
+              "caveat": "support(0) == optimal-only is a wiring check: budget 0 is the optimal-only opponent by construction."
+            },
+            "wdl_v1": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 447,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 10,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 447,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                },
+                {
+                  "budget": 2,
+                  "pinned": 447,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 10,
+                "1": 437
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 10,
+                  "min": 0,
+                  "median": 6,
+                  "max": 10
+                },
+                "1": {
+                  "count": 437,
+                  "min": 2,
+                  "median": 6,
+                  "max": 8
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_wdl": {
+              "below_blunder": 49,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v1": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 447,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 10,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 439,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 8
+                },
+                {
+                  "budget": 2,
+                  "pinned": 447,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 10,
+                "1": 429,
+                "2": 8
+              },
+              "max_min_blunders": 2,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 10,
+                  "min": 0,
+                  "median": 6,
+                  "max": 10
+                },
+                "1": {
+                  "count": 429,
+                  "min": 2,
+                  "median": 6,
+                  "max": 8
+                },
+                "2": {
+                  "count": 8,
+                  "min": 6,
+                  "median": 6,
+                  "max": 6
+                }
+              },
+              "certification_flips_at": 2
+            },
+            "mechanism_class": {
+              "below_blunder": 49,
+              "violations": 1,
+              "attrition_constrained": 1,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v2": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V2",
+              "all_legal_pinned": 438,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 10,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 438,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                },
+                {
+                  "budget": 2,
+                  "pinned": 438,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 10,
+                "1": 428
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 10,
+                  "min": 0,
+                  "median": 6,
+                  "max": 10
+                },
+                "1": {
+                  "count": 428,
+                  "min": 2,
+                  "median": 6,
+                  "max": 8
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_class_v2": {
+              "below_blunder": 48,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "wdl_v1_reversed": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1_REVERSED",
+              "all_legal_pinned": 1272,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 12,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 6
+                },
+                {
+                  "budget": 1,
+                  "pinned": 1272,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 10
+                },
+                {
+                  "budget": 2,
+                  "pinned": 1272,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 10
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 12,
+                "1": 1260
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 12,
+                  "min": 0,
+                  "median": 8,
+                  "max": 10
+                },
+                "1": {
+                  "count": 1260,
+                  "min": 2,
+                  "median": 8,
+                  "max": 10
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "conjecture_scan": {
+              "wdl_v1": {
+                "grading": "wdl",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": true,
+                "max_root_depth": 8,
+                "roots_per_class": 150,
+                "exhaustive": false,
+                "roots_tested": 600,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 100,
+                    "classes_below": 2,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 145,
+                      "2": 5
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 1,
+                    "roots_tested": 150,
+                    "max_budget_observed": 1,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 16,
+                      "1": 134
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -10,
+                    "classes_below": 0,
+                    "roots_tested": 150,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 150
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 150,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 150
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  100,
+                  0,
+                  -10,
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              },
+              "class5_v1": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": false,
+                "max_root_depth": 8,
+                "roots_per_class": 150,
+                "exhaustive": false,
+                "roots_tested": 600,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 100,
+                    "classes_below": 4,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 119,
+                      "2": 31
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 150,
+                    "max_budget_observed": 3,
+                    "attains_bound": false,
+                    "exceeds_bound": true,
+                    "budget_histogram": {
+                      "0": 16,
+                      "1": 111,
+                      "2": 12,
+                      "3": 11
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -10,
+                    "classes_below": 1,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": true,
+                    "budget_histogram": {
+                      "0": 6,
+                      "1": 46,
+                      "2": 98
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": true,
+                    "budget_histogram": {
+                      "0": 103,
+                      "1": 44,
+                      "2": 3
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": false,
+                "bound_attained_somewhere": [],
+                "budgets_above_two_observed": true
+              },
+              "class5_v2": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V2",
+                "scale_matched": true,
+                "max_root_depth": 8,
+                "roots_per_class": 150,
+                "exhaustive": false,
+                "roots_tested": 600,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 100,
+                    "classes_below": 4,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 119,
+                      "2": 31
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 16,
+                      "1": 112,
+                      "2": 22
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -10,
+                    "classes_below": 1,
+                    "roots_tested": 150,
+                    "max_budget_observed": 1,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 6,
+                      "1": 144
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 150,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 150
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  0,
+                  -10,
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              }
+            },
+            "two_blunder_family": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "budget": 2,
+              "states_unfolded": 8,
+              "distinct_up_to_symmetry": 8,
+              "is_one_d4_orbit": false,
+              "d4_order": 8,
+              "decision_nodes": 1,
+              "family_is_exactly_the_blundering_children": true,
+              "nodes": [
+                {
+                  "ply_depth": 5,
+                  "min_blunders_to_node": 1,
+                  "value_opponent_seat": -10,
+                  "legal_moves": 9,
+                  "zero_regret_moves": 1,
+                  "blundering_children": 8
+                }
+              ],
+              "reserves": [
+                [
+                  1,
+                  1
+                ]
+              ],
+              "removals_played": [
+                0
+              ],
+              "ply_depths": [
+                6
+              ],
+              "value_trajectory_opponent_seat": [
+                0,
+                0,
+                -100,
+                -100,
+                -100,
+                -10,
+                -100
+              ]
+            }
+          },
+          "1": {
+            "gate_c_agreement": {
+              "support0_equals_gate_c_optimal": true,
+              "support_all_equals_gate_c_all": true,
+              "gate_c_optimal_pinned": 1241,
+              "gate_c_all_pinned": 3982,
+              "caveat": "support(0) == optimal-only is a wiring check: budget 0 is the optimal-only opponent by construction."
+            },
+            "wdl_v1": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 3982,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 1241,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 5
+                },
+                {
+                  "budget": 1,
+                  "pinned": 3982,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                },
+                {
+                  "budget": 2,
+                  "pinned": 3982,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 1241,
+                "1": 2741
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 1241,
+                  "min": 1,
+                  "median": 7,
+                  "max": 11
+                },
+                "1": {
+                  "count": 2741,
+                  "min": 3,
+                  "median": 7,
+                  "max": 9
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_wdl": {
+              "below_blunder": 221,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v1": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V1",
+              "all_legal_pinned": 3982,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 1241,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 5
+                },
+                {
+                  "budget": 1,
+                  "pinned": 3982,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                },
+                {
+                  "budget": 2,
+                  "pinned": 3982,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 1241,
+                "1": 2741
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 1241,
+                  "min": 1,
+                  "median": 7,
+                  "max": 11
+                },
+                "1": {
+                  "count": 2741,
+                  "min": 3,
+                  "median": 7,
+                  "max": 9
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_class": {
+              "below_blunder": 221,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "class_v2": {
+              "grading": "class5",
+              "reference_policy": "CANONICAL_POLICY_V2",
+              "all_legal_pinned": 3982,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 1241,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 5
+                },
+                {
+                  "budget": 1,
+                  "pinned": 3982,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                },
+                {
+                  "budget": 2,
+                  "pinned": 3982,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 1241,
+                "1": 2741
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 1241,
+                  "min": 1,
+                  "median": 7,
+                  "max": 11
+                },
+                "1": {
+                  "count": 2741,
+                  "min": 3,
+                  "median": 7,
+                  "max": 9
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "mechanism_class_v2": {
+              "below_blunder": 221,
+              "violations": 0,
+              "attrition_constrained": 0,
+              "violations_are_exactly_attrition_lost": true
+            },
+            "wdl_v1_reversed": {
+              "grading": "wdl",
+              "reference_policy": "CANONICAL_POLICY_V1_REVERSED",
+              "all_legal_pinned": 3568,
+              "budgets": [
+                {
+                  "budget": 0,
+                  "pinned": 966,
+                  "equals_all_legal": false,
+                  "worst": "LOSS",
+                  "best": "draw",
+                  "identified": false,
+                  "shortest_certificate_depth_for_worst_value": 5
+                },
+                {
+                  "budget": 1,
+                  "pinned": 3568,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                },
+                {
+                  "budget": 2,
+                  "pinned": 3568,
+                  "equals_all_legal": true,
+                  "worst": "draw",
+                  "best": "draw",
+                  "identified": true,
+                  "shortest_certificate_depth_for_worst_value": 8
+                }
+              ],
+              "min_blunder_histogram": {
+                "0": 966,
+                "1": 2602
+              },
+              "max_min_blunders": 1,
+              "bfs_reconstructs_support": {
+                "0": true,
+                "1": true,
+                "2": true
+              },
+              "ply_depths": {
+                "0": {
+                  "count": 966,
+                  "min": 1,
+                  "median": 7,
+                  "max": 11
+                },
+                "1": {
+                  "count": 2602,
+                  "min": 3,
+                  "median": 7,
+                  "max": 9
+                }
+              },
+              "certification_flips_at": 1
+            },
+            "conjecture_scan": {
+              "wdl_v1": {
+                "grading": "wdl",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": true,
+                "max_root_depth": 8,
+                "roots_per_class": 150,
+                "exhaustive": false,
+                "roots_tested": 600,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 100,
+                    "classes_below": 2,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 49,
+                      "2": 101
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 10,
+                    "classes_below": 2,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 14,
+                      "1": 121,
+                      "2": 15
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 1,
+                    "roots_tested": 150,
+                    "max_budget_observed": 1,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 150
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 150,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 150
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  100,
+                  10,
+                  0,
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              },
+              "class5_v1": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V1",
+                "scale_matched": false,
+                "max_root_depth": 8,
+                "roots_per_class": 150,
+                "exhaustive": false,
+                "roots_tested": 600,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 100,
+                    "classes_below": 4,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 39,
+                      "2": 111
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 10,
+                    "classes_below": 3,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 135,
+                      "2": 15
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 150,
+                    "max_budget_observed": 1,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 150
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 150,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 150
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              },
+              "class5_v2": {
+                "grading": "class5",
+                "reference_policy": "CANONICAL_POLICY_V2",
+                "scale_matched": true,
+                "max_root_depth": 8,
+                "roots_per_class": 150,
+                "exhaustive": false,
+                "roots_tested": 600,
+                "rows": [
+                  {
+                    "root_value_opponent_seat": 100,
+                    "classes_below": 4,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 39,
+                      "2": 111
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 10,
+                    "classes_below": 3,
+                    "roots_tested": 150,
+                    "max_budget_observed": 2,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 137,
+                      "2": 13
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": 0,
+                    "classes_below": 2,
+                    "roots_tested": 150,
+                    "max_budget_observed": 1,
+                    "attains_bound": false,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "1": 150
+                    }
+                  },
+                  {
+                    "root_value_opponent_seat": -100,
+                    "classes_below": 0,
+                    "roots_tested": 150,
+                    "max_budget_observed": 0,
+                    "attains_bound": true,
+                    "exceeds_bound": false,
+                    "budget_histogram": {
+                      "0": 150
+                    }
+                  }
+                ],
+                "bound_holds_everywhere": true,
+                "bound_attained_somewhere": [
+                  -100
+                ],
+                "budgets_above_two_observed": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "headline_5_5": {
+      "states": 12714999,
+      "certified": false,
+      "seats": {
+        "0": {
+          "gate_c_agreement": {
+            "support0_equals_gate_c_optimal": true,
+            "support_all_equals_gate_c_all": true,
+            "gate_c_optimal_pinned": 15,
+            "gate_c_all_pinned": 858,
+            "caveat": "support(0) == optimal-only is a wiring check: budget 0 is the optimal-only opponent by construction."
+          },
+          "wdl_v1": {
+            "grading": "wdl",
+            "reference_policy": "CANONICAL_POLICY_V1",
+            "all_legal_pinned": 858,
+            "budgets": [
+              {
+                "budget": 0,
+                "pinned": 15,
+                "equals_all_legal": false
+              },
+              {
+                "budget": 1,
+                "pinned": 858,
+                "equals_all_legal": true
+              },
+              {
+                "budget": 2,
+                "pinned": 858,
+                "equals_all_legal": true
+              }
+            ],
+            "min_blunder_histogram": {
+              "0": 15,
+              "1": 843
+            },
+            "max_min_blunders": 1,
+            "bfs_reconstructs_support": {
+              "0": true,
+              "1": true,
+              "2": true
+            },
+            "ply_depths": {
+              "0": {
+                "count": 15,
+                "min": 0,
+                "median": 8,
+                "max": 14
+              },
+              "1": {
+                "count": 843,
+                "min": 2,
+                "median": 8,
+                "max": 12
+              }
+            },
+            "certification_flips_at": null
+          },
+          "mechanism_wdl": {
+            "below_blunder": 102,
+            "violations": 0,
+            "attrition_constrained": 0,
+            "violations_are_exactly_attrition_lost": true
+          }
+        },
+        "1": {
+          "gate_c_agreement": {
+            "support0_equals_gate_c_optimal": true,
+            "support_all_equals_gate_c_all": true,
+            "gate_c_optimal_pinned": 2735,
+            "gate_c_all_pinned": 15674,
+            "caveat": "support(0) == optimal-only is a wiring check: budget 0 is the optimal-only opponent by construction."
+          },
+          "wdl_v1": {
+            "grading": "wdl",
+            "reference_policy": "CANONICAL_POLICY_V1",
+            "all_legal_pinned": 15674,
+            "budgets": [
+              {
+                "budget": 0,
+                "pinned": 2735,
+                "equals_all_legal": false
+              },
+              {
+                "budget": 1,
+                "pinned": 15674,
+                "equals_all_legal": true
+              },
+              {
+                "budget": 2,
+                "pinned": 15674,
+                "equals_all_legal": true
+              }
+            ],
+            "min_blunder_histogram": {
+              "0": 2735,
+              "1": 12939
+            },
+            "max_min_blunders": 1,
+            "bfs_reconstructs_support": {
+              "0": true,
+              "1": true,
+              "2": true
+            },
+            "ply_depths": {
+              "0": {
+                "count": 2735,
+                "min": 1,
+                "median": 9,
+                "max": 15
+              },
+              "1": {
+                "count": 12939,
+                "min": 3,
+                "median": 9,
+                "max": 13
+              }
+            },
+            "certification_flips_at": null
+          },
+          "mechanism_wdl": {
+            "below_blunder": 2165,
+            "violations": 0,
+            "attrition_constrained": 0,
+            "violations_are_exactly_attrition_lost": true
+          }
+        }
+      }
+    }
+  }
+}
