@@ -175,6 +175,16 @@ failed. Strategically-chosen coverage bought *nothing* over depth-matched
 selection certified, same-universe random certified too. It is the **universe**,
 not the selection. Reported as a plain falsification of our own hypothesis.
 
+**It does not claim your candidate *is* the worst compatible policy.** The
+compatible outcome range admits any policy that agrees with the reference
+wherever the evaluation looked, so it gives no credit for generalization — while
+a real evaluator is implicitly betting that behaviour at unseen states resembles
+behaviour at seen ones. Certification is precisely the claim that the bet is not
+needed. Where it is needed, the gap is not hypothetical: a trained network that
+does generalize, scoring ~98% on unseen (4,4) positions, is still a certified
+forced loss from both seats
+([Finding 16](FINDINGS.md#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable)).
+
 **It is not a new method.** This is the exact, game-theoretic instance of
 surviving-mutant reasoning from mutation testing and of an *identified set* from
 partial identification. The contribution is making it exact against solved ground
