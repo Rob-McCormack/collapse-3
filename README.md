@@ -2,7 +2,7 @@
 
 <img src="docs/images/README-image.png" width="400" alt="Collapse3 board collapse">
 
-*This is **not** 3D tic-tac-toe. The 3×3×3 geometry is familiar; the rules and state dynamics are not ([why?](docs/FAQ.md#18-is-collapse3-just-a-more-complicated-version-of-3d-tic-tac-toe)).*
+*Collapse3 is **not** 3D tic-tac-toe. The 3×3×3 geometry is familiar; the rules and state dynamics are not ([why?](docs/FAQ.md#18-is-collapse3-just-a-more-complicated-version-of-3d-tic-tac-toe)).*
 
 > Collapse3 is a precise experimental instrument — a microscope for AI
 > evaluation. It exposes systematic aberrations in the metrics, sampling
