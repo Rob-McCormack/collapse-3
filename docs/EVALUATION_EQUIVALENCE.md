@@ -107,35 +107,56 @@ best-response adversary in [Finding 16](FINDINGS.md) and the weak exploiter in
 agent never had to answer. Here it is stated as a property of the *evaluation
 protocol* itself, exactly.
 
-## H2 falsified: it is the universe, not the selection
+## It is the universe, not the budget — and H2 remains untested
 
 A tempting follow-on hypothesis (**H2**): *strategic* depth-limited coverage
-should certify more than *random* coverage of the same size. **Gate D** tests it
-against two depth-matched random controls — control **A** draws from all
-decision states; control **B** (the strong one) draws from the same all-legal
-exposure universe, matching the exact ply-depth histogram, so only the selection
-rule differs. (Depth is the exact invariant `plies = 2·placed − on_board`,
-verified against BFS with zero mismatches; the horizon convention is inclusive
-and stamped into the record.)
+should certify more than *random* coverage of the same size. **Gate D** was
+built to test it against two depth-matched random controls — control **A**
+draws from all decision states; control **B** draws from the same all-legal
+exposure universe, matching the exact ply-depth histogram, so that only the
+selection rule differs. (Depth is the exact invariant
+`plies = 2·placed − on_board`, verified against BFS with zero mismatches; the
+horizon convention is inclusive and stamped into the record.)
+
+> **Correction.** Control **B** does not test H2, and never could. The
+> strategic set is `adversarial_support(plies)`, which takes *every* candidate
+> decision at depth ≤ plies; the universe is the same traversal without a depth
+> cap. The strategic set is therefore exactly the depth-truncation of the
+> universe, so matching its ply-depth histogram demands the whole pool at every
+> depth and leaves the draw no freedom. **Control B returns the identical set,
+> by construction** — confirmed at (3,3) and (4,4), both seats, all four
+> budgets, all 30 seeds: 240 of 240 identical at each size. Its `0/30` is a
+> restatement of the strategic result, not a comparison with it. The column is
+> retained below for transparency and must not be read as evidence about
+> selection.
 
 At (3,3), 30 seeds per cell (`force-losable` = seeds where the random set still
 left a forced loss):
 
-| seat | budget | strategic | control A (all states) | control B (same universe) |
+| seat | budget | strategic | control A (all states) | control B (degenerate: = strategic) |
 |---|---|---|---|---|
-| 0 | 4-ply | draw (certifies) | 30/30 losable | **0/30 losable** |
-| 0 | 6/8-ply | draw | 30/30 | 0/30 |
-| 1 | 6-ply | draw (certifies) | 30/30 | **0/30 losable** |
-| 1 | 4-ply | forced loss | 30/30 | 30/30 |
+| 0 | 4-ply | draw (certifies) | 30/30 losable | 0/30 — same set |
+| 0 | 6/8-ply | draw | 30/30 | 0/30 — same set |
+| 1 | 6-ply | draw (certifies) | 30/30 | 0/30 — same set |
+| 1 | 4-ply | forced loss | 30/30 | 30/30 — same set |
 
-Whenever strategic coverage certifies, **same-universe random coverage certifies
-too** (control B 0/30); whenever strategic fails, control B fails as well.
-Strategic selection buys **nothing** over depth-matched random *from the same
-universe*. What certifies is drawing from the **all-legal exposure universe** at
-all — control A, matched on depth but drawn from the whole state space, never
-certifies. **H2 is falsified at the budgets tested**, and reported as such: this
-does not prove strategic selection can never help at some smaller budget, only
-that at these budgets the universe, not the selection, is what matters.
+**What this does establish.** Control **A** is a real comparison: the same
+budget, the same ply-depth histogram, drawn from the whole state space instead
+of the reachable-decision universe. It never certifies — 30 of 30 leave a forced
+loss compatible — while coverage of the reachable decisions at the same budget
+rules the loss out. **Where a fixed testing budget is spent changes what the
+test guarantees.** That is Gate D's result and it stands on control A alone.
+
+**What this does not establish.** Nothing about strategic versus random
+*selection*. H2 is **untested, not falsified** — an earlier version of this
+document claimed falsification and that claim is withdrawn.
+
+**How to actually test H2.** Give both methods an equal budget strictly smaller
+than the available pool at each depth, so each has genuine freedom to choose
+different states; and give "strategic" a real selection rule — preferring states
+that leave the most compatible-policy freedom, for instance. At present
+"strategic" means *take everything available*, which is a budget rather than a
+strategy, and that is why the degenerate comparison went unnoticed.
 
 ## Gate B: finite games are an inefficient way to cover
 

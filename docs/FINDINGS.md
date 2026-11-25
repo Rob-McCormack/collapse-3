@@ -30,7 +30,7 @@ drift with the torch build (see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md)).
 14. **[Self-play saturates: flawless where it plays, weaker off its lines, exploitable, and it trips the boundary](#14-self-play-saturates-flawless-on-its-own-trajectories-weaker-off-them-and-it-trips-over-the-phase-boundary)** — true self-play looks perfect on its own games yet its global edge over a random baseline *erodes* with size, it is exactly exploitable, and it is forced to lose when it carries a trained-optimal opening across the phase boundary. Part (iv): the exploiter need not be strong — a policy random except on six memorized moves beats a >99%-vs-random champion (KataGo analogue).
 15. **[Knowing when to look — the value of information is sparse](#15-knowing-when-to-look--the-exact-value-of-information-is-sparse)** — an exact information policy: missing ≠ useful (reserves have zero decision value at (3,3)), yet from (4,4) up only ~1% of decisions must inspect reserves and that 1% carries the *entire* irreducible floor.
 16. **[Generalization is not robustness](#16-generalization-is-not-robustness--a-trained-net-that-generalizes-is-still-certifiably-force-losable)** — a small net that plays ~98% optimally on unseen (4,4) states is still a certified forced loss from both seats; all six trained nets fall to the exact adversary from both seats (12 of 12 certifications). *(Torch-dependent exhibit — see [`docs/NEURAL_EXHIBIT.md`](NEURAL_EXHIBIT.md).)*
-17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out — and a **single** non-canonical decision is enough to lose (Gate A, one mutation at (3,3), (4,4), and (5,5) — two-sided from (4,4)). Strategic coverage buys nothing over same-universe random — it's the universe, not the selection (H2 falsified). The gap is closed by permitting the opponent **one deliberate mistake per game** (tremble budget m=1), which exposes exactly the all-legal decision set. *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
+17. **[Passing a test rules out less than you think](#17-passing-a-test-rules-out-less-than-you-think--the-strongest-player-is-not-the-strongest-tester)** — the exact *compatible outcome range* of an evaluation: an evaluator that tests only against **optimal** opponents leaves a **certified forced loss** compatible (as few as **10** pinned decisions at (4,4), two-sided), while all-legal coverage rules it out — and a **single** non-canonical decision is enough to lose (Gate A, one mutation at (3,3), (4,4), and (5,5) — two-sided from (4,4)). Depth-matched random coverage drawn from the whole state space never certifies, while the same budget spent on the reachable decisions does — it is the universe, not the sample size (an earlier strategic-vs-random *selection* claim is withdrawn; that control was degenerate). The gap is closed by permitting the opponent **one deliberate mistake per game** (tremble budget m=1), which exposes exactly the all-legal decision set. *(See [`docs/EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).)*
 
 **Also in this document:** [Five mechanisms, seventeen exhibits](#five-mechanisms-seventeen-exhibits) · [The measurement problem](#the-measurement-problem) · [Where the difficulty lives](#where-the-difficulty-lives) · [Relation to prior work](#relation-to-prior-work) · [Why this matters for AI research](#why-this-matters-for-ai-research) · [Is this just undertraining?](#is-this-just-undertraining-would-a-bigger-model-help) · [Rule sensitivity](#rule-sensitivity-a-caution) · [Limitations & scaling](#limitations--scaling) · [Reproducibility](#reproducibility)
 
@@ -1471,11 +1471,25 @@ and [Finding 16](#16-generalization-is-not-robustness--a-trained-net-that-genera
 where the adversary wins via true-game blunders — stated here as a property of
 the evaluation protocol.
 
-**H2 falsified (Gate D).** Strategic depth-limited coverage buys nothing over
-depth-matched *random* coverage from the **same** exposure universe: whenever
-strategic certifies, same-universe random certifies too (0/30 force-losable);
-random from the whole state space never certifies (30/30). It is the universe,
-not the selection. Reported as a plain falsification, not hidden.
+**Gate D: where the budget is spent changes what the test guarantees.**
+Depth-matched random coverage drawn from the **whole state space** never
+certifies (30/30 force-losable), while coverage of the reachable decisions at
+the same budget and the same ply-depth histogram rules the forced loss out. It
+is the universe the sample is drawn from, not the sample size.
+
+**Correction — H2 is untested, not falsified.** Earlier versions claimed Gate
+D's same-universe control (control B) falsified the hypothesis that strategic
+selection beats random selection. It does not test it. The strategic set is
+every candidate decision at depth ≤ plies, and the universe is the same
+traversal uncapped, so the strategic set is exactly the universe's
+depth-truncation; matching its depth histogram demands the whole pool at every
+depth and leaves the draw no freedom. Control B therefore returns the identical
+set — verified at (3,3) and (4,4), both seats, all budgets, all 30 seeds, 240 of
+240 identical at each size — so its 0/30 restates the strategic row rather than
+comparing with it. Testing H2 needs an equal budget strictly smaller than the
+pool at each depth, plus a real selection rule; "take everything available" is a
+budget, not a strategy. See
+[`EVALUATION_EQUIVALENCE.md`](EVALUATION_EQUIVALENCE.md).
 
 **Gate B.** Finite games are inefficient: ~3,000 transcript-audited games are
 needed to reach the draw certification that exact all-legal coverage nails with

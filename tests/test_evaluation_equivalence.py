@@ -51,6 +51,53 @@ def test_gate0_reproduces_all_anchors():
     assert s0["all"]["identified"] is True
 
 
+def test_gate_d_control_b_is_degenerate_and_labelled_as_such():
+    # Gate D's 'in_support' control cannot test strategic-vs-random selection.
+    # adversarial_support(plies) takes EVERY candidate decision at depth <= plies,
+    # and the universe is the same traversal uncapped, so the strategic set is
+    # exactly the universe's depth-truncation. Matching its ply-depth histogram
+    # therefore demands the whole pool at every depth and the draw has no freedom:
+    # the control returns the identical set. Verified at (3,3) and (4,4) in the
+    # correction; (3,3) is the fast guard here.
+    #
+    # If a future change gives the control real freedom, this test SHOULD fail --
+    # at which point H2 becomes testable and the docs must stop saying "untested".
+    from collapse3.enumeration import solve_all
+    from collapse3.game import empty_state
+    import experiments.evaluation_equivalence as ee
+
+    memo = solve_all(empty_state(3, 3, 0))
+    for seat in (0, 1):
+        expo = ee.benchmark_support(memo, 3, seat, "all")
+        for plies in (2, 4, 6, 8):
+            sup = ee.adversarial_support(memo, 3, seat, plies)
+            for seed in (0, 1, 2):
+                ctl = ee.depth_matched_random(memo, 3, seat, sup, seed, expo)
+                assert ctl == sup, (
+                    f"control B differs from strategic at seat {seat}, {plies} plies, "
+                    f"seed {seed} -- H2 may now be testable; update the docs")
+
+
+def test_h2_is_not_claimed_as_falsified_anywhere():
+    # The degenerate control was once reported as falsifying H2. Guard the
+    # retraction so it cannot creep back into the prose or the experiment.
+    root = Path(__file__).resolve().parent.parent
+    targets = [
+        root / "README.md",
+        root / "docs" / "EVALUATION_EQUIVALENCE.md",
+        root / "docs" / "FINDINGS.md",
+        root / "docs" / "BEAT_THE_BEST.md",
+        root / "experiments" / "evaluation_equivalence.py",
+    ]
+    banned = ("H2 is falsified", "H2 falsified", "buys nothing over same-universe")
+    for path in targets:
+        if not path.exists():
+            continue
+        text = path.read_text()
+        for phrase in banned:
+            assert phrase not in text, f"{path.name} still claims: {phrase!r}"
+
+
 def test_anchor_table_is_internally_consistent():
     # Guard the frozen anchor table itself against accidental edits.
     a = GATE0_ANCHORS[(3, 3)]

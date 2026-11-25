@@ -169,11 +169,20 @@ The winning family here is *all-legal* — every legal move available, which
 lesson is to avoid **restricting** your opponents to optimal play, not to go find
 bad ones.
 
-**It does not say a cleverer evaluator is the answer.** We tested that and it
-failed. Strategically-chosen coverage bought *nothing* over depth-matched
-**random** coverage drawn from the same exposure universe: wherever strategic
-selection certified, same-universe random certified too. It is the **universe**,
-not the selection. Reported as a plain falsification of our own hypothesis.
+**It does not say where to spend a fixed testing budget doesn't matter — it says
+the opposite.** Depth-matched **random** coverage drawn from the whole state
+space never certifies (30/30 force-losable), while the same budget, matched on
+ply-depth, spent on the *reachable decisions* rules the forced loss out. It is
+the **universe** you draw from, not the sample size.
+
+**It does not say a cleverer evaluator is no better.** We thought we had tested
+that and found no advantage; the control was degenerate. Strategic coverage
+takes every candidate decision at depth ≤ plies, and the same-universe control
+had to match that exact depth histogram from the same pool — so it returned the
+identical set every time, at both (3,3) and (4,4). That comparison carries no
+information about selection, and the hypothesis is **untested rather than
+falsified**. Testing it needs an equal budget strictly smaller than the pool,
+and a selection rule that actually selects.
 
 **It does not claim your candidate *is* the worst compatible policy.** The
 compatible outcome range admits any policy that agrees with the reference

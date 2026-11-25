@@ -239,8 +239,11 @@ objectively-losing lines where the candidate's weakness lives, so **opponent
 strength and evaluator strength are different properties**. And the surviving
 flaw can be *tiny*: a **single** non-canonical decision is enough to be
 force-losable — one mutation, holding from (3,3) through the **12.7-million-state
-(5,5)** board (Gate A, two-sided from (4,4)). Strategic coverage buys nothing
-over same-universe random — it's the universe, not the selection (H2 falsified).
+(5,5)** board (Gate A, two-sided from (4,4)). Depth-matched random coverage
+drawn from the whole state space never certifies, while the same budget spent on
+the reachable decisions does — it is the universe, not the sample size. (An
+earlier claim that this falsified strategic-vs-random *selection* is withdrawn;
+that control was degenerate.)
 And the gap is narrow: permitting the opponent **one deliberate mistake per
 game** exposes *exactly* the all-legal decision set and certifies every cell the
 perfect opponent left open — the opening is a draw, so one mistake drops it to a

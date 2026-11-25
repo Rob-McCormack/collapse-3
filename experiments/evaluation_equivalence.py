@@ -612,7 +612,21 @@ def main(sizes: Tuple[int, ...] = (3,), full: bool = False,
 
 def _gate_d(sizes: Tuple[int, ...], control_seeds: int) -> Dict:
     """Gate D: strategic depth-limited coverage vs two depth-matched controls.
-    H2 is currently falsified at these budgets -- report plainly either way."""
+
+    Control A (all_states) is the live comparison: same budget, same ply-depth
+    histogram, drawn from the whole state space. It never certifies, which is
+    Gate D's result -- where a fixed budget is spent changes what the test
+    guarantees.
+
+    Control B (in_support) is DEGENERATE and does not test H2. `sup` is
+    `adversarial_support(plies)`, every candidate decision at depth <= plies;
+    `expo` is the same traversal uncapped. So `sup` is exactly the
+    depth-truncation of `expo`, matching its depth histogram demands the whole
+    pool at every depth, and `depth_matched_random` returns `sup` itself --
+    verified identical at (3,3) and (4,4), both seats, all budgets, all seeds.
+    Its force_losable count restates the strategic row; it is emitted for
+    transparency and MUST NOT be read as evidence about selection. H2 is
+    untested, not falsified."""
     out: Dict = {}
     for r in sizes:
         memo = solve_all(empty_state(r, r, 0))
